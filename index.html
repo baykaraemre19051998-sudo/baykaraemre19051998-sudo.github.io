@@ -5,15 +5,18 @@
     <title>Özlem Kankam</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Georgia', serif;
             text-align: center;
             background-color: #fff0f5;
-            color: #ff69b4;
+            color: #5a3d5c;
             margin: 40px;
+            background-image: linear-gradient(to bottom, #fffaf0, #ffe4e1);
         }
         h1 {
             font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            color: #8b008b;
+            margin-bottom: 30px;
         }
         .heart {
             color: #ff1493;
@@ -25,14 +28,57 @@
             50% { transform: scale(1.3); }
             100% { transform: scale(1); }
         }
+        .foto-kutusu {
+            border: 5px solid #d8bfd8;
+            border-radius: 20px;
+            width: 300px;
+            margin: 20px auto;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 0 20px #e6e6fa;
+        }
+        .foto-kutusu img {
+            width: 100%;
+            border-radius: 15px;
+        }
+        .siir-kutusu {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 25px;
+            background: rgba(255, 250, 250, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(139, 0, 139, 0.1);
+            line-height: 1.8;
+            font-size: 1.1em;
+            font-style: italic;
+            border-left: 4px solid #9370db;
+        }
+        .siir-dize {
+            margin: 12px 0;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h1>prenses özlem kankamı <span class="heart">♥</span> çok seviyorum</h1>
     
-    <div style="margin-top: 50px; font-size: 1.2em;">
+    <div class="foto-kutusu">
+        <img src="Screenshot_20250726_151731.jpg" alt="Özlem Kankam">
+    </div>
+    
+    <div style="margin: 30px auto; font-size: 1.2em; max-width: 500px;">
         <p>Dünyanın en güzel kankasına...</p>
         <p>Seni sevmek hayatımın en güzel hediyesi 💖</p>
     </div>
+    
+    <!-- ŞİİR BÖLÜMÜ BAŞLANGICI -->
+    <div class="siir-kutusu">
+        <div class="siir-dize">Örtüsü geceye bürünmüş denizlerden,</div>
+        <div class="siir-dize">Zambaklar susarken sen konuşursun sessizliğimde.</div>
+        <div class="siir-dize">Lal olur dilim adını anarken rüzgarlara,</div>
+        <div class="siir-dize">Eskimeyen bir melodi: "neredesin?" çınlar yankıda</div>
+        <div class="siir-dize">Mühürlendi kalbime: "seninle her an bahar."</div>
+    </div>
+    <!-- ŞİİR BÖLÜMÜ BİTİŞİ -->
 </body>
 </html>
