@@ -1,40 +1,341 @@
-DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Özlem Kankam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Özlem'e Şiir ve Animasyon</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Georgia', serif;
             text-align: center;
-            background-color: #fff0f5;
-            color: #5a3d5c;
-            margin: 40px;
-            background-image: linear-gradient(to bottom, #fffaf0, #ffe4e1);
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #e6e6e6;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .header {
+            padding: 30px 0;
+            position: relative;
+            animation: fadeInDown 1.5s ease-out;
+        }
+        
         h1 {
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            color: #8b008b;
-            margin-bottom: 30px;
+            font-size: 2.8rem;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+            color: #ffb6c1;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
         }
+        
         .heart {
             color: #ff1493;
-            font-size: 1.8em;
+            font-size: 2.2rem;
             animation: pulse 1.5s infinite;
+            display: inline-block;
         }
+        
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.3); }
             100% { transform: scale(1); }
         }
-        .foto-kutusu {
-            border: 5px solid #d8bfd8;
-            border-radius: 20px;
-            width: 300px;
-            margin: 20px auto;
-            padding: 10px;
-            background: white;
-            box-shadow: 0 0 20px #e6e6fa;
+        
+        .message {
+            margin: 30px auto;
+            font-size: 1.3rem;
+            max-width: 600px;
+            padding: 15px;
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 15px;
+            animation: fadeIn 2s ease-out;
+            border: 1px solid #ff69b4;
         }
         
+        .siir-kutusu {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(255, 105, 180, 0.3);
+            line-height: 1.9;
+            font-size: 1.25rem;
+            font-style: italic;
+            border: 1px solid #9370db;
+            animation: fadeIn 2.5s ease-out;
+            position: relative;
+            z-index: 20;
+        }
+        
+        .siir-dize {
+            margin: 18px 0;
+            text-align: center;
+            position: relative;
+            padding: 0 10px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .siir-dize::before {
+            content: "❝";
+            position: absolute;
+            left: -15px;
+            top: -10px;
+            font-size: 2rem;
+            color: #ff69b4;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 1rem;
+            color: #b0b0cc;
+        }
+        
+        .animation-container {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            margin: 50px auto 100px;
+            overflow: hidden;
+            border-top: 1px solid #ff69b4;
+            padding-top: 30px;
+        }
+        
+        .character {
+            position: absolute;
+            bottom: 50px;
+            width: 80px;
+            height: 120px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+        
+        .man {
+            left: -100px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 150"><circle cx="50" cy="40" r="20" fill="%234a86e8"/><rect x="40" y="60" width="20" height="50" fill="%234a86e8"/><line x1="30" y1="80" x2="10" y2="100" stroke="%234a86e8" stroke-width="5"/><line x1="70" y1="80" x2="90" y2="100" stroke="%234a86e8" stroke-width="5"/><line x1="50" y1="110" x2="30" y2="140" stroke="%234a86e8" stroke-width="5"/><line x1="50" y1="110" x2="70" y2="140" stroke="%234a86e8" stroke-width="5"/></svg>');
+            animation-name: runMan;
+        }
+        
+        .woman {
+            right: -100px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 150"><circle cx="50" cy="40" r="20" fill="%23ff69b4"/><path d="M40 60 L60 60 L55 110 L45 110 Z" fill="%23ff69b4"/><line x1="30" y1="80" x2="10" y2="100" stroke="%23ff69b4" stroke-width="5"/><line x1="70" y1="80" x2="90" y2="100" stroke="%23ff69b4" stroke-width="5"/><line x1="50" y1="110" x2="30" y2="140" stroke="%23ff69b4" stroke-width="5"/><line x1="50" y1="110" x2="70" y2="140" stroke="%23ff69b4" stroke-width="5"/></svg>');
+            animation-name: runWoman;
+        }
+        
+        @keyframes runMan {
+            0% { left: -100px; transform: scaleX(1); }
+            40% { left: 42%; }
+            41%, 60% { 
+                left: 42%; 
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150"><circle cx="100" cy="40" r="20" fill="%234a86e8"/><rect x="90" y="60" width="20" height="50" fill="%234a86e8"/><line x1="100" y1="60" x2="100" y2="140" stroke="%234a86e8" stroke-width="5"/><line x1="100" y1="100" x2="120" y2="120" stroke="%234a86e8" stroke-width="5"/><line x1="100" y1="100" x2="80" y2="120" stroke="%234a86e8" stroke-width="5"/></svg>');
+                transform: scaleX(1);
+            }
+            100% { left: 42%; transform: scaleX(1); }
+        }
+        
+        @keyframes runWoman {
+            0% { right: -100px; transform: scaleX(-1); }
+            40% { right: 42%; }
+            41%, 60% { 
+                right: 42%; 
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150"><circle cx="100" cy="40" r="20" fill="%23ff69b4"/><path d="M90 60 L110 60 L105 110 L95 110 Z" fill="%23ff69b4"/><line x1="100" y1="60" x2="100" y2="140" stroke="%23ff69b4" stroke-width="5"/><line x1="100" y1="100" x2="120" y2="120" stroke="%23ff69b4" stroke-width="5"/><line x1="100" y1="100" x2="80" y2="120" stroke="%23ff69b4" stroke-width="5"/></svg>');
+                transform: scaleX(-1);
+            }
+            100% { right: 42%; transform: scaleX(-1); }
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0;
+            opacity: 0;
+            animation: hearts 4s infinite;
+            animation-delay: 4.5s;
+        }
+        
+        @keyframes hearts {
+            0% { opacity: 0; transform: translateX(-50%) translateY(0); }
+            30% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-100px); }
+        }
+        
+        .hearts span {
+            display: inline-block;
+            font-size: 30px;
+            color: #ff69b4;
+            margin: 0 5px;
+            text-shadow: 0 0 10px rgba(255, 0, 100, 0.8);
+            animation: heartFloat 3s infinite ease-in-out;
+        }
+        
+        .hearts span:nth-child(1) { animation-delay: 0.1s; }
+        .hearts span:nth-child(2) { animation-delay: 0.3s; }
+        .hearts span:nth-child(3) { animation-delay: 0.5s; }
+        .hearts span:nth-child(4) { animation-delay: 0.7s; }
+        .hearts span:nth-child(5) { animation-delay: 0.9s; }
+        
+        @keyframes heartFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+            opacity: 0;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from { 
+                opacity: 0; 
+                transform: translateY(-50px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .siir-kutusu {
+                padding: 20px 15px;
+                font-size: 1.1rem;
+            }
+            .character {
+                width: 60px;
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Yıldız animasyonu -->
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>prenses özlem kankamı <span class="heart">♥</span> çok seviyorum</h1>
+        </div>
+        
+        <div class="message">
+            <p>Dünyanın en güzel kankasına...</p>
+            <p>Seni sevmek hayatımın en güzel hediyesi 💖</p>
+        </div>
+        
+        <div class="siir-kutusu">
+            <div class="siir-dize">Örtüsü geceye bürünmüş denizlerden,</div>
+            <div class="siir-dize">Zambaklar susarken sen konuşursun sessizliğimde.</div>
+            <div class="siir-dize">Lal olur dilim adını anarken rüzgarlara,</div>
+            <div class="siir-dize">Eskimeyen bir melodi:"neredesin?" çınlar yankıda</div>
+            <div class="siir-dize">Mühürlendi kalbime: "seninle her an bahar."</div>
+        </div>
+        
+        <!-- Koşu ve sarılma animasyonu -->
+        <div class="animation-container">
+            <div class="character man"></div>
+            <div class="character woman"></div>
+            <div class="hearts">
+                <span>❤️</span>
+                <span>💖</span>
+                <span>💕</span>
+                <span>💞</span>
+                <span>💓</span>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Kalpten Özlem'e... ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        // Yıldız animasyonu oluştur
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 150;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Rastgele pozisyon
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                
+                // Rastgele boyut
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Rastgele animasyon süresi
+                const duration = Math.random() * 5 + 3;
+                star.style.setProperty('--duration', duration + 's');
+                
+                // Rastgele başlama gecikmesi
+                star.style.animationDelay = Math.random() * 5 + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Sayfa yüklendiğinde yıldızları oluştur
+        window.onload = createStars;
+        
+        // Animasyon sonunda kalp çıkması için
+        setTimeout(() => {
+            document.querySelector('.hearts').style.fontSize = '30px';
+        }, 4500);
+    </script>
+</body>
+</html>
