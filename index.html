@@ -325,6 +325,44 @@
             font-weight: bold;
         }
         
+        .music-info {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(26, 26, 46, 0.9);
+            padding: 15px 20px;
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid #ff69b4;
+            animation: slideIn 0.5s ease-out;
+            max-width: 350px;
+        }
+        
+        .music-info i {
+            color: #ff69b4;
+            font-size: 2rem;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .music-text {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        
+        .music-text span {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -405,6 +443,14 @@
             .first-letter {
                 font-size: 2rem;
             }
+            
+            .music-info {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: calc(100% - 20px);
+                padding: 10px 15px;
+            }
         }
     </style>
 </head>
@@ -420,7 +466,7 @@
         <div class="content-wrapper">
             <div class="photo-container">
                 <!-- Fotoğraf burada görünecek -->
-                <img id="ozlemFoto" src="Screenshot_20250726_151731.jpg" alt="Özlem Kankam">
+                <img id="ozlemFoto" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydHJhaXR8ZW58MHx8MHx8fDA%3D" alt="Özlem Kankam">
                 <!-- Fotoğraf yüklenmezse bu mesaj görünecek -->
                 <div id="fotoHatasi" class="photo-not-found" style="display: none;">
                     Fotoğraf yüklenemedi! Lütfen dosya adını kontrol edin.
@@ -468,10 +514,16 @@
     </div>
     
     <!-- Müzik için ses elementi (görünmez) -->
-    <audio id="song" autoplay loop hidden>
-        <source src="seni-seviyorum.mp3" type="audio/mpeg">
+    <audio id="song" autoplay loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
         Tarayıcınız audio elementini desteklemiyor.
     </audio>
+    
+    <!-- Müzik çalma uyarısı -->
+    <div id="musicInfo" class="music-info">
+        <i class="fas fa-music"></i>
+        <div class="music-text">Müzik otomatik başlamazsa lütfen <span>sayfaya tıklayın</span></div>
+    </div>
     
     <script>
         // Yıldız animasyonu oluştur
@@ -529,7 +581,7 @@
         };
         
         // Müziği otomatik başlat
-        window.addEventListener('load', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             createStars();
             
             // Fotoğrafın yüklendiğini kontrol et
@@ -540,18 +592,40 @@
             
             // Müziği başlat
             const song = document.getElementById('song');
-            const playPromise = song.play();
+            const musicInfo = document.getElementById('musicInfo');
             
-            // Otomatik çalma izni olmazsa kullanıcı etkileşimi bekler
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Otomatik çalma engellendi, kullanıcı etkileşimi bekleniyor");
-                    document.body.addEventListener('click', function() {
-                        song.play();
-                    }, { once: true });
+            // Müzik çalma işlemini başlat
+            const startMusic = function() {
+                // Müziği başlat
+                song.play().catch(e => {
+                    console.error("Müzik başlatma hatası:", e);
                 });
-            }
+                
+                // Müzik bilgi kutusunu gizle
+                musicInfo.style.display = 'none';
+                
+                // Tıklama olayını kaldır
+                document.body.removeEventListener('click', startMusic);
+            };
+            
+            // Sayfa yüklendiğinde müziği başlatmayı dene
+            song.play().then(() => {
+                // Başarılı olduysa bilgi kutusunu gizle
+                musicInfo.style.display = 'none';
+            }).catch(error => {
+                // Otomatik başlatma engellendi, kullanıcı etkileşimi bekleyelim
+                console.log("Otomatik çalma engellendi, kullanıcı etkileşimi bekleniyor");
+                
+                // Bilgi kutusunu göster
+                musicInfo.style.display = 'flex';
+                
+                // Sayfada tıklanınca müziği başlat
+                document.body.addEventListener('click', startMusic);
+            });
         });
     </script>
+    
+    <!-- Font Awesome ikonları için -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>
