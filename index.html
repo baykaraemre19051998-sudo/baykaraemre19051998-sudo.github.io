@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Benim Web Sitem</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Özlem Kankam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fff0f5;
+            color: #ff69b4;
+            margin: 40px;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .heart {
+            color: #ff1493;
+            font-size: 1.8em;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+    </style>
 </head>
 <body>
-    <h1>Merhaba, ben [Adını yaz]!</h1>
-    <p>Bu benim ilk web sitem. Hoş geldiniz!</p>
-    <h2>Hakkımda</h2>
-    <p>Ben [Adın]. Burada kendimden bahsediyorum.</p>
-    <h2>İletişim</h2>
-    <form id="contact-form">
-        <input type="text" placeholder="Adın" required>
-        <input type="email" placeholder="E-posta" required>
-        <textarea placeholder="Mesajın"></textarea>
-        <button>Gönder</button>
-    </form>
-    <script src="script.js"></script>
+    <h1>prenses özlem kankamı <span class="heart">♥</span> çok seviyorum</h1>
+    
+    <div style="margin-top: 50px; font-size: 1.2em;">
+        <p>Dünyanın en güzel kankasına...</p>
+        <p>Seni sevmek hayatımın en güzel hediyesi 💖</p>
+    </div>
 </body>
 </html>
