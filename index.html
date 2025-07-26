@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Özlem'e Şiir ve Animasyon</title>
+    <title>Özlem'e Özel Sayfa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,46 +13,54 @@
         }
         
         body {
-            font-family: 'Georgia', serif;
-            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-            color: #e6e6e6;
+            color: #fff;
             min-height: 100vh;
             padding: 20px;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            position: relative;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1000px;
+            width: 100%;
             margin: 0 auto;
             padding: 20px;
             position: relative;
-            z-index: 10;
+            z-index: 20;
         }
         
         .header {
+            text-align: center;
             padding: 30px 0;
-            position: relative;
+            margin-bottom: 20px;
             animation: fadeInDown 1.5s ease-out;
         }
         
         h1 {
-            font-size: 2.8rem;
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+            font-size: 3.2rem;
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
             color: #ffb6c1;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             letter-spacing: 2px;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 10px;
+            border-radius: 15px;
         }
         
         .heart {
             color: #ff1493;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             animation: pulse 1.5s infinite;
             display: inline-block;
+            margin: 0 10px;
+            text-shadow: 0 0 15px rgba(255, 20, 147, 0.7);
         }
         
         @keyframes pulse {
@@ -60,65 +69,196 @@
             100% { transform: scale(1); }
         }
         
-        .message {
-            margin: 30px auto;
-            font-size: 1.3rem;
-            max-width: 600px;
-            padding: 15px;
+        .content-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .photo-section {
+            flex: 1;
+            min-width: 300px;
             background: rgba(26, 26, 46, 0.7);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid #ff69b4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .siir-section {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid #9370db;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #ffb6c1;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff69b4, transparent);
+        }
+        
+        .photo-upload-container {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px dashed #ff69b4;
             border-radius: 15px;
-            animation: fadeIn 2s ease-out;
-            border: 1px solid #ff69b4;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .photo-upload-container:hover {
+            background: rgba(15, 23, 42, 0.8);
+            transform: translateY(-5px);
+        }
+        
+        .photo-upload-container i {
+            font-size: 4rem;
+            color: #ff69b4;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .photo-upload-container p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #e6e6e6;
+        }
+        
+        .upload-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        .photo-preview {
+            width: 100%;
+            height: 350px;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            border: 2px solid #9370db;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .photo-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+            border-radius: 10px;
+        }
+        
+        .photo-preview .placeholder {
+            font-size: 5rem;
+            color: #4a5568;
         }
         
         .siir-kutusu {
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 30px;
-            background: rgba(26, 26, 46, 0.7);
-            border-radius: 20px;
-            box-shadow: 0 5px 25px rgba(255, 105, 180, 0.3);
-            line-height: 1.9;
-            font-size: 1.25rem;
-            font-style: italic;
-            border: 1px solid #9370db;
-            animation: fadeIn 2.5s ease-out;
-            position: relative;
-            z-index: 20;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .siir-dize {
-            margin: 18px 0;
+            margin: 22px 0;
             text-align: center;
             position: relative;
             padding: 0 10px;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            font-size: 1.3rem;
+            line-height: 1.7;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+            font-style: italic;
+            color: #e9d8fd;
+        }
+        
+        .siir-dize::before,
+        .siir-dize::after {
+            content: """;
+            font-size: 2.5rem;
+            color: #ff69b4;
+            position: absolute;
+            top: -15px;
+            opacity: 0.7;
         }
         
         .siir-dize::before {
-            content: "❝";
-            position: absolute;
-            left: -15px;
-            top: -10px;
-            font-size: 2rem;
-            color: #ff69b4;
+            left: -10px;
         }
         
-        .footer {
-            margin-top: 40px;
-            padding: 20px;
-            font-size: 1rem;
-            color: #b0b0cc;
+        .siir-dize::after {
+            right: -10px;
+            transform: scaleX(-1);
+        }
+        
+        .animation-section {
+            width: 100%;
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid #4a86e8;
         }
         
         .animation-container {
             width: 100%;
-            height: 200px;
+            height: 250px;
             position: relative;
-            margin: 50px auto 100px;
+            margin: 20px auto;
             overflow: hidden;
-            border-top: 1px solid #ff69b4;
-            padding-top: 30px;
+            border-radius: 15px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 2px solid #ff69b4;
         }
         
         .character {
@@ -128,9 +268,11 @@
             height: 120px;
             background-size: contain;
             background-repeat: no-repeat;
-            animation-duration: 6s;
+            background-position: center;
+            animation-duration: 8s;
             animation-iteration-count: infinite;
             animation-timing-function: ease-in-out;
+            z-index: 10;
         }
         
         .man {
@@ -147,24 +289,14 @@
         
         @keyframes runMan {
             0% { left: -100px; transform: scaleX(1); }
-            40% { left: 42%; }
-            41%, 60% { 
-                left: 42%; 
-                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150"><circle cx="100" cy="40" r="20" fill="%234a86e8"/><rect x="90" y="60" width="20" height="50" fill="%234a86e8"/><line x1="100" y1="60" x2="100" y2="140" stroke="%234a86e8" stroke-width="5"/><line x1="100" y1="100" x2="120" y2="120" stroke="%234a86e8" stroke-width="5"/><line x1="100" y1="100" x2="80" y2="120" stroke="%234a86e8" stroke-width="5"/></svg>');
-                transform: scaleX(1);
-            }
-            100% { left: 42%; transform: scaleX(1); }
+            40% { left: 40%; }
+            41%, 100% { left: 40%; }
         }
         
         @keyframes runWoman {
-            0% { right: -100px; transform: scaleX(-1); }
-            40% { right: 42%; }
-            41%, 60% { 
-                right: 42%; 
-                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150"><circle cx="100" cy="40" r="20" fill="%23ff69b4"/><path d="M90 60 L110 60 L105 110 L95 110 Z" fill="%23ff69b4"/><line x1="100" y1="60" x2="100" y2="140" stroke="%23ff69b4" stroke-width="5"/><line x1="100" y1="100" x2="120" y2="120" stroke="%23ff69b4" stroke-width="5"/><line x1="100" y1="100" x2="80" y2="120" stroke="%23ff69b4" stroke-width="5"/></svg>');
-                transform: scaleX(-1);
-            }
-            100% { right: 42%; transform: scaleX(-1); }
+            0% { right: -100px; transform: scaleX(1); }
+            40% { right: 40%; }
+            41%, 100% { right: 40%; }
         }
         
         .hearts {
@@ -176,6 +308,7 @@
             opacity: 0;
             animation: hearts 4s infinite;
             animation-delay: 4.5s;
+            z-index: 5;
         }
         
         @keyframes hearts {
@@ -187,10 +320,10 @@
         
         .hearts span {
             display: inline-block;
-            font-size: 30px;
+            font-size: 35px;
             color: #ff69b4;
-            margin: 0 5px;
-            text-shadow: 0 0 10px rgba(255, 0, 100, 0.8);
+            margin: 0 8px;
+            text-shadow: 0 0 15px rgba(255, 0, 100, 0.9);
             animation: heartFloat 3s infinite ease-in-out;
         }
         
@@ -202,7 +335,7 @@
         
         @keyframes heartFloat {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-20px); }
         }
         
         .stars {
@@ -219,13 +352,23 @@
             position: absolute;
             background-color: white;
             border-radius: 50%;
-            animation: twinkle var(--duration) infinite ease-in-out;
+            animation: twinkle 5s infinite ease-in-out;
             opacity: 0;
         }
         
         @keyframes twinkle {
             0%, 100% { opacity: 0; transform: scale(0.5); }
             50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+            color: #a0aec0;
+            font-size: 1.1rem;
+            border-top: 1px solid #4a5568;
+            width: 100%;
         }
         
         @keyframes fadeIn {
@@ -244,14 +387,19 @@
             }
         }
         
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.3rem;
             }
-            .siir-kutusu {
-                padding: 20px 15px;
+            
+            .content-container {
+                flex-direction: column;
+            }
+            
+            .siir-dize {
                 font-size: 1.1rem;
             }
+            
             .character {
                 width: 60px;
                 height: 90px;
@@ -268,34 +416,54 @@
             <h1>prenses özlem kankamı <span class="heart">♥</span> çok seviyorum</h1>
         </div>
         
-        <div class="message">
-            <p>Dünyanın en güzel kankasına...</p>
-            <p>Seni sevmek hayatımın en güzel hediyesi 💖</p>
+        <div class="content-container">
+            <div class="photo-section">
+                <h2 class="section-title">Özel Fotoğrafımız</h2>
+                <div class="photo-upload-container" id="uploadContainer">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Fotoğrafınızı yüklemek için tıklayın</p>
+                    <button class="upload-btn" id="uploadButton">
+                        <i class="fas fa-upload"></i> Fotoğraf Seç
+                    </button>
+                    <input type="file" id="fileInput" accept="image/*">
+                </div>
+                <div class="photo-preview">
+                    <div class="placeholder">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <img id="previewImage" src="" alt="Yüklenen Fotoğraf">
+                </div>
+            </div>
+            
+            <div class="siir-section">
+                <h2 class="section-title">Özlem'e Şiir</h2>
+                <div class="siir-kutusu">
+                    <div class="siir-dize">Örtüsü geceye bürünmüş denizlerden,</div>
+                    <div class="siir-dize">Zambaklar susarken sen konuşursun sessizliğimde.</div>
+                    <div class="siir-dize">Lal olur dilim adını anarken rüzgarlara,</div>
+                    <div class="siir-dize">Eskimeyen bir melodi:"neredesin?" çınlar yankıda</div>
+                    <div class="siir-dize">Mühürlendi kalbime: "seninle her an bahar."</div>
+                </div>
+            </div>
         </div>
         
-        <div class="siir-kutusu">
-            <div class="siir-dize">Örtüsü geceye bürünmüş denizlerden,</div>
-            <div class="siir-dize">Zambaklar susarken sen konuşursun sessizliğimde.</div>
-            <div class="siir-dize">Lal olur dilim adını anarken rüzgarlara,</div>
-            <div class="siir-dize">Eskimeyen bir melodi:"neredesin?" çınlar yankıda</div>
-            <div class="siir-dize">Mühürlendi kalbime: "seninle her an bahar."</div>
-        </div>
-        
-        <!-- Koşu ve sarılma animasyonu -->
-        <div class="animation-container">
-            <div class="character man"></div>
-            <div class="character woman"></div>
-            <div class="hearts">
-                <span>❤️</span>
-                <span>💖</span>
-                <span>💕</span>
-                <span>💞</span>
-                <span>💓</span>
+        <div class="animation-section">
+            <h2 class="section-title">Bizim Hikayemiz</h2>
+            <div class="animation-container">
+                <div class="character man"></div>
+                <div class="character woman"></div>
+                <div class="hearts">
+                    <span>❤️</span>
+                    <span>💖</span>
+                    <span>💕</span>
+                    <span>💞</span>
+                    <span>💓</span>
+                </div>
             </div>
         </div>
         
         <div class="footer">
-            <p>Kalpten Özlem'e... ❤️</p>
+            <p>Bu sayfa tamamen Özlem kankam için hazırlanmıştır ❤️ | Her hakkı saklıdır</p>
         </div>
     </div>
 
@@ -303,7 +471,7 @@
         // Yıldız animasyonu oluştur
         function createStars() {
             const starsContainer = document.getElementById('stars');
-            const starCount = 150;
+            const starCount = 200;
             
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
@@ -320,7 +488,7 @@
                 
                 // Rastgele animasyon süresi
                 const duration = Math.random() * 5 + 3;
-                star.style.setProperty('--duration', duration + 's');
+                star.style.animationDuration = duration + 's';
                 
                 // Rastgele başlama gecikmesi
                 star.style.animationDelay = Math.random() * 5 + 's';
@@ -329,13 +497,44 @@
             }
         }
         
-        // Sayfa yüklendiğinde yıldızları oluştur
-        window.onload = createStars;
+        // Fotoğraf yükleme işlevselliği
+        const fileInput = document.getElementById('fileInput');
+        const uploadButton = document.getElementById('uploadButton');
+        const uploadContainer = document.getElementById('uploadContainer');
+        const previewImage = document.getElementById('previewImage');
+        const placeholder = document.querySelector('.photo-preview .placeholder');
+        
+        uploadButton.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        uploadContainer.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                    placeholder.style.display = 'none';
+                }
+                
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
         
         // Animasyon sonunda kalp çıkması için
         setTimeout(() => {
-            document.querySelector('.hearts').style.fontSize = '30px';
+            document.querySelector('.hearts').style.fontSize = '35px';
         }, 4500);
+        
+        // Sayfa yüklendiğinde animasyonları başlat
+        window.addEventListener('load', function() {
+            createStars();
+        });
     </script>
 </body>
 </html>
