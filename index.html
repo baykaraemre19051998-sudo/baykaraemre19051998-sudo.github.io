@@ -174,7 +174,121 @@
             0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }
             100% { text-shadow: 0 0 25px rgba(255, 215, 0, 1), 0 0 35px rgba(255, 215, 0, 0.8); }
         }
-        
+
+        /* YENİ ANİMASYON STİLLERİ */
+        .animation-container {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 15px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 3px solid #ff69b4;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .couple-animation {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .character {
+            position: absolute;
+            bottom: 50px;
+            width: 150px;
+            height: 250px;
+            transition: all 0.5s ease;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        .male {
+            left: 15%;
+            animation: maleWalk 8s infinite;
+            z-index: 10;
+        }
+
+        .female {
+            right: 15%;
+            animation: femaleWalk 8s infinite;
+            z-index: 10;
+        }
+
+        @keyframes maleWalk {
+            0%, 100% {
+                transform: translateX(0) translateY(0);
+                left: 15%;
+            }
+            25% {
+                transform: translateX(50px) translateY(-10px);
+            }
+            50% {
+                transform: translateX(100px) translateY(0);
+                left: calc(50% - 100px);
+            }
+            75% {
+                transform: translateX(150px) translateY(-10px);
+            }
+        }
+
+        @keyframes femaleWalk {
+            0%, 100% {
+                transform: translateX(0) translateY(0);
+                right: 15%;
+            }
+            25% {
+                transform: translateX(-50px) translateY(-10px);
+            }
+            50% {
+                transform: translateX(-100px) translateY(0);
+                right: calc(50% - 100px);
+            }
+            75% {
+                transform: translateX(-150px) translateY(-10px);
+            }
+        }
+
+        @keyframes hug {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart-particle {
+            position: absolute;
+            font-size: 24px;
+            color: #ff69b4;
+            opacity: 0;
+            animation: floatUp 6s infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.5);
+                bottom: 50px;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) scale(1.2);
+                bottom: 250px;
+            }
+        }
+
         .animation-section {
             width: 100%;
             max-width: 900px;
@@ -193,94 +307,6 @@
             margin-bottom: 30px;
             color: #ffb6c1;
             text-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
-        }
-        
-        .animation-container {
-            width: 100%;
-            height: 250px;
-            position: relative;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 15px;
-            background: rgba(15, 23, 42, 0.5);
-            border: 3px solid #ff69b4;
-        }
-        
-        .character {
-            position: absolute;
-            bottom: 50px;
-            width: 80px;
-            height: 120px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            animation-duration: 8s;
-            animation-iteration-count: infinite;
-            animation-timing-function: ease-in-out;
-            z-index: 10;
-        }
-        
-        .man {
-            left: -100px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 150"><circle cx="50" cy="40" r="20" fill="%234a86e8"/><rect x="40" y="60" width="20" height="50" fill="%234a86e8"/><line x1="30" y1="80" x2="10" y2="100" stroke="%234a86e8" stroke-width="5"/><line x1="70" y1="80" x2="90" y2="100" stroke="%234a86e8" stroke-width="5"/><line x1="50" y1="110" x2="30" y2="140" stroke="%234a86e8" stroke-width="5"/><line x1="50" y1="110" x2="70" y2="140" stroke="%234a86e8" stroke-width="5"/></svg>');
-            animation-name: runMan;
-        }
-        
-        .woman {
-            right: -100px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 150"><circle cx="50" cy="40" r="20" fill="%23ff69b4"/><path d="M40 60 L60 60 L55 110 L45 110 Z" fill="%23ff69b4"/><line x1="30" y1="80" x2="10" y2="100" stroke="%23ff69b4" stroke-width="5"/><line x1="70" y1="80" x2="90" y2="100" stroke="%23ff69b4" stroke-width="5"/><line x1="50" y1="110" x2="30" y2="140" stroke="%23ff69b4" stroke-width="5"/><line x1="50" y1="110" x2="70" y2="140" stroke="%23ff69b4" stroke-width="5"/></svg>');
-            animation-name: runWoman;
-        }
-        
-        @keyframes runMan {
-            0% { left: -100px; transform: scaleX(1); }
-            40% { left: 40%; }
-            41%, 100% { left: 40%; }
-        }
-        
-        @keyframes runWoman {
-            0% { right: -100px; transform: scaleX(1); }
-            40% { right: 40%; }
-            41%, 100% { right: 40%; }
-        }
-        
-        .hearts {
-            position: absolute;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0;
-            opacity: 0;
-            animation: hearts 4s infinite;
-            animation-delay: 4.5s;
-            z-index: 5;
-        }
-        
-        @keyframes hearts {
-            0% { opacity: 0; transform: translateX(-50%) translateY(0); }
-            30% { opacity: 1; }
-            70% { opacity: 1; }
-            100% { opacity: 0; transform: translateX(-50%) translateY(-100px); }
-        }
-        
-        .hearts span {
-            display: inline-block;
-            font-size: 40px;
-            color: #ff69b4;
-            margin: 0 10px;
-            text-shadow: 0 0 20px rgba(255, 0, 100, 0.9);
-            animation: heartFloat 3s infinite ease-in-out;
-        }
-        
-        .hearts span:nth-child(1) { animation-delay: 0.1s; }
-        .hearts span:nth-child(2) { animation-delay: 0.3s; }
-        .hearts span:nth-child(3) { animation-delay: 0.5s; }
-        .hearts span:nth-child(4) { animation-delay: 0.7s; }
-        .hearts span:nth-child(5) { animation-delay: 0.9s; }
-        
-        @keyframes heartFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
         }
         
         .stars {
@@ -405,6 +431,15 @@
             .first-letter {
                 font-size: 2rem;
             }
+
+            .animation-container {
+                height: 250px;
+            }
+
+            .character {
+                width: 100px;
+                height: 180px;
+            }
         }
     </style>
 </head>
@@ -447,17 +482,53 @@
             </div>
         </div>
         
+        <!-- YENİ ANİMASYON BÖLÜMÜ -->
         <div class="animation-section">
             <h2 class="animation-title">Bizim Hikayemiz</h2>
             <div class="animation-container">
-                <div class="character man"></div>
-                <div class="character woman"></div>
-                <div class="hearts">
-                    <span>❤️</span>
-                    <span>💖</span>
-                    <span>💕</span>
-                    <span>💞</span>
-                    <span>💓</span>
+                <div class="couple-animation">
+                    <!-- Erkek karakter SVG -->
+                    <svg class="character male" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Baş -->
+                        <circle cx="100" cy="70" r="40" fill="#4a86e8" stroke="#2c5282" stroke-width="2"/>
+                        <!-- Gövde -->
+                        <rect x="80" y="110" width="40" height="80" fill="#4a86e8" stroke="#2c5282" stroke-width="2"/>
+                        <!-- Kollar -->
+                        <path d="M80 120 L40 150 M120 120 L160 150" stroke="#2c5282" stroke-width="8" stroke-linecap="round"/>
+                        <!-- Bacaklar -->
+                        <path d="M90 190 L70 250 M110 190 L130 250" stroke="#2c5282" stroke-width="8" stroke-linecap="round"/>
+                        <!-- Yüz detayları -->
+                        <circle cx="85" cy="60" r="5" fill="#2c5282"/>
+                        <circle cx="115" cy="60" r="5" fill="#2c5282"/>
+                        <path d="M90 80 Q100 90 110 80" stroke="#2c5282" stroke-width="2" fill="none"/>
+                    </svg>
+                    
+                    <!-- Kadın karakter SVG -->
+                    <svg class="character female" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Baş -->
+                        <circle cx="100" cy="70" r="40" fill="#ff69b4" stroke="#c53030" stroke-width="2"/>
+                        <!-- Gövde (elbise) -->
+                        <path d="M80 110 L120 110 L110 190 L90 190 Z" fill="#ff69b4" stroke="#c53030" stroke-width="2"/>
+                        <!-- Kollar -->
+                        <path d="M80 120 L40 150 M120 120 L160 150" stroke="#c53030" stroke-width="8" stroke-linecap="round"/>
+                        <!-- Bacaklar -->
+                        <path d="M95 190 L85 250 M105 190 L115 250" stroke="#c53030" stroke-width="6" stroke-linecap="round"/>
+                        <!-- Saç -->
+                        <path d="M60 50 Q100 20 140 50 Q130 90 100 100 Q70 90 60 50" fill="#8b4513" stroke="#5d2e0f" stroke-width="1"/>
+                        <!-- Yüz detayları -->
+                        <circle cx="85" cy="60" r="5" fill="#c53030"/>
+                        <circle cx="115" cy="60" r="5" fill="#c53030"/>
+                        <path d="M90 80 Q100 90 110 80" stroke="#c53030" stroke-width="2" fill="none"/>
+                    </svg>
+                    
+                    <!-- Kalpler -->
+                    <div class="floating-hearts">
+                        <div class="heart-particle">❤️</div>
+                        <div class="heart-particle">💖</div>
+                        <div class="heart-particle">💕</div>
+                        <div class="heart-particle">💞</div>
+                        <div class="heart-particle">💓</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -503,11 +574,6 @@
             }
         }
         
-        // Animasyon sonunda kalp çıkması için
-        setTimeout(() => {
-            document.querySelector('.hearts').style.fontSize = '40px';
-        }, 4500);
-        
         // Fotoğraf yüklenip yüklenmediğini kontrol et
         const foto = document.getElementById('ozlemFoto');
         const hataMesaji = document.getElementById('fotoHatasi');
@@ -528,9 +594,55 @@
             `;
         };
         
+        // YENİ ANİMASYON KODLARI
+        function initAnimation() {
+            const male = document.querySelector('.male');
+            const female = document.querySelector('.female');
+            const container = document.querySelector('.animation-container');
+            
+            // Karakterler buluşunca animasyon
+            setInterval(() => {
+                male.style.animation = 'hug 1s ease-in-out';
+                female.style.animation = 'hug 1s ease-in-out';
+                
+                setTimeout(() => {
+                    male.style.animation = 'maleWalk 8s infinite';
+                    female.style.animation = 'femaleWalk 8s infinite';
+                }, 1000);
+            }, 8000);
+            
+            // Fare ile etkileşim
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Kalp oluştur
+                if (Math.random() > 0.7) {
+                    createHeart(x, y);
+                }
+            });
+            
+            function createHeart(x, y) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-particle';
+                heart.innerHTML = '❤️';
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+                heart.style.animation = 'floatUp 4s forwards';
+                
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }
+        }
+        
         // Müziği otomatik başlat
         window.addEventListener('load', function() {
             createStars();
+            initAnimation();
             
             // Fotoğrafın yüklendiğini kontrol et
             if (foto.complete && foto.naturalHeight === 0) {
