@@ -83,8 +83,8 @@
         
         .photo-container {
             flex: 1;
-            min-width: 400px;
-            height: 500px;
+            min-width: 300px; /* Küçültüldü */
+            height: 400px; /* Küçültüldü */
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
@@ -111,10 +111,10 @@
         
         .poem-container {
             flex: 1;
-            min-width: 400px;
+            min-width: 300px; /* Küçültüldü */
             background: rgba(26, 26, 46, 0.8);
             border-radius: 20px;
-            padding: 40px 30px;
+            padding: 30px; /* Küçültüldü */
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
             border: 5px solid #9370db;
             position: relative;
@@ -410,6 +410,138 @@
             }
         }
         
+        /* EKLENEN: Fotoğraf Galerisi Stilleri */
+        .gallery-section {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border: 5px solid #ff69b4;
+            animation: fadeInUp 2.5s ease-out;
+        }
+        
+        .gallery-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffb6c1;
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            justify-items: center;
+        }
+        
+        .gallery-item {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 3px solid #ff69b4;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+            z-index: 2;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border: 5px solid #ff69b4;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+        }
+        
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: rgba(255, 105, 180, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        
+        .lightbox-close:hover {
+            background: rgba(255, 105, 180, 0.8);
+        }
+        
         @media (max-width: 900px) {
             .content-wrapper {
                 flex-direction: column;
@@ -423,7 +555,7 @@
             }
             
             .photo-container {
-                height: 400px;
+                height: 350px; /* Küçültüldü */
             }
             
             h1 {
@@ -441,6 +573,15 @@
             .first-letter {
                 font-size: 2rem;
             }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .gallery-item {
+                width: 120px;
+                height: 120px;
+            }
         }
     </style>
 </head>
@@ -451,6 +592,15 @@
     <!-- EKLENEN: Uçan kalpler -->
     <div class="floating-hearts" id="floatingHearts"></div>
     
+    <!-- EKLENEN: Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" id="lightboxClose">&times;</div>
+        <div class="lightbox-content">
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+    
     <div class="container">
         <div class="header">
             <h1>Prenses Özlem Kankamı <span class="heart">♥</span> Çok Seviyorum</h1>
@@ -459,7 +609,7 @@
         <div class="content-wrapper">
             <div class="photo-container">
                 <!-- Fotoğraf burada görünecek -->
-                <img id="ozlemFoto" src="Screenshot_20250726_151731.jpg" alt="Özlem Kankam">
+                <img id="ozlemFoto" src="https://images.unsplash.com/photo-1514315384763-ba401779410f?q=80&w=800" alt="Özlem Kankam">
                 <!-- Fotoğraf yüklenmezse bu mesaj görünecek -->
                 <div id="fotoHatasi" class="photo-not-found" style="display: none;">
                     Fotoğraf yüklenemedi! Lütfen dosya adını kontrol edin.
@@ -497,6 +647,45 @@
                     <span>💕</span>
                     <span>💞</span>
                     <span>💓</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- EKLENEN: Fotoğraf Galerisi -->
+        <div class="gallery-section">
+            <h2 class="gallery-title">Özlem'le Anılarımız</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1514315384763-ba401779410f?q=80&w=800" alt="Güzel Anı">
+                    <div class="gallery-overlay">İlk Buluşmamız</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=800" alt="Mutlu Anı">
+                    <div class="gallery-overlay">Doğum Günü</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800" alt="Eğlenceli Anı">
+                    <div class="gallery-overlay">Tatilde</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800" alt="Özel An">
+                    <div class="gallery-overlay">Kutlama</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=800" alt="Gülümseme">
+                    <div class="gallery-overlay">Güzel Gün</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=800" alt="Keyifli An">
+                    <div class="gallery-overlay">Keyifli An</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800" alt="Güzel Gülüş">
+                    <div class="gallery-overlay">Güzel Gülüş</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1546961329-78bef0414d7c?q=80&w=800" alt="Mutlu Anı">
+                    <div class="gallery-overlay">Özel Gün</div>
                 </div>
             </div>
         </div>
@@ -588,10 +777,41 @@
             `;
         };
         
+        // EKLENEN: Lightbox işlevselliği
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxClose = document.getElementById('lightboxClose');
+        
+        // Galeri öğelerine tıklama
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const caption = this.querySelector('.gallery-overlay').textContent;
+                
+                lightboxImg.src = img.src;
+                lightboxCaption.textContent = caption;
+                lightbox.classList.add('active');
+            });
+        });
+        
+        // Lightbox kapatma
+        lightboxClose.addEventListener('click', function() {
+            lightbox.classList.remove('active');
+        });
+        
+        // Dışarı tıklayınca kapatma
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+        
         // Müziği otomatik başlat
         window.addEventListener('load', function() {
             createStars();
-            createFloatingHearts(); // EKLENEN: Kalpleri başlat
+            createFloatingHearts();
             
             // Fotoğrafın yüklendiğini kontrol et
             if (foto.complete && foto.naturalHeight === 0) {
@@ -606,10 +826,7 @@
             // Otomatik çalma izni olmazsa kullanıcı etkileşimi bekler
             if (playPromise !== undefined) {
                 playPromise.catch(error => {
-                    console.log("Otomatik çalma engellendi, kullanıcı etkileşimi bekleniyor");
-                    document.body.addEventListener('click', function() {
-                        song.play();
-                    }, { once: true });
+                    console.log('Müzik otomatik başlatılamadı. Kullanıcı etkileşimi bekleniyor.');
                 });
             }
         });
