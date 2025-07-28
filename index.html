@@ -83,8 +83,8 @@
         
         .photo-container {
             flex: 1;
-            min-width: 300px; /* Küçültüldü */
-            height: 400px; /* Küçültüldü */
+            min-width: 400px;
+            height: 500px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
@@ -111,10 +111,10 @@
         
         .poem-container {
             flex: 1;
-            min-width: 300px; /* Küçültüldü */
+            min-width: 400px;
             background: rgba(26, 26, 46, 0.8);
             border-radius: 20px;
-            padding: 30px; /* Küçültüldü */
+            padding: 40px 30px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
             border: 5px solid #9370db;
             position: relative;
@@ -361,55 +361,6 @@
             }
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes fadeInDown {
-            from { 
-                opacity: 0; 
-                transform: translateY(-50px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(50px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInLeft {
-            from { 
-                opacity: 0; 
-                transform: translateX(-100px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes fadeInRight {
-            from { 
-                opacity: 0; 
-                transform: translateX(100px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateX(0);
-            }
-        }
-        
         /* EKLENEN: Fotoğraf Galerisi Stilleri */
         .gallery-section {
             width: 100%;
@@ -542,6 +493,55 @@
             background: rgba(255, 105, 180, 0.8);
         }
         
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from { 
+                opacity: 0; 
+                transform: translateY(-50px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-100px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(100px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+        
         @media (max-width: 900px) {
             .content-wrapper {
                 flex-direction: column;
@@ -555,7 +555,7 @@
             }
             
             .photo-container {
-                height: 350px; /* Küçültüldü */
+                height: 400px;
             }
             
             h1 {
@@ -608,8 +608,8 @@
         
         <div class="content-wrapper">
             <div class="photo-container">
-                <!-- Fotoğraf burada görünecek -->
-                <img id="ozlemFoto" src="https://images.unsplash.com/photo-1514315384763-ba401779410f?q=80&w=800" alt="Özlem Kankam">
+                <!-- ORİJİNAL FOTOĞRAFINIZ BURADA KALDI -->
+                <img id="ozlemFoto" src="Screenshot_20250726_151731.jpg" alt="Özlem Kankam">
                 <!-- Fotoğraf yüklenmezse bu mesaj görünecek -->
                 <div id="fotoHatasi" class="photo-not-found" style="display: none;">
                     Fotoğraf yüklenemedi! Lütfen dosya adını kontrol edin.
@@ -655,37 +655,39 @@
         <div class="gallery-section">
             <h2 class="gallery-title">Özlem'le Anılarımız</h2>
             <div class="gallery-container">
+                <!-- 1. Fotoğraf (Orijinal fotoğrafınızın küçük versiyonu) -->
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1514315384763-ba401779410f?q=80&w=800" alt="Güzel Anı">
-                    <div class="gallery-overlay">İlk Buluşmamız</div>
+                    <img src="Screenshot_20250726_151731.jpg" alt="Özlem Kankam">
+                    <div class="gallery-overlay">En Güzel Anımız</div>
+                </div>
+                <!-- Diğer fotoğraflar -->
+                <div class="gallery-item">
+                    <img src="foto2.jpg" alt="Mutlu Anı">
+                    <div class="gallery-overlay">Mutlu Bir Gün</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=800" alt="Mutlu Anı">
-                    <div class="gallery-overlay">Doğum Günü</div>
+                    <img src="foto3.jpg" alt="Eğlenceli Anı">
+                    <div class="gallery-overlay">Eğlenceli Zamanlar</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800" alt="Eğlenceli Anı">
-                    <div class="gallery-overlay">Tatilde</div>
+                    <img src="foto4.jpg" alt="Özel An">
+                    <div class="gallery-overlay">Özel Bir An</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800" alt="Özel An">
-                    <div class="gallery-overlay">Kutlama</div>
+                    <img src="foto5.jpg" alt="Gülümseme">
+                    <div class="gallery-overlay">Güzel Gülüşler</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=800" alt="Gülümseme">
-                    <div class="gallery-overlay">Güzel Gün</div>
+                    <img src="foto6.jpg" alt="Keyifli An">
+                    <div class="gallery-overlay">Keyifli Anlar</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=800" alt="Keyifli An">
-                    <div class="gallery-overlay">Keyifli An</div>
+                    <img src="foto7.jpg" alt="Güzel Gülüş">
+                    <div class="gallery-overlay">Harika Zamanlar</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800" alt="Güzel Gülüş">
-                    <div class="gallery-overlay">Güzel Gülüş</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1546961329-78bef0414d7c?q=80&w=800" alt="Mutlu Anı">
-                    <div class="gallery-overlay">Özel Gün</div>
+                    <img src="foto8.jpg" alt="Mutlu Anı">
+                    <div class="gallery-overlay">Unutulmaz Anı</div>
                 </div>
             </div>
         </div>
