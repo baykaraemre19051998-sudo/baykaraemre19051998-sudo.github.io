@@ -398,7 +398,6 @@
             border: 3px solid #ff69b4;
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
-            cursor: pointer;
         }
         
         .gallery-item:hover {
@@ -609,7 +608,9 @@
         
         <div class="content-wrapper">
             <div class="photo-container">
+                <!-- ORİJİNAL FOTOĞRAFINIZ BURADA KALDI -->
                 <img id="ozlemFoto" src="Screenshot_20250726_151731.jpg" alt="Özlem Kankam">
+                <!-- Fotoğraf yüklenmezse bu mesaj görünecek -->
                 <div id="fotoHatasi" class="photo-not-found" style="display: none;">
                     Fotoğraf yüklenemedi! Lütfen dosya adını kontrol edin.
                 </div>
@@ -650,133 +651,4 @@
             </div>
         </div>
         
-        <!-- EKLENEN: Fotoğraf Galerisi -->
-        <div class="gallery-section">
-            <h2 class="gallery-title">Özlem'le Anılarımız</h2>
-            <div class="gallery-container" id="galleryContainer">
-                <!-- Fotoğraflar JavaScript ile buraya eklenecek -->
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>Özlem Kankam için yapılmıştır ❤️ | Sonsuza kadar kankayız!</p>
-        </div>
-    </div>
-
-    <script>
-        // Yıldız animasyonu
-        function createStars() {
-            const stars = document.getElementById('stars');
-            const starCount = 200;
-            
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                
-                // Rastgele pozisyon ve boyut
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                const size = Math.random() * 3;
-                const delay = Math.random() * 5;
-                
-                star.style.left = `${x}%`;
-                star.style.top = `${y}%`;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.animationDelay = `${delay}s`;
-                
-                stars.appendChild(star);
-            }
-        }
-        
-        // Uçan kalpler animasyonu
-        function createFloatingHearts() {
-            const heartsContainer = document.getElementById('floatingHearts');
-            const heartCount = 20;
-            
-            for (let i = 0; i < heartCount; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('floating-heart');
-                heart.innerHTML = '❤️';
-                
-                // Rastgele başlangıç pozisyonu
-                const startX = Math.random() * 100;
-                const duration = 10 + Math.random() * 10;
-                const delay = Math.random() * 15;
-                
-                heart.style.left = `${startX}%`;
-                heart.style.animationDuration = `${duration}s`;
-                heart.style.animationDelay = `${delay}s`;
-                
-                heartsContainer.appendChild(heart);
-            }
-        }
-        
-        // Fotoğraf yükleme kontrolü
-        document.addEventListener('DOMContentLoaded', function() {
-            const ozlemFoto = document.getElementById('ozlemFoto');
-            const fotoHatasi = document.getElementById('fotoHatasi');
-            
-            ozlemFoto.onerror = function() {
-                this.style.display = 'none';
-                fotoHatasi.style.display = 'block';
-            };
-            
-            createStars();
-            createFloatingHearts();
-            
-            // Fotoğraf galerisi için örnek veriler
-            const imageUrls = [
-                {url: "Screenshot_20250726_151731.jpg", caption: "İlk Buluşmamız"},
-                {url: "https://via.placeholder.com/600x400/ff69b4/ffffff?text=An%C4%B1+1", caption: "Güzel Bir Gün"},
-                {url: "https://via.placeholder.com/600x400/9370db/ffffff?text=An%C4%B1+2", caption: "Eğlenceli Zamanlar"},
-                {url: "https://via.placeholder.com/600x400/4a86e8/ffffff?text=An%C4%B1+3", caption: "Mutlu Anlar"},
-                {url: "https://via.placeholder.com/600x400/ffd700/ffffff?text=An%C4%B1+4", caption: "Unutulmaz Anılar"},
-                {url: "https://via.placeholder.com/600x400/ff6b6b/ffffff?text=An%C4%B1+5", caption: "Beraber Keyifli Zamanlar"}
-            ];
-            
-            // Galeriyi oluşturma
-            const galleryContainer = document.getElementById('galleryContainer');
-            
-            imageUrls.forEach((image, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${image.url}" alt="Özlem'le anı ${index + 1}">
-                    <div class="gallery-overlay">${image.caption}</div>
-                `;
-                
-                galleryItem.addEventListener('click', () => {
-                    openLightbox(image.url, image.caption);
-                });
-                
-                galleryContainer.appendChild(galleryItem);
-            });
-            
-            // Lightbox fonksiyonları
-            function openLightbox(src, caption) {
-                const lightbox = document.getElementById('lightbox');
-                const lightboxImg = document.getElementById('lightboxImg');
-                const lightboxCaption = document.getElementById('lightboxCaption');
-                
-                lightboxImg.src = src;
-                lightboxCaption.textContent = caption;
-                lightbox.classList.add('active');
-            }
-            
-            function closeLightbox() {
-                const lightbox = document.getElementById('lightbox');
-                lightbox.classList.remove('active');
-            }
-            
-            // Lightbox kapatma işlevi
-            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-            document.getElementById('lightbox').addEventListener('click', (e) => {
-                if (e.target === document.getElementById('lightbox')) {
-                    closeLightbox();
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+        <!-- EKLENEN: Fotoğraf Galeri
