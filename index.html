@@ -398,12 +398,17 @@
             border: 3px solid #ff69b4;
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
+            background: rgba(255, 105, 180, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .gallery-item:hover {
             transform: scale(1.1);
             box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
             z-index: 2;
+            background: rgba(255, 105, 180, 0.2);
         }
         
         .gallery-item img {
@@ -428,6 +433,15 @@
         
         .gallery-item:hover .gallery-overlay {
             transform: translateY(0);
+        }
+        
+        /* Boş galeri öğeleri için stil */
+        .empty-gallery-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255, 182, 193, 0.5);
+            font-size: 2rem;
         }
         
         .lightbox {
@@ -655,41 +669,20 @@
         <div class="gallery-section">
             <h2 class="gallery-title">Özlem'le Anılarımız</h2>
             <div class="gallery-container">
-                <!-- 1. Fotoğraf (Orijinal fotoğrafınızın küçük versiyonu) -->
-                <div class="gallery-item">
-                    <img src="Screenshot_20250726_151731.jpg" alt="Özlem Kankam">
-                    <div class="gallery-overlay">En Güzel Anımız</div>
-                </div>
-                <!-- Mutlu Anı için düzeltilmiş kısım -->
+                <!-- Sadece bir fotoğraf kalacak, diğer kutular boş -->
                 <div class="gallery-item">
                     <img src="IMG-20250225-WA0025.jpg" alt="Mutlu Anı">
                     <div class="gallery-overlay">Mutlu Anı</div>
                 </div>
-                <!-- Diğer fotoğraflar -->
-                <div class="gallery-item">
-                    <img src="WhatsApp Image 2025-07-26 at 20.27.00.jpeg" alt="Eğlenceli Anı">
-                    <div class="gallery-overlay">Eğlenceli Zamanlar</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG-20250225-WA0025.jpg" alt="Özel An">
-                    <div class="gallery-overlay">Özel Bir An</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="Screenshot_20250726_151731.jpg" alt="Gülümseme">
-                    <div class="gallery-overlay">Güzel Gülüşler</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="WhatsApp Image 2025-07-26 at 20.27.00.jpeg" alt="Keyifli An">
-                    <div class="gallery-overlay">Keyifli Anlar</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG-20250225-WA0025.jpg" alt="Güzel Gülüş">
-                    <div class="gallery-overlay">Harika Zamanlar</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="Screenshot_20250726_151731.jpg" alt="Mutlu Anı">
-                    <div class="gallery-overlay">Unutulmaz Anı</div>
-                </div>
+                
+                <!-- Boş kutular -->
+                <div class="gallery-item empty-gallery-item">+</div>
+                <div class="gallery-item empty-gallery-item">+</div>
+                <div class="gallery-item empty-gallery-item">+</div>
+                <div class="gallery-item empty-gallery-item">+</div>
+                <div class="gallery-item empty-gallery-item">+</div>
+                <div class="gallery-item empty-gallery-item">+</div>
+                <div class="gallery-item empty-gallery-item">+</div>
             </div>
         </div>
         
@@ -791,6 +784,9 @@
         galleryItems.forEach(item => {
             item.addEventListener('click', function() {
                 const img = this.querySelector('img');
+                // Eğer resim yoksa lightbox açma
+                if (!img) return;
+                
                 const caption = this.querySelector('.gallery-overlay').textContent;
                 
                 lightboxImg.src = img.src;
