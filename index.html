@@ -651,4 +651,187 @@
             </div>
         </div>
         
-        <!-- EKLENEN: Fotoğraf Galeri
+        <!-- EKLENEN: Fotoğraf Galerisi -->
+        <div class="gallery-section">
+            <h2 class="gallery-title">Özlem'le Anılarımız</h2>
+            <div class="gallery-container">
+                <!-- 1. Fotoğraf (Orijinal fotoğrafınızın küçük versiyonu) -->
+                <div class="gallery-item">
+                    <img src="Screenshot_20250726_151731.jpg" alt="Özlem Kankam">
+                    <div class="gallery-overlay">En Güzel Anımız</div>
+                </div>
+                <!-- Diğer fotoğraflar -->
+                <div class="gallery-item">
+                    <img src="foto2.jpg" alt="Mutlu Anı">
+                    <div class="gallery-overlay">Mutlu Bir Gün</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="foto3.jpg" alt="Eğlenceli Anı">
+                    <div class="gallery-overlay">Eğlenceli Zamanlar</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="foto4.jpg" alt="Özel An">
+                    <div class="gallery-overlay">Özel Bir An</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="foto5.jpg" alt="Gülümseme">
+                    <div class="gallery-overlay">Güzel Gülüşler</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="foto6.jpg" alt="Keyifli An">
+                    <div class="gallery-overlay">Keyifli Anlar</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="foto7.jpg" alt="Güzel Gülüş">
+                    <div class="gallery-overlay">Harika Zamanlar</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="foto8.jpg" alt="Mutlu Anı">
+                    <div class="gallery-overlay">Unutulmaz Anı</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Bu sayfa tamamen Prenses Özlem Kankam için hazırlanmıştır ❤️ | Her hakkı saklıdır</p>
+        </div>
+    </div>
+    
+    <!-- Müzik için ses elementi (görünmez) -->
+    <audio id="song" autoplay loop hidden>
+        <source src="seni-seviyorum.mp3" type="audio/mpeg">
+        Tarayıcınız audio elementini desteklemiyor.
+    </audio>
+    
+    <script>
+        // Yıldız animasyonu oluştur
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 200;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Rastgele pozisyon
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                
+                // Rastgele boyut
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Rastgele animasyon süresi
+                const duration = Math.random() * 5 + 3;
+                star.style.animationDuration = duration + 's';
+                
+                // Rastgele başlama gecikmesi
+                star.style.animationDelay = Math.random() * 5 + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // EKLENEN: Uçan kalpleri oluşturma
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const heartIcons = ['❤️', '💖', '💕', '💗', '💓', '💞', '💝'];
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                
+                // Rastgele pozisyon ve animasyon
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Animasyon sonunda kalp çıkması için
+        setTimeout(() => {
+            document.querySelector('.hearts').style.fontSize = '40px';
+        }, 4500);
+        
+        // Fotoğraf yüklenip yüklenmediğini kontrol et
+        const foto = document.getElementById('ozlemFoto');
+        const hataMesaji = document.getElementById('fotoHatasi');
+        
+        foto.onerror = function() {
+            // Fotoğraf yüklenemediğinde
+            foto.style.display = 'none';
+            hataMesaji.style.display = 'block';
+            
+            // Hata mesajına çözüm önerileri ekle
+            hataMesaji.innerHTML = `
+                <p>Fotoğraf yüklenemedi! Lütfen aşağıdakileri kontrol edin:</p>
+                <ol>
+                    <li>GitHub'da dosya adının <strong>Screenshot_20250726_151731.jpg</strong> olduğundan emin olun</li>
+                    <li>index.html ile aynı klasörde olduğundan emin olun</li>
+                    <li>Dosya adında Türkçe karakter olmamalı</li>
+                </ol>
+            `;
+        };
+        
+        // EKLENEN: Lightbox işlevselliği
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxClose = document.getElementById('lightboxClose');
+        
+        // Galeri öğelerine tıklama
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const caption = this.querySelector('.gallery-overlay').textContent;
+                
+                lightboxImg.src = img.src;
+                lightboxCaption.textContent = caption;
+                lightbox.classList.add('active');
+            });
+        });
+        
+        // Lightbox kapatma
+        lightboxClose.addEventListener('click', function() {
+            lightbox.classList.remove('active');
+        });
+        
+        // Dışarı tıklayınca kapatma
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+        
+        // Müziği otomatik başlat
+        window.addEventListener('load', function() {
+            createStars();
+            createFloatingHearts();
+            
+            // Fotoğrafın yüklendiğini kontrol et
+            if (foto.complete && foto.naturalHeight === 0) {
+                foto.style.display = 'none';
+                hataMesaji.style.display = 'block';
+            }
+            
+            // Müziği başlat
+            const song = document.getElementById('song');
+            const playPromise = song.play();
+            
+            // Otomatik çalma izni olmazsa kullanıcı etkileşimi bekler
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log('Müzik otomatik başlatılamadı. Kullanıcı etkileşimi bekleniyor.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
