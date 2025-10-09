@@ -3,215 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gülümse! 😊</title>
+    <title>Özlem Yılmaz</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            overflow: hidden;
-        }
-        
-        .container {
-            text-align: center;
-            position: relative;
-        }
-        
-        .panda {
-            width: 150px;
-            height: 150px;
-            position: relative;
-            margin: 0 auto;
-        }
-        
-        .face {
-            width: 150px;
-            height: 150px;
-            background-color: white;
-            border-radius: 50%;
-            position: absolute;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .ear {
-            width: 50px;
-            height: 50px;
-            background-color: black;
-            border-radius: 50%;
-            position: absolute;
-            z-index: -1;
-        }
-        
-        .ear.left {
-            top: -20px;
-            left: 10px;
-        }
-        
-        .ear.right {
-            top: -20px;
-            right: 10px;
-        }
-        
-        .eye {
-            width: 30px;
-            height: 30px;
-            background-color: black;
-            border-radius: 50%;
-            position: absolute;
-            top: 50px;
-        }
-        
-        .eye.left {
-            left: 35px;
-        }
-        
-        .eye.right {
-            right: 35px;
-        }
-        
-        .nose {
-            width: 25px;
-            height: 20px;
-            background-color: black;
-            border-radius: 50%;
-            position: absolute;
-            top: 80px;
-            left: 62.5px;
-        }
-        
-        .mouth {
-            width: 40px;
-            height: 15px;
-            border-bottom: 5px solid black;
-            border-radius: 0 0 40px 40px;
-            position: absolute;
-            top: 105px;
-            left: 55px;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            font-family: Arial, sans-serif;
         }
         
         .message {
-            font-size: 24px;
-            margin-top: 30px;
-            color: #333;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 3em;
+            color: #d32f2f;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: heartbeat 1.5s ease-in-out infinite;
+            padding: 20px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
-        
-        .emoji {
-            position: absolute;
-            font-size: 30px;
-            opacity: 0;
-            animation: float 5s linear infinite;
-        }
-        
-        .dance {
-            animation: dance 1s ease-in-out infinite alternate;
-        }
-        
-        @keyframes dance {
-            from { transform: rotate(-5deg) translateY(0); }
-            to { transform: rotate(5deg) translateY(-10px); }
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-500px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        .button {
-            margin-top: 30px;
-            padding: 12px 25px;
-            background-color: #FF6B6B;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 18px;
-            cursor: pointer;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-            transition: transform 0.3s, background-color 0.3s;
-        }
-        
-        .button:hover {
-            transform: scale(1.1);
-            background-color: #FF8E8E;
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="panda">
-            <div class="ear left"></div>
-            <div class="ear right"></div>
-            <div class="face">
-                <div class="eye left"></div>
-                <div class="eye right"></div>
-                <div class="nose"></div>
-                <div class="mouth"></div>
-            </div>
-        </div>
-        <div class="message" id="message">Hayat sana limon verirse, onları sık ve limonata yap! 🍋</div>
-        <button class="button" onclick="changeMessage()">Daha Fazla Eğlence!</button>
+    <div class="message">
+        Özlem Yılmaz'ı çok seviyorum 💖
     </div>
-
-    <script>
-        // Panda dans etsin
-        document.querySelector('.face').classList.add('dance');
-        
-        // Uçan emojiler
-        const emojis = ['😂', '🤣', '😊', '🎉', '🐼', '🌈', '🦄', '🍕', '🎈'];
-        
-        function createEmoji() {
-            const emoji = document.createElement('div');
-            emoji.className = 'emoji';
-            emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-            emoji.style.left = Math.random() * 100 + 'vw';
-            emoji.style.animationDelay = Math.random() * 5 + 's';
-            document.body.appendChild(emoji);
-            
-            setTimeout(() => {
-                emoji.remove();
-            }, 5000);
-        }
-        
-        // Her 300ms'de bir yeni emoji oluştur
-        setInterval(createEmoji, 300);
-        
-        // Komik mesajlar dizisi
-        const messages = [
-            "Hayat sana limon verirse, onları sık ve limonata yap! 🍋",
-            "Üzülme! Bugün üzülmek yasak! 🚫",
-            "Gülümsemek en iyi makyajdır, hemen takın! 😊",
-            "Kendine bir iyilik yap ve kahkaha at! 😂",
-            "Bir gün bakacaksın, bu da geçmiş! 🌈",
-            "Hayat bir bisiklet sürmek gibidir, dengede kalmak için hareket etmelisin! 🚴",
-            "Her gün bir arkadaşını güldürmek için bir neden bul! 🤗",
-            "Pandalar bile dans ediyor, sen neden etmiyorsun? 🐼",
-            "İyi bir kahkaha, mutluluk vitaminidir! 💊",
-            "Gökyüzümüz bulutluyken bile, güneş hâlâ orada bir yerlerde! ☀️"
-        ];
-        
-        // Mesajı değiştirme fonksiyonu
-        function changeMessage() {
-            const messageElement = document.getElementById('message');
-            const randomIndex = Math.floor(Math.random() * messages.length);
-            messageElement.textContent = messages[randomIndex];
-            
-            // Butona tıklandığında yeni emojiler oluştur
-            for (let i = 0; i < 10; i++) {
-                createEmoji();
-            }
-        }
-    </script>
 </body>
 </html>
