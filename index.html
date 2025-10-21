@@ -3,41 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Özlem Yılmaz</title>
+    <title>Senin İçin Küçük Bir Sürpriz</title>
     <style>
         body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-            font-family: Arial, sans-serif;
-        }
-        
-        .message {
-            font-size: 3em;
-            color: #d32f2f;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: heartbeat 1.5s ease-in-out infinite;
             padding: 20px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .comic-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 90%;
+            border: 5px solid #ff6b88;
+        }
+
+        .comic-panel {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .comic-panel.active {
+            display: block;
+        }
+
+        .character-img {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            background: #ffe6eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            border: 3px solid #ff6b88;
+        }
+
+        .speech-bubble {
+            background: #f8f8f8;
+            border: 3px solid #333;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            position: relative;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: #333;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff6b88, #ff8e53);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-family: inherit;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .heart {
+            color: #ff6b88;
+            font-size: 24px;
+            animation: heartbeat 1.5s ease-in-out infinite;
         }
 
         @keyframes heartbeat {
-            0% { transform: scale(1); }
+            0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
-    <div class="message">
-        Özlem Yılmaz'ı çok seviyorum 💖
+    <div class="comic-container">
+        <!-- Panel 1 -->
+        <div class="comic-panel active" id="panel1">
+            <div class="character-img">😔</div>
+            <div class="speech-bubble">
+                "Off, bugün hiç iyi değilim. Her şey ters gidiyor..."
+            </div>
+            <button class="btn" onclick="nextPanel(2)">Sonraki →</button>
+        </div>
+
+        <!-- Panel 2 -->
+        <div class="comic-panel" id="panel2">
+            <div class="character-img">🦸‍♂️</div>
+            <div class="speech-bubble">
+                "Alarm! Alarm! Dünyanın en iyi insanının moralı bozuk!<br>Bu işe el atmalıyım!"
+            </div>
+            <button class="btn" onclick="nextPanel(3)">Sonraki →</button>
+        </div>
+
+        <!-- Panel 3 -->
+        <div class="comic-panel" id="panel3">
+            <div class="character-img">💫</div>
+            <div class="speech-bubble">
+                "Bippity boppity boop!<br>Negatif enerji defolsun!<br>Pozitif vibes gelsin! ✨"
+            </div>
+            <button class="btn" onclick="nextPanel(4)">Sonraki →</button>
+        </div>
+
+        <!-- Panel 4 -->
+        <div class="comic-panel" id="panel4">
+            <div class="character-img">😊</div>
+            <div class="speech-bubble">
+                "Peki, seni yaramaz... İyi ki varsın!<br>Gülümsemek daha iyi geldi 💖"
+            </div>
+            <button class="btn" onclick="nextPanel(5)">Sonraki →</button>
+        </div>
+
+        <!-- Panel 5 - Final -->
+        <div class="comic-panel" id="panel5">
+            <div class="character-img">🌈</div>
+            <div class="speech-bubble">
+                "Unutma, sen harika bir insansın!<br>Ve her zor günün sonunda<br>bir gökkuşağı vardır 🌟"
+            </div>
+            <div class="heart">💖</div>
+            <button class="btn" onclick="restartComic()">Baştan Oku</button>
+        </div>
     </div>
+
+    <script>
+        let currentPanel = 1;
+
+        function nextPanel(panelNumber) {
+            // Mevcut paneli gizle
+            document.getElementById(`panel${currentPanel}`).classList.remove('active');
+            
+            // Yeni paneli göster
+            document.getElementById(`panel${panelNumber}`).classList.add('active');
+            
+            currentPanel = panelNumber;
+        }
+
+        function restartComic() {
+            // Son paneli gizle
+            document.getElementById(`panel${currentPanel}`).classList.remove('active');
+            
+            // İlk paneli göster
+            document.getElementById('panel1').classList.add('active');
+            
+            currentPanel = 1;
+        }
+
+        // Sayfa yüklendiğinde ilk paneli göster
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('panel1').classList.add('active');
+        });
+    </script>
 </body>
 </html>
