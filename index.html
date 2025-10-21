@@ -3,157 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senin İçin Küçük Bir Sürpriz</title>
+    <title>Senin İçin Özel Bir Şey ❤️</title>
     <style>
-        /* Basit ve güvenilir stiller */
-        body {
-            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
-            background: linear-gradient(45deg, #ffafbd, #ffc3a0);
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Comic+Neue:wght@700&display=swap');
+        
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(-45deg, #ffafbd, #ffc3a0, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
         }
-
-        .comic-container {
-            background: white;
-            border-radius: 20px;
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-width: 500px;
-            width: 90%;
-            border: 5px solid #ff6b88;
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #ff6b88;
         }
-
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff6b88, #ff8e53, #ff6b88);
+            z-index: -1;
+            border-radius: 30px;
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            color: #ff6b88;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0px rgba(255, 107, 136, 0.2);
+            animation: titleBounce 2s ease infinite;
+        }
+        
+        @keyframes titleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
         .comic-panel {
             display: none;
+            animation: panelEntrance 0.8s ease-out;
+            text-align: center;
         }
-
+        
+        @keyframes panelEntrance {
+            0% { 
+                opacity: 0; 
+                transform: scale(0.8) rotate(-5deg); 
+            }
+            70% { 
+                transform: scale(1.02) rotate(1deg); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: scale(1) rotate(0deg); 
+            }
+        }
+        
         .comic-panel.active {
             display: block;
-            animation: fadeIn 0.5s;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .character {
-            font-size: 80px;
-            margin: 20px 0;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .speech-bubble {
-            background: #f0f0f0;
-            border: 3px solid #333;
-            border-radius: 20px;
-            padding: 15px;
-            margin: 20px 0;
-            font-size: 18px;
+        
+        .character-container {
             position: relative;
+            margin: 30px auto;
+            height: 200px;
         }
-
+        
+        .character {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            background: linear-gradient(45deg, #ffe6eb, #ffd6e0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            border: 5px solid #ff6b88;
+            box-shadow: 0 10px 25px rgba(255, 107, 136, 0.3);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        
+        .character:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .speech-bubble {
+            background: #fff;
+            border: 4px solid #333;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+            font-size: 22px;
+            line-height: 1.5;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+            animation: bubblePop 0.6s ease-out;
+        }
+        
+        @keyframes bubblePop {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
         .speech-bubble:after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
-            border: 8px solid transparent;
+            border: 12px solid transparent;
             border-top-color: #333;
         }
-
+        
         .btn {
-            background: #ff6b88;
+            background: linear-gradient(45deg, #ff6b88, #ff8e53);
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            border-radius: 25px;
+            padding: 15px 35px;
+            font-size: 20px;
+            border-radius: 50px;
             cursor: pointer;
-            margin-top: 15px;
-            font-family: inherit;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255,107,136,0.4);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Comic Neue', cursive;
         }
-
+        
         .btn:hover {
-            background: #ff8e53;
-            transform: scale(1.05);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(255,107,136,0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        .heart {
+            color: #ff6b88;
+            font-size: 40px;
+            animation: heartbeat 1.2s ease-in-out infinite;
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1.1); }
+            75% { transform: scale(1.2); }
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatUp 6s ease-in infinite;
+        }
+        
+        @keyframes floatUp {
+            0% { 
+                transform: translateY(100px) rotate(0deg);
+                opacity: 0; 
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0; 
+            }
+        }
+        
+        .panel-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #ff6b88;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0px rgba(255,107,136,0.2);
+            animation: titleBounce 2s ease infinite;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b88, #ff8e53);
+            width: 20%;
+            transition: width 0.5s ease;
+            border-radius: 4px;
+        }
+        
+        .hidden-message {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            margin-top: 20px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
+            color: #ff6b88;
+        }
+        
+        .show-message {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="comic-container">
+    <div class="container">
+        <h1>Senin İçin Bir Hikaye ❤️</h1>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <div class="floating-hearts" id="floatingHearts"></div>
+        
         <!-- Panel 1 -->
         <div class="comic-panel active" id="panel1">
-            <div class="character">😔</div>
-            <div class="speech-bubble">
-                "Off, bugün hiç iyi değilim. Her şey ters gidiyor..."
+            <div class="panel-title">Bir Zamanlar...</div>
+            <div class="character-container">
+                <div class="character">😔</div>
             </div>
-            <button class="btn" onclick="showPanel(2)">Sonraki →</button>
+            <div class="speech-bubble">
+                "Bugün her şey ters gidiyor sanki...<br>Bulutlar bile üzerimde toplanmış!"
+            </div>
+            <button class="btn" onclick="nextPanel(2)">Sonraki Sayfa →</button>
         </div>
 
         <!-- Panel 2 -->
         <div class="comic-panel" id="panel2">
-            <div class="character">🦸‍♂️</div>
-            <div class="speech-bubble">
-                "Alarm! Dünyanın en iyi insanının moralı bozuk! Bu işe el atmalıyım!"
+            <div class="panel-title">Bir İşaret!</div>
+            <div class="character-container">
+                <div class="character">🦸‍♂️</div>
             </div>
-            <button class="btn" onclick="showPanel(3)">Sonraki →</button>
+            <div class="speech-bubble">
+                "Acil durum! Kalp radarımda harika biri üzgün sinyali aldım!<br>Hemen yardıma gitmeliyim! 💘"
+            </div>
+            <button class="btn" onclick="nextPanel(3)">Ne Yapacak? →</button>
         </div>
 
         <!-- Panel 3 -->
         <div class="comic-panel" id="panel3">
-            <div class="character">💫</div>
-            <div class="speech-bubble">
-                "Bippity boppity boop! Negatif enerji defolsun! Pozitif vibes gelsin! ✨"
+            <div class="panel-title">Komik Kurtarma!</div>
+            <div class="character-container">
+                <div class="character">🤡</div>
             </div>
-            <button class="btn" onclick="showPanel(4)">Sonraki →</button>
+            <div class="speech-bubble">
+                "Komiklik modu: AÇIK!<br>Şimdi seni güldürmek için<br>en saçma dansımı yapacağım! 💃<br>(Umarım düşmem!)"
+            </div>
+            <button class="btn" onclick="nextPanel(4)">İşe Yarayacak mı? →</button>
         </div>
 
         <!-- Panel 4 -->
         <div class="comic-panel" id="panel4">
-            <div class="character">😊</div>
-            <div class="speech-bubble">
-                "Peki, seni yaramaz... İyi ki varsın! Gülümsemek daha iyi geldi 💖"
+            <div class="panel-title">Mucize!</div>
+            <div class="character-container">
+                <div class="character">😄</div>
             </div>
-            <button class="btn" onclick="showPanel(5)">Son Sürpriz! →</button>
+            <div class="speech-bubble">
+                "HAHAHA! Pes ediyorum! 😂<br>O kadar komiksin ki...<br>Gülmekten karnıma ağrı girdi!"
+            </div>
+            <button class="btn" onclick="nextPanel(5)">Sonraki →</button>
         </div>
 
         <!-- Panel 5 -->
         <div class="comic-panel" id="panel5">
-            <div class="character">🌈</div>
-            <div class="speech-bubble">
-                "Unutma, sen harika bir insansın! Ve her zor günün sonunda bir gökkuşağı vardır 🌟"
+            <div class="panel-title">Gizli İtiraf</div>
+            <div class="character-container">
+                <div class="character">😊</div>
             </div>
-            <div style="font-size: 30px; margin: 15px;">💖😂⭐🎉💖</div>
-            <button class="btn" onclick="showPanel(1)">Baştan Oku! 🔄</button>
+            <div class="speech-bubble">
+                "Aslında... Seni güldürebilmek<br>beni de mutlu ediyor.<br>Çünkü gülüşünü çok seviyorum 💖"
+            </div>
+            <button class="btn" onclick="nextPanel(6)">Devam Et →</button>
+        </div>
+
+        <!-- Panel 6 -->
+        <div class="comic-panel" id="panel6">
+            <div class="panel-title">Mutlu Son!</div>
+            <div class="character-container">
+                <div class="character">🌈</div>
+            </div>
+            <div class="speech-bubble">
+                "Unutma, sen harika bir insansın!<br>Ve her zor gün geçer,<br>yerini güneşli günlere bırakır ☀️"
+            </div>
+            <div>
+                <span class="heart">💖</span>
+                <span class="heart">😂</span>
+                <span class="heart">⭐</span>
+                <span class="heart">🎉</span>
+                <span class="heart">💖</span>
+            </div>
+            <button class="btn" onclick="showSecretMessage()">Özel Mesajı Gör 🎁</button>
+            <div class="hidden-message" id="secretMessage">
+                Seni her hâlinde çok seviyorum. Üzgün olduğunda yanındayım, mutlu olduğunda da. 💕
+            </div>
         </div>
     </div>
 
     <script>
-        function showPanel(panelNumber) {
-            // Tüm panelleri gizle
-            document.querySelectorAll('.comic-panel').forEach(panel => {
-                panel.classList.remove('active');
-            });
+        let currentPanel = 1;
+        const totalPanels = 6;
+
+        function nextPanel(panelNumber) {
+            // Mevcut paneli gizle
+            document.getElementById(`panel${currentPanel}`).classList.remove('active');
             
-            // Seçilen paneli göster
-            document.getElementById('panel' + panelNumber).classList.add('active');
+            // Yeni paneli göster
+            document.getElementById(`panel${panelNumber}`).classList.add('active');
+            
+            // İlerleme çubuğunu güncelle
+            updateProgress(panelNumber);
+            
+            // Özel efektler
+            if(panelNumber === 3 || panelNumber === 6) {
+                createFloatingHearts();
+            }
+            
+            currentPanel = panelNumber;
         }
 
-        // Sayfa yüklendiğinde ilk panel aktif olsun
+        function updateProgress(panelNumber) {
+            const progress = (panelNumber / totalPanels) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+        }
+
+        function showSecretMessage() {
+            document.getElementById('secretMessage').classList.add('show-message');
+            createFloatingHearts();
+            
+            // Butonu gizle
+            event.target.style.display = 'none';
+        }
+
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            container.innerHTML = '';
+            
+            const hearts = ['💖', '💕', '💘', '💝', '💓', '✨', '🌟', '🥰'];
+            
+            for(let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+                container.appendChild(heart);
+            }
+        }
+
+        // Sayfa yüklendiğinde floating hearts başlasın
         document.addEventListener('DOMContentLoaded', function() {
-            showPanel(1);
+            createFloatingHearts();
+            updateProgress(1);
         });
     </script>
 </body>
