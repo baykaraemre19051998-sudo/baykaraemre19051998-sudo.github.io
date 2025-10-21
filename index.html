@@ -286,6 +286,11 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        .restart-btn {
+            background: linear-gradient(45deg, #6b88ff, #53a3ff);
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -322,26 +327,26 @@
             <button class="btn" onclick="nextPanel(3)">Ne Yapacak? →</button>
         </div>
 
-        <!-- Panel 3 -->
+        <!-- Panel 3 - YENİ KOMİK BÖLÜM 1 -->
         <div class="comic-panel" id="panel3">
-            <div class="panel-title">Komik Kurtarma!</div>
+            <div class="panel-title">Komik Saldırı!</div>
             <div class="character-container">
                 <div class="character">🤡</div>
             </div>
             <div class="speech-bubble">
-                "Komiklik modu: AÇIK!<br>Şimdi seni güldürmek için<br>en saçma dansımı yapacağım! 💃<br>(Umarım düşmem!)"
+                "Komedyen modu: AKTİF!<br>Şimdi sana dünyanın en komik<br>esprisini yapacağım!<br>'Neden tavuklar karşıdan karşıya geçer?'<br>...<br>Cevabı unuttum! 🤡"
             </div>
-            <button class="btn" onclick="nextPanel(4)">İşe Yarayacak mı? →</button>
+            <button class="btn" onclick="nextPanel(4)">Sonuç Ne Oldu? →</button>
         </div>
 
-        <!-- Panel 4 -->
+        <!-- Panel 4 - YENİ KOMİK BÖLÜM 2 -->
         <div class="comic-panel" id="panel4">
-            <div class="panel-title">Mucize!</div>
+            <div class="panel-title">Zafer Anı!</div>
             <div class="character-container">
-                <div class="character">😄</div>
+                <div class="character">🤣</div>
             </div>
             <div class="speech-bubble">
-                "HAHAHA! Pes ediyorum! 😂<br>O kadar komiksin ki...<br>Gülmekten karnıma ağrı girdi!"
+                "YETER! DAYANAMIYORUM! 🤣<br>O kadar komiksin ki...<br>Gülmekten gözümden yaş geldi!<br>Galiba komedi yeteneğin benden daha iyi! 😭"
             </div>
             <button class="btn" onclick="nextPanel(5)">Sonraki →</button>
         </div>
@@ -369,7 +374,7 @@
             </div>
             <div>
                 <span class="heart">💖</span>
-                <span class="heart">😂</span>
+                <span class="heart">🤣</span>
                 <span class="heart">⭐</span>
                 <span class="heart">🎉</span>
                 <span class="heart">💖</span>
@@ -378,6 +383,7 @@
             <div class="hidden-message" id="secretMessage">
                 Seni her hâlinde çok seviyorum. Üzgün olduğunda yanındayım, mutlu olduğunda da. 💕
             </div>
+            <button class="btn restart-btn" onclick="restartComic()" style="display:none;" id="restartBtn">Baştan İzle 🔄</button>
         </div>
     </div>
 
@@ -396,7 +402,7 @@
             updateProgress(panelNumber);
             
             // Özel efektler
-            if(panelNumber === 3 || panelNumber === 6) {
+            if(panelNumber === 3 || panelNumber === 4 || panelNumber === 6) {
                 createFloatingHearts();
             }
             
@@ -410,17 +416,37 @@
 
         function showSecretMessage() {
             document.getElementById('secretMessage').classList.add('show-message');
+            document.getElementById('restartBtn').style.display = 'block';
             createFloatingHearts();
             
             // Butonu gizle
             event.target.style.display = 'none';
         }
 
+        function restartComic() {
+            // Tüm panelleri gizle
+            document.querySelectorAll('.comic-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            
+            // İlk paneli göster
+            document.getElementById('panel1').classList.add('active');
+            
+            // Mesajı ve butonları sıfırla
+            document.getElementById('secretMessage').classList.remove('show-message');
+            document.getElementById('restartBtn').style.display = 'none';
+            document.querySelector('.btn[onclick="showSecretMessage()"]').style.display = 'block';
+            
+            currentPanel = 1;
+            updateProgress(1);
+            createFloatingHearts();
+        }
+
         function createFloatingHearts() {
             const container = document.getElementById('floatingHearts');
             container.innerHTML = '';
             
-            const hearts = ['💖', '💕', '💘', '💝', '💓', '✨', '🌟', '🥰'];
+            const hearts = ['💖', '💕', '💘', '💝', '💓', '✨', '🌟', '🥰', '🤣', '😂'];
             
             for(let i = 0; i < 20; i++) {
                 const heart = document.createElement('div');
