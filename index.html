@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Özlem | Kalbimden Kelimeler</title>
+    <title>Özlem | Kalbinin Sesine</title>
     <style>
         :root {
-            --deep-rose: #c2185b;
-            --romantic-pink: #e91e63;
-            --soft-rose: #f8bbd9;
-            --bg-rose: #fff0f6;
-            --golden: #ffd700;
-            --warm-red: #ff6b6b;
-            --purple-heart: #9c27b0;
-            --lavender-dream: #e1bee7;
-            --text-color: #5a3d5c;
-            --soft-border: #ffcdd2;
+            --deep-mauve: #8b5a8c;
+            --soft-rose: #d8a7b1;
+            --warm-pink: #f7c5cc;
+            --lavender: #b39bc8;
+            --cream: #f8f0e3;
+            --text-color: #5d4e60;
+            --border-soft: #e6d4e6;
         }
 
         * {
@@ -26,30 +23,15 @@
         }
 
         body {
-            background-color: var(--bg-rose);
+            background-color: var(--cream);
             color: var(--text-color);
             line-height: 1.8;
             padding: 20px;
             max-width: 800px;
             margin: 0 auto;
             background-image: 
-                radial-gradient(circle at 15% 25%, rgba(255, 182, 193, 0.15) 0%, transparent 25%),
-                radial-gradient(circle at 85% 75%, rgba(255, 105, 180, 0.1) 0%, transparent 25%);
-            position: relative;
-            min-height: 100vh;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ff6b8b' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.3;
-            z-index: -1;
-            pointer-events: none;
+                radial-gradient(circle at 20% 30%, rgba(139, 90, 140, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(216, 167, 177, 0.05) 0%, transparent 25%);
         }
 
         .password-screen {
@@ -58,192 +40,129 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--deep-rose) 0%, var(--purple-heart) 100%);
+            background: linear-gradient(135deg, var(--deep-mauve) 0%, var(--lavender) 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            font-family: 'Georgia', serif;
         }
 
         .password-container {
             background: rgba(255, 255, 255, 0.95);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(156, 39, 176, 0.3);
+            box-shadow: 0 20px 40px rgba(139, 90, 140, 0.2);
             text-align: center;
             max-width: 400px;
             width: 90%;
-            border: 3px solid var(--soft-border);
-            backdrop-filter: blur(10px);
+            border: 2px solid var(--border-soft);
         }
 
         .password-container h2 {
-            color: var(--deep-rose);
+            color: var(--deep-mauve);
             margin-bottom: 15px;
-            font-size: 2em;
+            font-size: 1.8em;
             font-weight: normal;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         .password-container p {
             color: var(--text-color);
             margin-bottom: 25px;
             font-size: 1.1em;
-            font-style: italic;
+            line-height: 1.6;
         }
 
         #password-input {
             width: 100%;
-            padding: 18px;
-            border: 2px solid var(--lavender-dream);
-            border-radius: 15px;
-            font-size: 17px;
-            margin-bottom: 25px;
+            padding: 16px;
+            border: 2px solid var(--border-soft);
+            border-radius: 12px;
+            font-size: 16px;
+            margin-bottom: 20px;
             transition: all 0.3s;
-            background: var(--soft-rose);
-            color: var(--text-color);
+            background: var(--cream);
             text-align: center;
             font-family: 'Georgia', serif;
         }
 
         #password-input:focus {
             outline: none;
-            border-color: var(--romantic-pink);
-            box-shadow: 0 0 15px rgba(233, 30, 99, 0.3);
-            background: white;
+            border-color: var(--soft-rose);
+            box-shadow: 0 0 0 3px rgba(216, 167, 177, 0.2);
         }
 
         #password-submit {
-            background: linear-gradient(45deg, var(--deep-rose), var(--warm-red));
+            background: linear-gradient(to right, var(--deep-mauve), var(--lavender));
             color: white;
             border: none;
-            padding: 18px 35px;
-            border-radius: 50px;
-            font-size: 18px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
             cursor: pointer;
-            transition: all 0.4s;
+            transition: all 0.3s;
             width: 100%;
             font-family: 'Georgia', serif;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 20px rgba(194, 24, 91, 0.3);
         }
 
         #password-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(194, 24, 91, 0.4);
-            background: linear-gradient(45deg, var(--warm-red), var(--deep-rose));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 90, 140, 0.3);
         }
 
         .error-message {
-            color: var(--deep-rose);
+            color: var(--deep-mauve);
             margin-top: 15px;
             display: none;
-            font-weight: bold;
         }
 
         header {
             text-align: center;
             padding: 50px 20px 30px;
             opacity: 0;
-            animation: fadeIn 1.5s ease forwards;
-            position: relative;
-        }
-
-        .header-heart {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            color: var(--romantic-pink);
-            animation: heartbeat 1.5s infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .avatar-container {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 30px;
+            animation: fadeIn 1s ease forwards;
         }
 
         .avatar {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--deep-rose), var(--purple-heart));
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--deep-mauve), var(--soft-rose));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
+            font-size: 50px;
             color: white;
-            box-shadow: 0 20px 40px rgba(194, 24, 91, 0.3);
-            border: 5px solid white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .avatar::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            box-shadow: 0 15px 30px rgba(139, 90, 140, 0.2);
+            border: 4px solid white;
         }
 
         h1 {
-            color: transparent;
-            background: linear-gradient(45deg, var(--deep-rose), var(--purple-heart));
-            -webkit-background-clip: text;
-            background-clip: text;
-            margin-bottom: 20px;
-            font-size: 3em;
+            color: var(--deep-mauve);
+            margin-bottom: 15px;
+            font-size: 2.5em;
             font-weight: normal;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
             position: relative;
             display: inline-block;
         }
 
         h1::after {
-            content: '❤️';
+            content: '❦';
             position: absolute;
-            right: -40px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.8em;
+            right: -35px;
+            color: var(--soft-rose);
+            font-size: 1.2em;
         }
 
         .subtitle {
             color: var(--text-color);
-            font-size: 1.3em;
+            font-size: 1.2em;
             max-width: 600px;
             margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 15px;
-            border-left: 5px solid var(--golden);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            padding: 20px 0;
             font-style: italic;
-            line-height: 1.6;
-        }
-
-        .subtitle::before, .subtitle::after {
-            content: '"';
-            color: var(--deep-rose);
-            font-size: 2em;
-            font-weight: bold;
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
         }
 
         main {
@@ -253,81 +172,64 @@
 
         .section {
             background: white;
-            border-radius: 20px;
+            border-radius: 18px;
             padding: 35px;
             margin-bottom: 30px;
-            box-shadow: 0 15px 35px rgba(156, 39, 176, 0.1);
-            border: 2px solid var(--soft-border);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-soft);
+            transition: transform 0.3s;
         }
 
         .section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(156, 39, 176, 0.15);
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--deep-rose), var(--golden));
+            box-shadow: 0 15px 35px rgba(139, 90, 140, 0.1);
         }
 
         .section h2 {
-            color: var(--deep-rose);
-            margin-bottom: 25px;
+            color: var(--deep-mauve);
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            font-size: 1.8em;
+            gap: 12px;
+            font-size: 1.6em;
             font-weight: normal;
             padding-bottom: 15px;
-            border-bottom: 2px dashed var(--lavender-dream);
+            border-bottom: 2px solid var(--cream);
         }
 
         .section h2 i {
-            color: var(--golden);
-            font-size: 1.5em;
-            text-shadow: 0 2px 5px rgba(255, 215, 0, 0.3);
+            color: var(--soft-rose);
         }
 
         .message {
-            background: linear-gradient(135deg, var(--bg-rose), white);
+            background: linear-gradient(to right, rgba(248, 240, 227, 0.3), rgba(216, 167, 177, 0.1));
             padding: 25px;
             border-radius: 15px;
             margin: 25px 0;
-            border-left: 4px solid var(--romantic-pink);
+            border-left: 4px solid var(--soft-rose);
             font-size: 1.1em;
-            box-shadow: inset 0 0 20px rgba(255, 182, 193, 0.2);
         }
 
         .highlight {
-            background: linear-gradient(135deg, rgba(194, 24, 91, 0.05), rgba(156, 39, 176, 0.05));
+            background: rgba(248, 240, 227, 0.5);
             padding: 25px;
             border-radius: 15px;
             margin: 25px 0;
-            border: 2px solid rgba(255, 182, 193, 0.3);
+            border: 1px solid var(--border-soft);
             position: relative;
         }
 
         .highlight::before {
-            content: '💖';
+            content: '✨';
             position: absolute;
             left: -15px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 24px;
         }
 
         .highlight p {
             margin: 12px 0;
             padding-left: 10px;
-            position: relative;
             line-height: 1.6;
         }
 
@@ -336,34 +238,29 @@
             align-items: center;
             gap: 20px;
             padding: 20px;
-            background: rgba(255, 240, 246, 0.5);
+            background: rgba(248, 240, 227, 0.3);
             border-radius: 15px;
             margin: 20px 0;
-            border: 1px solid rgba(233, 30, 99, 0.1);
             transition: all 0.3s;
         }
 
         .memory:hover {
-            background: rgba(255, 240, 246, 0.8);
-            transform: translateX(10px);
-            border-color: rgba(233, 30, 99, 0.3);
+            background: rgba(248, 240, 227, 0.6);
         }
 
         .memory i {
-            font-size: 32px;
-            color: var(--deep-rose);
+            font-size: 28px;
+            color: var(--deep-mauve);
             background: white;
-            padding: 15px;
-            border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(194, 24, 91, 0.2);
-            flex-shrink: 0;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .memory strong {
-            color: var(--deep-rose);
+            color: var(--deep-mauve);
             display: block;
             margin-bottom: 5px;
-            font-size: 1.1em;
         }
 
         .memory p {
@@ -376,95 +273,47 @@
             padding: 50px 20px;
             color: var(--text-color);
             opacity: 0;
-            animation: fadeIn 1s ease forwards 1.5s;
-            position: relative;
+            animation: fadeIn 1s ease forwards 1s;
         }
 
         .contact-btn {
             display: inline-flex;
             align-items: center;
-            gap: 15px;
-            background: linear-gradient(45deg, var(--deep-rose), var(--purple-heart));
+            gap: 12px;
+            background: linear-gradient(to right, var(--deep-mauve), var(--lavender));
             color: white;
-            padding: 20px 40px;
+            padding: 18px 36px;
             border-radius: 50px;
             text-decoration: none;
-            margin-top: 30px;
-            transition: all 0.4s;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2em;
+            margin-top: 25px;
+            transition: all 0.3s;
+            font-size: 1.1em;
             font-family: 'Georgia', serif;
-            box-shadow: 0 15px 30px rgba(156, 39, 176, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.5s;
-        }
-
-        .contact-btn:hover::before {
-            left: 100%;
+            box-shadow: 0 10px 25px rgba(139, 90, 140, 0.2);
         }
 
         .contact-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(156, 39, 176, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(139, 90, 140, 0.3);
         }
 
-        .phone-number {
+        .phone-note {
             margin-top: 20px;
             padding: 15px;
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             display: inline-block;
-            border: 2px solid var(--soft-border);
-            color: var(--deep-rose);
-            font-size: 1.2em;
-            font-weight: bold;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            color: var(--deep-mauve);
+            border: 1px solid var(--border-soft);
         }
 
-        .final-note {
+        .final-thought {
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid var(--soft-border);
-            font-size: 0.9em;
-            color: var(--deep-rose);
-            opacity: 0.8;
+            border-top: 1px solid var(--border-soft);
+            color: var(--deep-mauve);
             font-style: italic;
-        }
-
-        .floating-hearts {
-            position: fixed;
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        .heart {
-            position: absolute;
-            font-size: 24px;
-            opacity: 0;
-            animation: floatUp 4s linear forwards;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+            font-size: 0.95em;
         }
 
         @keyframes fadeIn {
@@ -475,7 +324,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -483,157 +332,168 @@
             }
         }
 
+        .floating-heart {
+            position: fixed;
+            font-size: 20px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            animation: float 6s linear forwards;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         @media (max-width: 600px) {
             body { padding: 15px; }
-            h1 { font-size: 2.2em; }
-            .subtitle { font-size: 1.1em; padding: 15px; }
             .section { padding: 25px; }
-            .contact-btn { padding: 16px 30px; font-size: 1em; }
-            .avatar-container { width: 120px; height: 120px; }
-            .avatar { font-size: 50px; }
+            h1 { font-size: 2em; }
+            .avatar { width: 120px; height: 120px; }
+            .contact-btn { padding: 16px 28px; }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Şifre Ekranı -->
     <div class="password-screen" id="passwordScreen">
         <div class="password-container">
             <div class="avatar">
-                <i class="fas fa-heart"></i>
+                <i class="fas fa-key"></i>
             </div>
-            <h2>Sadece Senin İçin</h2>
-            <p>Kalbinin sesini duyabilmen için bir mektup bıraktım.<br>Okumak için özel anahtarını yaz:</p>
-            <input type="password" id="password-input" placeholder="Kalbinin şifresi...">
-            <button id="password-submit">Gönül Kapısını Aç</button>
-            <div class="error-message" id="error-message">Bu anahtar doğru değil, lütfen tekrar dene...</div>
+            <h2>Özel Bir Köşe</h2>
+            <p>Burada, kalbimde sakladığım bazı düşünceler var.<br>Sadece senin okuyabilmen için.</p>
+            <input type="password" id="password-input" placeholder="Özel anahtarını yaz...">
+            <button id="password-submit">Köşeyi Aç</button>
+            <div class="error-message" id="error-message">Anahtar doğru değil, lütfen tekrar dene.</div>
         </div>
     </div>
 
     <!-- Ana İçerik -->
     <div id="mainContent" style="display: none;">
         <header>
-            <div class="header-heart">💖</div>
-            <div class="avatar-container">
-                <div class="avatar">
-                    <i class="fas fa-heart"></i>
-                </div>
+            <div class="avatar">
+                <i class="fas fa-feather-alt"></i>
             </div>
-            <h1>Sevgili Özlem</h1>
-            <p class="subtitle">Bu satırlar senin için... Kalbimde sakladığım, belki de söylemeye cesaret edemediğim kelimeler. Aramızdaki sessizliği sevgiyle doldurmak istedim, çünkü seninle olan bağımız dünyadaki en kıymetli hazinem.</p>
+            <h1>Merhaba Özlem</h1>
+            <p class="subtitle">Bu satırlar, senin için kalbimde biriken ama belki de tam ifade edemediğim duyguların sessiz bir yankısı...</p>
         </header>
 
         <main>
-            <section class="section" id="empathy">
-                <h2><i class="fas fa-hand-holding-heart"></i> Senin Kalbini Anlamak İstedim</h2>
+            <section class="section" id="appreciation">
+                <h2><i class="fas fa-heart"></i> Senin Hakkında Düşündüklerim</h2>
                 <div class="message">
-                    <p>Gözlerinin içine baktığım o anları düşündüm... Muhtemelen senin kalbin şöyle fısıldadı:</p>
+                    <p>Seni tanıdığımda fark ettim ki, bazı insanlar dünyaya farklı bir ışıkla gelir. Sen de öylesin...</p>
                 </div>
                 <div class="highlight">
-                    <p>"Keşke daha çok anlaşılsaydım..."</p>
-                    <p>"Duygularımın yankısını duymak istedim..."</p>
-                    <p>"Aramızdaki bağın yeniden canlanmasını özledim..."</p>
+                    <p>Gülüşünün etrafa yaydığı sıcaklık</p>
+                    <p>Konuşurken gözlerindeki o samimi parıltı</p>
+                    <p>Dünyaya bakışındaki incelik ve derinlik</p>
                 </div>
-                <p>Bu duyguların her biri, senin ne kadar değerli olduğunun kanıtı. Ben de aynı özlemi, aynı kalp atışını hissediyorum.</p>
+                <p>Bunlar, senin eşsizliğinin küçük izleri. Ve bu izler, kalbimde güzel bir yer edindi.</p>
             </section>
 
-            <section class="section" id="reflection">
-                <h2><i class="fas fa-star"></i> Aşk Üzerine Düşündüklerim</h2>
-                <p>Bu günlerde anladım ki gerçek sevgi, güneş gibidir - bazen bulutlar arkasında kalsa da her zaman oradadır. Benim bulutlarım şunlar oldu:</p>
+            <section class="section" id="friendship">
+                <h2><i class="fas fa-hands-helping"></i> Aramızdaki Bağ</h2>
+                <p>Son zamanlarda aramızdaki mesafeyi düşündüm. Belki bazı şeyleri kaçırdım:</p>
                 
                 <div class="memory">
-                    <i class="fas fa-ear-listen"></i>
+                    <i class="fas fa-comments"></i>
                     <div>
-                        <strong>Kalbinin Ritmini Daha İyi Dinlemeliydim</strong>
-                        <p>Senin duygularının melodisini, sadece sözlerini değil, kalbinin atışını da duymalıydım.</p>
+                        <strong>Daha Fazla Dinlemeliydim</strong>
+                        <p>Senin paylaştıklarını daha derinden anlamak için daha çok çaba göstermeliydim.</p>
                     </div>
                 </div>
                 
                 <div class="memory">
-                    <i class="fas fa-heart-crack"></i>
+                    <i class="fas fa-handshake"></i>
                     <div>
-                        <strong>Sevginin Dilini Daha İyi Konuşmalıydım</strong>
-                        <p>Aşk sadece hissetmek değil, o hissi göstermektir. Ben gösteremediğim zamanlar için üzgünüm.</p>
+                        <strong>Daha Anlayışlı Olmalıydım</strong>
+                        <p>Senin hissettiklerine daha duyarlı olabilirdim.</p>
                     </div>
                 </div>
                 
-                <p>En çok da şunu anladım: Seninle olan her an, hayatımın en güzel sayfaları. Ve bu kitabın yarım kalmaması için elimden geleni yapmak istiyorum.</p>
+                <p>Çünkü seninle olan her sohbet, her paylaşım, benim için özel bir anlam taşıyor.</p>
             </section>
 
-            <section class="section" id="value">
-                <h2><i class="fas fa-gem"></i> Senin Eşsiz Güzelliğin</h2>
-                <p>Seni seviyorum çünkü:</p>
+            <section class="section" id="feelings">
+                <h2><i class="fas fa-star"></i> Kalbimdeki Yerin</h2>
+                <p>İtiraf etmeliyim ki, senin varlığın hayatımda:</p>
                 <div class="highlight">
-                    <p>Gülüşün sabah güneşi gibi içimi ısıtıyor</p>
-                    <p>Dünyaya bakışın, hayata anlam katıyor</p>
-                    <p>Ruhundaki incelik, nadir bulunan bir çiçek gibi</p>
-                    <p>Kalbinin derinliği, okyanuslar kadar engin</p>
+                    <p>Günlerime anlam katan bir ışık oldu</p>
+                    <p>Düşüncelerimi güzelleştiren bir ilham kaynağı</p>
+                    <p>Kalbimi sıcaklıkla dolduran bir hatıra</p>
                 </div>
-                <p>Bunlar sadece kelimeler değil, kalbimin gerçek hisleri. Senin varlığın, hayatıma anlam katan en güzel hediye.</p>
+                <p>Belki bunları söylemek biraz cesaret istiyor, ama gerçekleri saklamak daha zor geliyor.</p>
             </section>
 
-            <section class="section" id="invitation">
-                <h2><i class="fas fa-bridge-water"></i> Kalp Köprüsü Kuralım Mı?</h2>
-                <p>Geçmişi değiştiremem ama geleceği birlikte yazabiliriz. Eğer kalbin hazır olduğunu söylerse:</p>
+            <section class="section" id="hope">
+                <h2><i class="fas fa-seedling"></i> Yeniden Başlayabilir Miyiz?</h2>
+                <p>Eğer izin verirsen, yeniden:</p>
                 
                 <div class="highlight">
-                    <p>İki kalbin birbirini duyduğu bir buluşmada buluşalım</p>
-                    <p>Geçmişin yüklerini bırakıp, yeni anılar biriktirelim</p>
-                    <p>Birbirimizin ruhunu yeniden keşfedelim</p>
+                    <p>İki dost gibi samimiyetle konuşabiliriz</p>
+                    <p>Birbirimizi gerçekten dinleyebiliriz</p>
+                    <p>Yeni anılar biriktirebiliriz</p>
                 </div>
                 
-                <p>Senin zamanına saygı duyuyorum. Kalbinin rehberliğini takip et. Hazır olduğunda, buradan bir adım atabilirsin - çünkü ben her zaman burada olacağım.</p>
+                <p>Senin duygularına saygı duyuyorum. Hazır hissettiğinde, ben buradayım.</p>
             </section>
         </main>
 
         <footer>
-            <p>Bu satırlar, sana olan sevgimin ve saygımın küçük bir yansıması.</p>
-            <p>Hazır olduğunda, kalbini dinle ve benimle konuşmak istersen:</p>
+            <p>Bu satırlar, sana duyduğum saygının ve değer vermenin küçük bir ifadesi.</p>
+            <p>Eğer konuşmak istersen, ben her zaman buradayım:</p>
             
-            <a href="https://wa.me/905516539379?text=Merhaba,%20mektubunu%20okudum%20ve%20konuşmak%20istiyorum%20💖" 
+            <a href="https://wa.me/905516539379?text=Merhaba,%20yazdıklarını%20okudum...%20konuşabiliriz" 
                target="_blank" 
                class="contact-btn"
                id="whatsappBtn">
-                <i class="fab fa-whatsapp"></i> Kalbini Dinle ve Yaz Bana
+                <i class="fab fa-whatsapp"></i> Benimle Konuş
             </a>
             
-            <div class="phone-number">
-                <i class="fas fa-phone"></i> 0551 653 93 79
+            <div class="phone-note">
+                <i class="fas fa-phone-alt"></i> 0551 653 93 79
             </div>
             
-            <div class="final-note">
-                "Gerçek arkadaşlık asla bitmez, sadece bazen sessizleşir.<br>
-                Benim kalbimdeki senin için hiç susmadı..."
+            <div class="final-thought">
+                "Bazen söylenmemiş sözler, en çok hissedilenlerdir.<br>
+                Ve senin için hissettiklerim, kelimelere sığmayacak kadar derin..."
             </div>
         </footer>
     </div>
 
     <script>
-        // ŞİFRE KORUMASI
         const CORRECT_PASSWORD = "özlemyılmaz";
         
-        // Uçan kalpler oluştur
-        function createHearts(count = 20) {
-            const colors = ['#e91e63', '#c2185b', '#9c27b0', '#ff6b6b', '#ffd700'];
-            const hearts = ['💖', '❤️', '💕', '💓', '💗', '💘'];
+        // Uçan kalpler
+        function createHearts(count = 10) {
+            const hearts = ['❦', '♡', '♥', '💕', '💖'];
             
             for (let i = 0; i < count; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
-                    heart.className = 'heart';
+                    heart.className = 'floating-heart';
                     heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
                     heart.style.left = Math.random() * 100 + 'vw';
-                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
-                    heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    heart.style.color = '#d8a7b1';
+                    heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                    heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
                     
                     document.body.appendChild(heart);
                     
                     setTimeout(() => {
                         heart.remove();
-                    }, 5000);
-                }, i * 200);
+                    }, 7000);
+                }, i * 300);
             }
         }
         
@@ -642,32 +502,25 @@
             const error = document.getElementById('error-message');
             
             if (input.toLowerCase() === CORRECT_PASSWORD.toLowerCase()) {
-                // Doğru şifre
                 const passwordScreen = document.getElementById('passwordScreen');
                 passwordScreen.style.opacity = '0';
-                passwordScreen.style.transition = 'opacity 1s ease';
+                passwordScreen.style.transition = 'opacity 0.8s ease';
                 
-                createHearts(30);
+                createHearts(20);
                 
                 setTimeout(() => {
                     passwordScreen.style.display = 'none';
                     document.getElementById('mainContent').style.display = 'block';
                     
-                    // Sayfa açıldığında daha fazla kalp
-                    setTimeout(() => createHearts(50), 1000);
-                    
-                    // Her 10 saniyede bir kalp oluştur
-                    setInterval(() => createHearts(5), 10000);
-                }, 1000);
+                    // Sürekli kalpler
+                    setInterval(() => createHearts(2), 5000);
+                }, 800);
                 
                 window.history.replaceState({}, document.title, window.location.pathname);
             } else {
                 error.style.display = 'block';
-                document.getElementById('password-input').style.borderColor = '#c2185b';
+                document.getElementById('password-input').style.borderColor = '#8b5a8c';
                 document.getElementById('password-input').style.animation = 'shake 0.5s';
-                
-                // Hatalı şifrede birkaç kalp
-                createHearts(3);
                 
                 setTimeout(() => {
                     document.getElementById('password-input').style.animation = '';
@@ -675,14 +528,12 @@
             }
         });
         
-        // Enter tuşu
         document.getElementById('password-input').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 document.getElementById('password-submit').click();
             }
         });
         
-        // Sayfa yüklendiğinde
         window.addEventListener('DOMContentLoaded', function() {
             document.getElementById('password-input').focus();
             
@@ -691,34 +542,27 @@
             style.textContent = `
                 @keyframes shake {
                     0%, 100% { transform: translateX(0); }
-                    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
-                    20%, 40%, 60%, 80% { transform: translateX(8px); }
+                    25% { transform: translateX(-5px); }
+                    75% { transform: translateX(5px); }
                 }
             `;
             document.head.appendChild(style);
             
-            // Şifre ekranında da kalpler
-            createHearts(10);
-            setInterval(() => createHearts(2), 3000);
+            // Başlangıç kalpleri
+            createHearts(5);
+            setInterval(() => createHearts(1), 4000);
         });
         
         // WhatsApp butonu
         const whatsappBtn = document.getElementById('whatsappBtn');
         whatsappBtn.addEventListener('mouseenter', function() {
-            createHearts(15);
-            
-            // Buton üzerinde özel efekt
-            this.style.background = 'linear-gradient(45deg, #ff6b6b, #c2185b)';
-            setTimeout(() => {
-                this.style.background = 'linear-gradient(45deg, #c2185b, #9c27b0)';
-            }, 300);
+            createHearts(8);
         });
         
         whatsappBtn.addEventListener('click', function() {
-            createHearts(30);
             setTimeout(() => {
-                alert('💖 Özlem, seninle konuşmayı gerçekten çok özledim. Mesajın beni çok mutlu edecek...');
-            }, 500);
+                alert('Özlem, mesajın beni çok mutlu eder. Seni dinlemeye hazırım...');
+            }, 300);
         });
     </script>
 </body>
