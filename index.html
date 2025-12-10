@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senin İçin Özel Bir Şey ❤️</title>
+    <title>Sensiz Geçen Zaman</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Comic+Neue:wght@700&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
@@ -14,10 +12,9 @@
         }
         
         body {
-            font-family: 'Comic Neue', cursive;
-            background: linear-gradient(-45deg, #ffafbd, #ffc3a0, #a1c4fd, #c2e9fb);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -26,443 +23,314 @@
             overflow-x: hidden;
         }
         
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
         .container {
-            max-width: 800px;
+            text-align: center;
+            max-width: 900px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            border: 8px solid #ff6b88;
-        }
-        
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, #ff6b88, #ff8e53, #ff6b88);
-            z-index: -1;
-            border-radius: 30px;
-            animation: borderGlow 3s ease-in-out infinite;
-        }
-        
-        @keyframes borderGlow {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         h1 {
-            font-family: 'Dancing Script', cursive;
-            text-align: center;
-            color: #ff6b88;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ff6b6b, #ffa36c, #ffd166);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #a9a9a9;
+            font-style: italic;
+        }
+        
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .time-unit {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 20px 15px;
+            min-width: 130px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .time-unit:hover {
+            transform: translateY(-5px);
+        }
+        
+        .time-value {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #64dfdf, #80ffdb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(100, 223, 223, 0.5);
+            line-height: 1;
+        }
+        
+        .time-label {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            color: #c0c0c0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .separator {
             font-size: 3rem;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 0px rgba(255, 107, 136, 0.2);
-            animation: titleBounce 2s ease infinite;
-        }
-        
-        @keyframes titleBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .comic-panel {
-            display: none;
-            animation: panelEntrance 0.8s ease-out;
-            text-align: center;
-        }
-        
-        @keyframes panelEntrance {
-            0% { 
-                opacity: 0; 
-                transform: scale(0.8) rotate(-5deg); 
-            }
-            70% { 
-                transform: scale(1.02) rotate(1deg); 
-            }
-            100% { 
-                opacity: 1; 
-                transform: scale(1) rotate(0deg); 
-            }
-        }
-        
-        .comic-panel.active {
-            display: block;
-        }
-        
-        .character-container {
-            position: relative;
-            margin: 30px auto;
-            height: 200px;
-        }
-        
-        .character {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto;
-            background: linear-gradient(45deg, #ffe6eb, #ffd6e0);
-            border-radius: 50%;
+            color: #ff6b6b;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            border: 5px solid #ff6b88;
-            box-shadow: 0 10px 25px rgba(255, 107, 136, 0.3);
-            transition: all 0.3s ease;
-            animation: float 3s ease-in-out infinite;
+            font-weight: bold;
+            margin: 0 5px;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
-        }
-        
-        .character:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-        
-        .speech-bubble {
-            background: #fff;
-            border: 4px solid #333;
-            border-radius: 30px;
-            padding: 20px;
-            margin: 25px 0;
-            position: relative;
-            font-size: 22px;
-            line-height: 1.5;
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
-            animation: bubblePop 0.6s ease-out;
-        }
-        
-        @keyframes bubblePop {
-            0% { transform: scale(0); }
-            70% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        .speech-bubble:after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 12px solid transparent;
-            border-top-color: #333;
-        }
-        
-        .btn {
-            background: linear-gradient(45deg, #ff6b88, #ff8e53);
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 25px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(255,107,136,0.4);
-            position: relative;
-            overflow: hidden;
-            font-family: 'Comic Neue', cursive;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(255,107,136,0.6);
-        }
-        
-        .btn:active {
-            transform: translateY(0) scale(0.98);
-        }
-        
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s ease;
-        }
-        
-        .btn:hover::after {
-            left: 100%;
+        .date-info {
+            font-size: 1.1rem;
+            margin: 30px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            color: #ddd;
         }
         
         .heart {
-            color: #ff6b88;
-            font-size: 40px;
-            animation: heartbeat 1.2s ease-in-out infinite;
-            display: inline-block;
-            margin: 10px;
+            color: #ff6b6b;
+            font-size: 2rem;
+            animation: heartbeat 1.5s infinite;
+            margin: 0 10px;
         }
         
         @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.3); }
+            0% { transform: scale(1); }
             50% { transform: scale(1.1); }
-            75% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
         
-        .floating-hearts {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #888;
         }
         
-        .floating-heart {
-            position: absolute;
-            font-size: 20px;
-            opacity: 0;
-            animation: floatUp 6s ease-in infinite;
-        }
-        
-        @keyframes floatUp {
-            0% { 
-                transform: translateY(100px) rotate(0deg);
-                opacity: 0; 
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                max-width: 95%;
             }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { 
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0; 
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .countdown-container {
+                gap: 15px;
+            }
+            
+            .time-unit {
+                min-width: 110px;
+                padding: 15px 10px;
+            }
+            
+            .time-value {
+                font-size: 2.5rem;
+            }
+            
+            .time-label {
+                font-size: 1rem;
+            }
+            
+            .separator {
+                display: none;
             }
         }
         
-        .panel-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 28px;
-            color: #ff6b88;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 0px rgba(255,107,136,0.2);
-            animation: titleBounce 2s ease infinite;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background: #f0f0f0;
-            border-radius: 4px;
-            margin: 20px 0;
-            overflow: hidden;
-        }
-        
-        .progress {
-            height: 100%;
-            background: linear-gradient(45deg, #ff6b88, #ff8e53);
-            width: 20%;
-            transition: width 0.5s ease;
-            border-radius: 4px;
-        }
-        
-        .hidden-message {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-            margin-top: 20px;
-            font-family: 'Dancing Script', cursive;
-            font-size: 24px;
-            color: #ff6b88;
-        }
-        
-        .show-message {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .restart-btn {
-            background: linear-gradient(45deg, #6b88ff, #53a3ff);
-            margin-top: 15px;
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .countdown-container {
+                gap: 10px;
+            }
+            
+            .time-unit {
+                min-width: 85px;
+                padding: 12px 5px;
+            }
+            
+            .time-value {
+                font-size: 2rem;
+            }
+            
+            .time-label {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Senin İçin Bir Hikaye ❤️</h1>
+        <h1>Sensiz Geçen Zaman</h1>
+        <p class="subtitle">16 Kasım 2025'ten beri her saniye seni düşünüyorum...</p>
         
-        <div class="progress-bar">
-            <div class="progress" id="progress"></div>
+        <div class="countdown-container">
+            <div class="time-unit">
+                <div class="time-value" id="years">0</div>
+                <div class="time-label">Yıl</div>
+            </div>
+            
+            <div class="separator">:</div>
+            
+            <div class="time-unit">
+                <div class="time-value" id="months">0</div>
+                <div class="time-label">Ay</div>
+            </div>
+            
+            <div class="separator">:</div>
+            
+            <div class="time-unit">
+                <div class="time-value" id="days">0</div>
+                <div class="time-label">Gün</div>
+            </div>
+            
+            <div class="separator">:</div>
+            
+            <div class="time-unit">
+                <div class="time-value" id="hours">00</div>
+                <div class="time-label">Saat</div>
+            </div>
+            
+            <div class="separator">:</div>
+            
+            <div class="time-unit">
+                <div class="time-value" id="minutes">00</div>
+                <div class="time-label">Dakika</div>
+            </div>
+            
+            <div class="separator">:</div>
+            
+            <div class="time-unit">
+                <div class="time-value" id="seconds">00</div>
+                <div class="time-label">Saniye</div>
+            </div>
         </div>
         
-        <div class="floating-hearts" id="floatingHearts"></div>
+        <div class="date-info">
+            <p>Sen gideli: <span id="start-date">16 Kasım 2025, 00:00</span></p>
+            <p>Şu an: <span id="current-date">Yükleniyor...</span></p>
+            <p>Toplam saniye: <span id="total-seconds">0</span></p>
+        </div>
         
-        <!-- Panel 1 -->
-        <div class="comic-panel active" id="panel1">
-            <div class="panel-title">Bir Zamanlar...</div>
-            <div class="character-container">
-                <div class="character">😔</div>
-            </div>
-            <div class="speech-bubble">
-                "Bugün her şey ters gidiyor sanki...<br>Bulutlar bile üzerimde toplanmış!"
-            </div>
-            <button class="btn" onclick="nextPanel(2)">Sonraki Sayfa →</button>
-        </div>
-
-        <!-- Panel 2 -->
-        <div class="comic-panel" id="panel2">
-            <div class="panel-title">Bir İşaret!</div>
-            <div class="character-container">
-                <div class="character">🦸‍♂️</div>
-            </div>
-            <div class="speech-bubble">
-                "Acil durum! Kalp radarımda harika biri üzgün sinyali aldım!<br>Hemen yardıma gitmeliyim! 💘"
-            </div>
-            <button class="btn" onclick="nextPanel(3)">Ne Yapacak? →</button>
-        </div>
-
-        <!-- Panel 3 - YENİ KOMİK BÖLÜM 1 -->
-        <div class="comic-panel" id="panel3">
-            <div class="panel-title">Komik Saldırı Başlıyor!</div>
-            <div class="character-container">
-                <div class="character">🎭</div>
-            </div>
-            <div class="speech-bubble">
-                "Komik mod: AÇIK!<br>Biliyor musun, senin gülüşün<br>bir güneş gibi etrafı aydınlatıyor!<br>(Bu arada, bu kadar romantik<br>olacağımı ben de bilmiyordum! 😅)"
-            </div>
-            <button class="btn" onclick="nextPanel(4)">Sonuç Ne Oldu? →</button>
-        </div>
-
-        <!-- Panel 4 - YENİ KOMİK BÖLÜM 2 -->
-        <div class="comic-panel" id="panel4">
-            <div class="panel-title">Zafer Anı!</div>
-            <div class="character-container">
-                <div class="character">😄</div>
-            </div>
-            <div class="speech-bubble">
-                "HAHAHA TAMAM PES! 😄<br>Sen kazandın! Gülmekten<br>kendimi tutamıyorum!<br>Bu komiklik yarışını sana<br>bırakıyorum, çünkü gerçekten<br>daha iyisin! 🏆"
-            </div>
-            <button class="btn" onclick="nextPanel(5)">Sonraki →</button>
-        </div>
-
-        <!-- Panel 5 -->
-        <div class="comic-panel" id="panel5">
-            <div class="panel-title">Gizli İtiraf</div>
-            <div class="character-container">
-                <div class="character">😊</div>
-            </div>
-            <div class="speech-bubble">
-                "Aslında... Seni güldürebilmek<br>beni de mutlu ediyor.<br>Çünkü gülüşünü çok seviyorum 💖"
-            </div>
-            <button class="btn" onclick="nextPanel(6)">Devam Et →</button>
-        </div>
-
-        <!-- Panel 6 -->
-        <div class="comic-panel" id="panel6">
-            <div class="panel-title">Mutlu Son!</div>
-            <div class="character-container">
-                <div class="character">🌈</div>
-            </div>
-            <div class="speech-bubble">
-                "Unutma, sen harika bir insansın!<br>Ve her zor gün geçer,<br>yerini güneşli günlere bırakır ☀️"
-            </div>
-            <div>
-                <span class="heart">💖</span>
-                <span class="heart">😄</span>
-                <span class="heart">⭐</span>
-                <span class="heart">🎉</span>
-                <span class="heart">💖</span>
-            </div>
-            <button class="btn" onclick="showSecretMessage()">Özel Mesajı Gör 🎁</button>
-            <div class="hidden-message" id="secretMessage">
-                Seni her hâlinde çok seviyorum. Üzgün olduğunda yanındayım, mutlu olduğunda da. 💕
-            </div>
-            <button class="btn restart-btn" onclick="restartComic()" style="display:none;" id="restartBtn">Baştan İzle 🔄</button>
+        <div class="footer">
+            <p>Bu sayaç, sensiz geçen her anı sayar <span class="heart">♥</span></p>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: #666;">Her saniye güncellenir</p>
         </div>
     </div>
 
     <script>
-        let currentPanel = 1;
-        const totalPanels = 6;
-
-        function nextPanel(panelNumber) {
-            // Mevcut paneli gizle
-            document.getElementById(`panel${currentPanel}`).classList.remove('active');
+        // 16 Kasım 2025, saat 00:00:00'dan itibaren saymaya başlayacak
+        // JavaScript'te aylar 0-11 arasıdır (0=Ocak, 10=Kasım)
+        const startDate = new Date(2025, 10, 16, 0, 0, 0);
+        
+        function updateCounter() {
+            const now = new Date();
+            const timeDiff = now - startDate;
             
-            // Yeni paneli göster
-            document.getElementById(`panel${panelNumber}`).classList.add('active');
-            
-            // İlerleme çubuğunu güncelle
-            updateProgress(panelNumber);
-            
-            // Özel efektler
-            if(panelNumber === 3 || panelNumber === 4 || panelNumber === 6) {
-                createFloatingHearts();
+            // Eğer henüz 16 Kasım 2025 gelmediyse, sıfır göster
+            if (timeDiff < 0) {
+                document.getElementById('years').textContent = '0';
+                document.getElementById('months').textContent = '0';
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                document.getElementById('total-seconds').textContent = '0';
+                return;
             }
             
-            currentPanel = panelNumber;
+            // Toplam saniye
+            const totalSeconds = Math.floor(timeDiff / 1000);
+            
+            // Yıllar
+            const years = Math.floor(totalSeconds / (365.25 * 24 * 60 * 60));
+            
+            // Aylar (kalan süreden)
+            const remainingAfterYears = totalSeconds - (years * 365.25 * 24 * 60 * 60);
+            const months = Math.floor(remainingAfterYears / (30.44 * 24 * 60 * 60));
+            
+            // Günler (kalan süreden)
+            const remainingAfterMonths = remainingAfterYears - (months * 30.44 * 24 * 60 * 60);
+            const days = Math.floor(remainingAfterMonths / (24 * 60 * 60));
+            
+            // Saatler (kalan süreden)
+            const remainingAfterDays = remainingAfterMonths - (days * 24 * 60 * 60);
+            const hours = Math.floor(remainingAfterDays / (60 * 60));
+            
+            // Dakikalar (kalan süreden)
+            const remainingAfterHours = remainingAfterDays - (hours * 60 * 60);
+            const minutes = Math.floor(remainingAfterHours / 60);
+            
+            // Saniyeler (kalan)
+            const seconds = Math.floor(remainingAfterHours - (minutes * 60));
+            
+            // Değerleri güncelle (saat, dakika, saniye 2 haneli olacak)
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            document.getElementById('total-seconds').textContent = totalSeconds.toLocaleString('tr-TR');
+            
+            // Tarih bilgilerini güncelle
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            document.getElementById('current-date').textContent = now.toLocaleDateString('tr-TR', options);
         }
-
-        function updateProgress(panelNumber) {
-            const progress = (panelNumber / totalPanels) * 100;
-            document.getElementById('progress').style.width = `${progress}%`;
-        }
-
-        function showSecretMessage() {
-            document.getElementById('secretMessage').classList.add('show-message');
-            document.getElementById('restartBtn').style.display = 'block';
-            createFloatingHearts();
+        
+        // Sayfa yüklendiğinde ve her saniye sayaç güncellensin
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCounter();
+            // Her saniye güncelle (1000 ms = 1 saniye)
+            setInterval(updateCounter, 1000);
             
-            // Butonu gizle
-            event.target.style.display = 'none';
-        }
-
-        function restartComic() {
-            // Tüm panelleri gizle
-            document.querySelectorAll('.comic-panel').forEach(panel => {
-                panel.classList.remove('active');
-            });
-            
-            // İlk paneli göster
-            document.getElementById('panel1').classList.add('active');
-            
-            // Mesajı ve butonları sıfırla
-            document.getElementById('secretMessage').classList.remove('show-message');
-            document.getElementById('restartBtn').style.display = 'none';
-            document.querySelector('.btn[onclick="showSecretMessage()"]').style.display = 'block';
-            
-            currentPanel = 1;
-            updateProgress(1);
-            createFloatingHearts();
-        }
-
-        function createFloatingHearts() {
-            const container = document.getElementById('floatingHearts');
-            container.innerHTML = '';
-            
-            const hearts = ['💖', '💕', '💘', '💝', '💓', '✨', '🌟', '🥰', '😄', '😂'];
-            
-            for(let i = 0; i < 20; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 2 + 's';
-                heart.style.fontSize = (15 + Math.random() * 25) + 'px';
-                container.appendChild(heart);
-            }
-        }
-
-        // Sayfa yüklendiğinde floating hearts başlasın
-        document.addEventListener('DOMContentLoaded', function() {
-            createFloatingHearts();
-            updateProgress(1);
+            // Başlangıç tarihini göster
+            const startOptions = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            };
+            document.getElementById('start-date').textContent = startDate.toLocaleDateString('tr-TR', startOptions);
         });
     </script>
 </body>
