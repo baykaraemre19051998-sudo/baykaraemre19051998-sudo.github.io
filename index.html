@@ -2,30 +2,33 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>ACİL: 27 Yaş Performans Analizi</title>
+    <title>🚑 Işıl'a Özel 27 Yaş Analizi</title>
     <style>
-        body { font-family: 'Courier New', monospace; max-width: 650px; margin: 30px auto; padding: 20px; background-color: #e0e0e0; }
-        .header { background: #333; color: #ffcc00; padding: 20px; text-align: center; border: 5px solid #000; }
-        .step { background: white; padding: 30px; border: 2px solid #333; display: none; }
+        body { font-family: 'Arial', sans-serif; background: linear-gradient(135deg, #003366, #ff0000); min-height: 100vh; display: flex; justify-content: center; align-items: center; color: white; margin: 0; }
+        .container { background: rgba(255, 255, 255, 0.95); color: #333; padding: 40px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 90%; max-width: 600px; text-align: center; border: 5px solid #ffcc00; }
+        h1 { color: #d32f2f; }
+        .step { display: none; }
         .active { display: block; }
-        button { width: 100%; padding: 15px; background: #000; color: #ffcc00; font-size: 18px; border: none; cursor: pointer; margin-top: 20px; }
-        #surpriz { display: none; background: #fff; padding: 30px; border: 5px solid #d32f2f; text-align: center; }
+        button { background: #d32f2f; color: white; padding: 15px 30px; border: none; border-radius: 50px; font-size: 18px; cursor: pointer; transition: 0.3s; margin-top: 20px; font-weight: bold; }
+        button:hover { background: #b71c1c; transform: scale(1.05); }
+        label { display: block; background: #f0f0f0; padding: 15px; margin: 10px 0; border-radius: 10px; cursor: pointer; transition: 0.2s; text-align: left; }
+        label:hover { background: #e0e0e0; }
+        #surpriz { display: none; padding: 20px; }
+        .ambulance { font-size: 50px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Işıl'ın 27 Yaş Performans Analizi</h1>
-    </div>
+    <div class="container">
+        <div class="ambulance">🚑</div>
+        <div id="anketForm">
+            <div id="soruKutusu"></div>
+        </div>
 
-    <form id="anketForm">
-        <div id="soruKutusu"></div>
-        <button type="button" id="nextBtn" onclick="sonrakiSoru()">Sıradaki Soru →</button>
-    </form>
-
-    <div id="surpriz">
-        <h2>🎉 SÜRPRİZ!</h2>
-        <p>Tebrikler Işıl! 27 yaşındaki paramedik sınavını başarıyla geçtin! Doğum gününü unuttuğumu sanıyordun ama aslında seni bu anketle terletip, üzerine sürpriz yapmayı bekliyordum. 27. yaşın kutlu olsun! Anket bittiğine göre, 28 yaşın bilgeliğiyle söylüyorum: Nöbetteki ilk çay senden değil, benden! Hadi gel de kutlayalım.</p>
+        <div id="surpriz">
+            <h2 style="color: #2e7d32;">🎉 27. YAŞIN KUTLU OLSUN IŞIL!</h2>
+            <p style="font-size: 18px; line-height: 1.6;">Tebrikler Işıl! 27 yaşındaki paramedik sınavını başarıyla geçtin! Doğum gününü unuttuğumu sanıyordun ama aslında seni bu anketle terletip, üzerine sürpriz yapmayı bekliyordum. <br><br><b>28 yaşın bilgeliğiyle söylüyorum:</b> Nöbetteki ilk çay senden değil, benden! Hadi gel de kutlayalım.</p>
+        </div>
     </div>
 
     <script>
@@ -80,22 +83,17 @@
 
         function render() {
             container.innerHTML = `<div class="step active">
-                <p>${sorularıOlustur(currentStep)}</p>
-                ${secenekleriOlustur(currentStep)}
+                <p style="font-weight:bold; font-size: 20px;">${sorular[currentStep]}</p>
+                ${secenekler[currentStep].map((s, j) => 
+                    `<label><input type="radio" name="q" value="${j}" required> ${s}</label>`
+                ).join('')}
+                <button onclick="sonrakiSoru()">Sıradaki Soru →</button>
             </div>`;
-        }
-
-        function sorularıOlustur(i) { return sorular[i]; }
-        function secenekleriOlustur(i) {
-            return secenekler[i].map((s, j) => 
-                `<label style="display:block; margin:10px 0;"><input type="radio" name="q" value="${j}" required> ${s}</label>`
-            ).join('');
         }
 
         function sonrakiSoru() {
             const selected = document.querySelector('input[name="q"]:checked');
-            if (!selected) { alert("Lütfen bir şık seç!"); return; }
-            
+            if (!selected) { alert("Işıl, bir şık seçmeden ilerleyemezsin!"); return; }
             currentStep++;
             if (currentStep < sorular.length) { render(); } 
             else { 
