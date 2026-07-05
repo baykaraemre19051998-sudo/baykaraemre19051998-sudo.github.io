@@ -4,69 +4,43 @@
     <meta charset="UTF-8">
     <title>Paramedik Vaka Analizi</title>
     <style>
-        /* Arka plan cıvıl cıvıl ve çiçekli */
-        body { 
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #fbc2eb 100%);
-            background-image: radial-gradient(circle, rgba(255,255,255,0.3) 10%, transparent 10%), 
-                              radial-gradient(circle, rgba(255,255,255,0.3) 10%, transparent 10%);
-            background-size: 50px 50px;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;
-        }
-        /* Ambulans görünümlü kutu */
-        .container { 
-            background: #ffffff; width: 95%; max-width: 500px; padding: 30px; 
-            border: 8px solid #d32f2f; border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center;
-            position: relative;
-        }
-        /* Ambulans çizgisi */
-        .ambulans-serit { height: 10px; background: #ffcc00; margin-bottom: 20px; border-radius: 5px; }
-        
-        h1 { color: #d32f2f; font-size: 22px; }
-        .aciklama { font-size: 14px; color: #444; margin-bottom: 20px; }
-        
-        /* Soru paneli */
-        .q-box { 
-            background: #f0f8ff; padding: 20px; border: 4px solid #003366; border-radius: 15px; 
-            margin: 15px 0; box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
-        }
+        body { background: #e0e0e0; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: #ffffff; width: 95%; max-width: 550px; padding: 30px; border: 10px solid #d32f2f; border-radius: 30px; box-shadow: 0 0 25px rgba(0,0,0,0.2); text-align: center; }
+        h1 { color: #d32f2f; font-size: 24px; }
+        .aciklama { color: #333; font-style: italic; margin: 15px 0; font-size: 15px; background: #fff3cd; padding: 15px; border-radius: 15px; border-left: 5px solid #ffcc00; }
+        .q-box { padding: 15px; border: 2px solid #003366; border-radius: 20px; margin-top: 20px; }
         .question { font-size: 18px; font-weight: bold; color: #003366; margin-bottom: 15px; }
-        
-        label { 
-            display: block; padding: 12px; margin: 8px 0; background: #fff; 
-            border: 2px solid #d32f2f; border-radius: 10px; cursor: pointer; transition: 0.3s;
-        }
-        label:hover { background: #ffcc00; transform: scale(1.02); }
-        
-        button { background: #d32f2f; color: white; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; }
-        #cevapOzeti { text-align: left; font-size: 14px; margin-top: 20px; padding: 10px; background: #fff; border: 1px solid #ccc; }
+        label { display: block; padding: 12px; margin: 8px 0; background: #fff; border: 2px solid #d32f2f; border-radius: 10px; cursor: pointer; text-align: left; transition: 0.3s; font-weight: 500; }
+        label:hover { background: #d32f2f; color: white; }
+        button { background: #003366; color: white; border: none; padding: 15px 40px; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 16px; }
+        #cevapOzeti { text-align: left; font-size: 14px; margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 15px; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="ambulans-serit"></div>
-        
+        <!-- 1. Ekran: Vaka Girişi -->
         <div id="loginStep">
-            <h1>🚑 112 Vaka Girişi</h1>
-            <input type="text" id="userName" placeholder="İsim Soyisim..." style="width:80%; padding:10px; border:2px solid #d32f2f; border-radius:10px;">
-            <br><br><button onclick="login()">NÖBETİ BAŞLAT</button>
+            <h1>112 Vaka Girişi</h1>
+            <input type="text" id="userName" placeholder="İsim Soyisim..." style="width:80%; padding:12px; border-radius:10px; border:2px solid #d32f2f; margin-bottom:15px;">
+            <br><button onclick="login()">NÖBETİ BAŞLAT</button>
         </div>
 
+        <!-- 2. Ekran: Başlık, Açıklama ve Sorular -->
         <div id="surveyStep" style="display:none;">
-            <h1 id="formBasligi">Işıl'ın 27 Yaşındaki Nöbet Performansı</h1>
-            <p class="aciklama">Bu anket, 28 yaşındaki tecrübeli ATT Emre tarafından hazırlanmıştır. Katılım nöbet huzuru için zorunludur.</p>
+            <h1 id="formBasligi">Işıl'ın 27 Yaşındaki Nöbet Performansı ve Garip Alışkanlıkları Araştırması</h1>
+            <p class="aciklama">Bu anket, 28 yaşındaki tecrübeli ATT Emre tarafından, Işıl’ın 27 yaşındaki genel sağlık ve moral durumunu ölçmek adına "akademik" amaçlı hazırlanmıştır. Katılımın nöbet huzuru açısından zorunludur.</p>
             <div class="q-box">
                 <div id="soruBaslik" class="question"></div>
                 <div id="siklar"></div>
             </div>
         </div>
 
+        <!-- 3. Ekran: Sonuç -->
         <div id="resultStep" style="display:none;">
-            <h1>Analiz Tamamlandı!</h1>
+            <h1 style="color:#27ae60;">Analiz Tamamlandı!</h1>
             <div id="cevapOzeti"></div>
-            <div style="background:#ffcc00; padding:15px; border-radius:10px; margin-top:20px; font-weight:bold;">
+            <div style="background:#ffcc00; padding:20px; border-radius:20px; margin-top:20px; font-weight:bold; line-height:1.6; border: 2px solid #d32f2f;">
                 Tebrikler Işıl! 27 yaşındaki paramedik sınavını başarıyla geçtin! Doğum gününü unuttuğumu sanıyordun ama aslında seni bu anketle terletip, üzerine sürpriz yapmayı bekliyordum. 27. yaşın kutlu olsun! Anket bittiğine göre, 28 yaşın bilgeliğiyle söylüyorum: Nöbetteki ilk çay senden değil, benden! Hadi gel de kutlayalım.
             </div>
             <br><button onclick="location.reload()">YENİ VAKA</button>
