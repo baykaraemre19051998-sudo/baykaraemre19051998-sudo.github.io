@@ -2,37 +2,52 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Paramedik Analiz</title>
+    <title>Paramedik Analiz Paneli</title>
     <style>
-        body { font-family: sans-serif; background: #e0e0e0; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .container { background: #fff; width: 90%; max-width: 500px; padding: 30px; border-radius: 20px; border: 15px solid #d32f2f; box-shadow: 0 0 30px rgba(0,0,0,0.3); text-align: center; position: relative; }
-        .container::after { content: "🚑"; font-size: 40px; display: block; margin-bottom: 10px; }
-        h1 { color: #003366; font-size: 20px; }
-        input { width: 80%; padding: 12px; margin: 10px 0; border: 2px solid #003366; border-radius: 8px; }
-        .question { font-size: 18px; font-weight: bold; margin: 20px 0; color: #333; }
-        label { display: block; background: #fdfdfd; padding: 12px; margin: 8px 0; border: 2px solid #ccc; border-radius: 10px; text-align: left; cursor: pointer; }
-        button { background: #d32f2f; color: white; padding: 12px 30px; border: none; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        body { 
+            background: #001a33; /* Gece nöbeti koyu tonu */
+            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            font-family: 'Courier New', Courier, monospace; 
+            display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;
+        }
+        .monitor { 
+            background: #000; width: 95%; max-width: 600px; padding: 25px; border: 10px solid #555; 
+            border-radius: 20px; box-shadow: 0 0 50px #d32f2f; color: #00ff00; /* Monitör yeşili */
+        }
+        h1 { color: #d32f2f; text-align: center; border-bottom: 2px solid #d32f2f; padding-bottom: 10px; }
+        .q-box { background: #111; padding: 20px; border: 2px solid #333; margin-bottom: 20px; }
+        .question { font-size: 20px; font-weight: bold; margin-bottom: 15px; color: #fff; }
+        label { display: block; padding: 12px; border: 1px solid #333; margin: 8px 0; cursor: pointer; transition: 0.3s; }
+        label:hover { background: #222; border-color: #00ff00; }
+        button { background: #d32f2f; color: #fff; border: none; padding: 15px 30px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 20px; }
+        #cevapOzeti { color: #fff; line-height: 1.6; }
         .step { display: none; } .active { display: block; }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="monitor">
+        <!-- Giriş Ekranı -->
         <div id="loginStep" class="step active">
-            <h1>IŞIL'IN 27 YAŞ ANALİZİ</h1>
-            <input type="text" id="userName" placeholder="Ad Soyad Giriniz...">
-            <br><button onclick="login()">BAŞLA</button>
+            <h1>🚑 PARAMEDİK ANALİZ SİSTEMİ</h1>
+            <p style="text-align:center;">İsim Soyisim girerek vaka kaydını başlat:</p>
+            <input type="text" id="userName" style="width:90%; padding:10px; text-align:center; background:#000; color:#0f0; border:1px solid #0f0;" placeholder="Ad Soyad">
+            <button onclick="login()">SİSTEMİ BAŞLAT</button>
         </div>
 
+        <!-- Soru Ekranı -->
         <div id="surveyStep" class="step">
-            <div id="soruBaslik" class="question"></div>
-            <div id="siklar"></div>
+            <div class="q-box">
+                <div id="soruBaslik" class="question"></div>
+                <div id="siklar"></div>
+            </div>
         </div>
 
+        <!-- Sonuç Ekranı -->
         <div id="resultStep" class="step">
-            <h2>ANALİZ TAMAMLANDI</h2>
-            <div id="cevapOzeti" style="text-align:left; font-size:14px; background:#eee; padding:10px; border-radius:10px;"></div>
-            <button onclick="location.reload()">ÇIKIŞ</button>
+            <h1 style="color:#0f0;">ANALİZ KAYDEDİLDİ</h1>
+            <div id="cevapOzeti"></div>
+            <button onclick="location.reload()">YENİ VAKA GİR</button>
         </div>
     </div>
 
@@ -87,7 +102,7 @@
 
         function login() {
             currentUser = document.getElementById('userName').value;
-            if(!currentUser) return alert("İsimsiz vaka kabul edilmiyor!");
+            if(!currentUser) return alert("HATA: İsimsiz vaka kabul edilemez!");
             document.getElementById('loginStep').classList.remove('active');
             document.getElementById('surveyStep').classList.add('active');
             renderQuestion();
@@ -102,18 +117,17 @@
 
         function next() {
             let val = document.querySelector('input[name="q"]:checked')?.value;
-            if(!val) return alert("Seçim yap!");
+            if(!val) return alert("HATA: Seçim yapılmadı!");
             userAnswers[sorular[currentStep]] = val;
             currentStep++;
-            if(currentStep < sorular.length) renderQuestion(); 
-            else finish();
+            if(currentStep < sorular.length) renderQuestion(); else finish();
         }
 
         function finish() {
             document.getElementById('surveyStep').classList.remove('active');
             document.getElementById('resultStep').classList.add('active');
-            let h = `<strong>${currentUser}</strong><br><br>`;
-            for(let q in userAnswers) h += `<li>${q} <br> <b>${userAnswers[q]}</b></li><br>`;
+            let h = `<strong>Kayıtlı Vaka: ${currentUser}</strong><br><br>`;
+            for(let q in userAnswers) h += `<li>${q} <br> <span style="color:#0f0;">>> ${userAnswers[q]}</span></li><br>`;
             document.getElementById('cevapOzeti').innerHTML = h;
         }
     </script>
