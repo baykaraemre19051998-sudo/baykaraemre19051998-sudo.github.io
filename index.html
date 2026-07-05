@@ -4,54 +4,43 @@
     <meta charset="UTF-8">
     <title>Paramedik Analiz</title>
     <style>
-        body { 
-            background: linear-gradient(135deg, #f0f0f0, #ffffff); 
-            font-family: 'Segoe UI', sans-serif;
-            display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;
-        }
-        .container { 
-            background: #ffffff; width: 95%; max-width: 550px; padding: 30px; 
-            border: 12px solid #d32f2f; border-radius: 40px; 
-            box-shadow: 0 0 30px rgba(0,0,0,0.2); text-align: center;
-        }
-        .ambulans-serit { height: 15px; background: #ffcc00; margin-bottom: 20px; border-radius: 5px; }
-        h1 { color: #d32f2f; font-size: 24px; margin-bottom: 10px; }
-        .aciklama { color: #555; font-style: italic; margin-bottom: 20px; font-size: 14px; }
-        .q-box { background: #f9f9f9; padding: 20px; border: 2px solid #003366; border-radius: 20px; margin: 20px 0; }
-        .question { font-size: 18px; font-weight: bold; color: #003366; margin-bottom: 15px; }
+        body { background: #f4f4f4; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: #ffffff; width: 95%; max-width: 550px; padding: 30px; border: 10px solid #d32f2f; border-radius: 30px; box-shadow: 0 0 20px rgba(0,0,0,0.1); text-align: center; }
+        h1 { color: #d32f2f; font-size: 22px; }
+        .aciklama { color: #555; font-style: italic; margin: 15px 0; font-size: 14px; background: #fff3cd; padding: 10px; border-radius: 10px; }
+        .q-box { padding: 15px; border: 2px solid #003366; border-radius: 20px; margin-top: 20px; }
+        .question { font-size: 17px; font-weight: bold; color: #003366; margin-bottom: 15px; }
         label { display: block; padding: 12px; margin: 8px 0; background: #fff; border: 2px solid #d32f2f; border-radius: 10px; cursor: pointer; text-align: left; transition: 0.3s; }
         label:hover { background: #d32f2f; color: white; }
-        button { background: #003366; color: white; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        button { background: #003366; color: white; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 15px; }
         #cevapOzeti { text-align: left; font-size: 14px; margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 10px; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="ambulans-serit"></div>
-        
-        <!-- Giriş -->
+        <!-- 1. Ekran: Vaka Girişi -->
         <div id="loginStep">
-            <h1>Işıl'ın 27 Yaşındaki Nöbet Performansı ve Garip Alışkanlıkları Araştırması</h1>
-            <p class="aciklama">Bu anket, 28 yaşındaki tecrübeli ATT Emre tarafından, Işıl’ın 27 yaşındaki genel sağlık ve moral durumunu ölçmek adına "akademik" amaçlı hazırlanmıştır. Katılımın nöbet huzuru açısından zorunludur.</p>
-            
-            <!-- İsim Soyisim Bölümü -->
-            <label style="background:transparent; border:none; font-weight:bold; color:#d32f2f;">112 Vaka Girişi:</label>
-            <input type="text" id="userName" placeholder="Ad Soyad..." style="width:80%; padding:10px; border-radius:10px; border:2px solid #d32f2f;">
-            <br><br><button onclick="login()">NÖBETİ BAŞLAT</button>
+            <h1>112 Vaka Girişi</h1>
+            <input type="text" id="userName" placeholder="Ad Soyad..." style="width:80%; padding:12px; border-radius:10px; border:2px solid #d32f2f;">
+            <br><button onclick="login()">NÖBETİ BAŞLAT</button>
         </div>
 
-        <!-- Soru -->
+        <!-- 2. Ekran: Anket Başlığı ve Sorular -->
         <div id="surveyStep" style="display:none;">
-            <div id="soruBaslik" class="question"></div>
-            <div id="siklar"></div>
+            <h1 id="formBasligi">Işıl'ın 27 Yaşındaki Nöbet Performansı ve Garip Alışkanlıkları Araştırması</h1>
+            <p class="aciklama">Bu anket, 28 yaşındaki tecrübeli ATT Emre tarafından, Işıl’ın 27 yaşındaki genel sağlık ve moral durumunu ölçmek adına "akademik" amaçlı hazırlanmıştır. Katılımın nöbet huzuru açısından zorunludur.</p>
+            <div class="q-box">
+                <div id="soruBaslik" class="question"></div>
+                <div id="siklar"></div>
+            </div>
         </div>
 
-        <!-- Sonuç -->
+        <!-- 3. Ekran: Sonuç -->
         <div id="resultStep" style="display:none;">
             <h1 style="color:#27ae60;">Analiz Tamamlandı!</h1>
             <div id="cevapOzeti"></div>
-            <div style="background:#ffcc00; padding:20px; border-radius:20px; margin-top:20px; font-weight:bold; line-height:1.5;">
+            <div style="background:#ffcc00; padding:15px; border-radius:15px; margin-top:20px; font-weight:bold;">
                 Tebrikler Işıl! 27 yaşındaki paramedik sınavını başarıyla geçtin! Doğum gününü unuttuğumu sanıyordun ama aslında seni bu anketle terletip, üzerine sürpriz yapmayı bekliyordum. 27. yaşın kutlu olsun! Anket bittiğine göre, 28 yaşın bilgeliğiyle söylüyorum: Nöbetteki ilk çay senden değil, benden! Hadi gel de kutlayalım.
             </div>
             <br><button onclick="location.reload()">YENİ VAKA</button>
