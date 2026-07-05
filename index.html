@@ -2,109 +2,94 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>ACİL: 28 Yaş Sendromu Analiz Formu</title>
+    <title>ACİL: 27 Yaş Performans Analizi</title>
     <style>
-        body { font-family: 'Courier New', Courier, monospace; max-width: 650px; margin: 30px auto; padding: 20px; background-color: #e0e0e0; }
+        body { font-family: 'Courier New', monospace; max-width: 650px; margin: 30px auto; padding: 20px; background-color: #e0e0e0; }
         .header { background: #333; color: #ffcc00; padding: 20px; text-align: center; border: 5px solid #000; }
         .question-card { background: white; padding: 20px; margin-bottom: 20px; border: 2px solid #333; }
-        .warning { color: red; font-weight: bold; font-size: 0.9em; margin-bottom: 10px; }
+        #surpriz { display: none; background: #fff; padding: 30px; border: 5px solid #d32f2f; text-align: center; }
         button { width: 100%; padding: 20px; background: #000; color: #ffcc00; font-size: 20px; border: none; cursor: pointer; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>⚠️ RESMİ NÖBET İHLALİ FORMU</h1>
-        <p>Konu: Emre'nin 28. Yaşındaki "Zihinsel Durumu"</p>
+        <h1>Işıl'ın 27 Yaşındaki Nöbet Performansı ve Garip Alışkanlıkları Araştırması</h1>
+        <p>Bu anket, 28 yaşındaki tecrübeli ATT Emre tarafından, Işıl’ın 27 yaşındaki genel sağlık ve moral durumunu ölçmek adına "akademik" amaçlı hazırlanmıştır. Katılımın nöbet huzuru açısından zorunludur.</p>
     </div>
 
-    <form id="anketForm" onsubmit="alert('Veriler işlendi. Emre nöbette yanına gelince hesaplaşacağız...'); return false;">
+    <form id="anketForm" onsubmit="gosterSurpriz(); return false;">
         
-        <!-- Soru 1 -->
-        <div class="question-card">
-            <div class="warning">DİKKAT: Bu soru 28 yaşındaki birinin egosunu ölçer.</div>
-            <p>1. Sabah nöbeti devraldığında Emre'yi karşında görmek sende nasıl bir etki yaratıyor?</p>
-            <input type="radio" name="q1" value="A" required> A) "Yine mi bu adam, nöbet geçmeyecek."<br>
-            <input type="radio" name="q1" value="B" required> B) "Acaba bugün yine hangi saçmalığı planladı?"<br>
-            <input type="radio" name="q1" value="C" required> C) "Huzur geldi, 28 yaşın bilgeliği bana yol gösterecek."
-        </div>
+        <!-- Buraya 20 soruyu sırasıyla ekledim -->
+        <script>
+            const sorular = [
+                "Sabah nöbeti devraldığında Emre'yi karşında görmek sende nasıl bir etki yaratıyor?",
+                "Emre bir vaka anında hata yaparsa ilk tepkin ne olur?",
+                "İstasyon mutfağında bardaklar kirli duruyorsa suçlu kimdir?",
+                "Nöbetin 12. saatinde Emre ile göz göze geldiğinde içinden ne geçiyor?",
+                "Emre’nin en çok hangi özelliği seni sinir ediyor?",
+                "Ambulansta siren çaldığında içinden ne diyorsun?",
+                "Emre bir günlüğüne 27 yaşına düşse ilk ne yapardı?",
+                "Sence Işıl’ın 27 yaşındaki en büyük 'suçu' nedir?",
+                "Emre’nin 28 yaşına girmesi bir 'başarı' mı?",
+                "Emre'yi bir hayvana benzetsen ne olurdu?",
+                "Doğum gününü kutlamamamın altında yatan gizli amaç ne?",
+                "Bu anketin Emre tarafından hazırlanmış olması sana ne hissettiriyor?",
+                "Ambulansın içinde en çok kimin sesi çıkar?",
+                "Emre '28 yaşındayım, tecrübeliyim' dediğinde yüzündeki ifadeyi tarif et:",
+                "Bu anketi doldururken Emre'ye ne kadar sövüyorsun?",
+                "Işıl, sen 28 yaşına gelince ne değişecek?",
+                "Emre'nin bu anketini bir 'doğum günü hediyesi' sayar mısın?",
+                "Gelecek doğum gününde Emre'den ne bekliyorsun?",
+                "Emre ile aynı ambulansta olmak...",
+                "Işıl, tüm bu anket bittiğine göre; Emre’ye şimdi ne söylemek istersin?"
+            ];
 
-        <!-- Soru 2 -->
-        <div class="question-card">
-            <p>2. Emre bir vaka anında hata yaparsa ilk tepkin ne olur?</p>
-            <input type="radio" name="q2" value="A" required> A) "Emre, 28 yaşındasın ama sanki yeni başlamışsın" demek.<br>
-            <input type="radio" name="q2" value="B" required> B) "Bunu 27 yaşındaki ben bile yapmam" diyerek dalga geçmek.<br>
-            <input type="radio" name="q2" value="C" required> C) "Herkes hata yapar, Emre'nin yaşlanmasına veriyorum."
-        </div>
+            const secenekler = [
+                ['"Yine mi bu adam, nöbet geçmeyecek."', '"Acaba bugün yine hangi saçmalığı planladı?"', '"Huzur geldi, 28 yaşın bilgeliği bana yol gösterecek."'],
+                ['"Emre, 28 yaşındasın ama sanki yeni başlamışsın" demek.', '"Bunu 27 yaşındaki ben bile yapmam" diyerek dalga geçmek.', '"Herkes hata yapar, Emre\'nin yaşlanmasına veriyorum."'],
+                ['Emre\'nin 28 yaşındaki "ağırbaşlılığı" yüzünden yıkmadığı bardaklar.', 'Işıl\'ın 27 yaşındaki o "temizlik takıntısı".', 'Bardakların kendiliğinden kirlenmesi.'],
+                ['"Keşke şu an evde uyuyor olsaydım."', '"Emre\'nin beyni nöbetten dolayı artık sadece saçma anketler üretiyor."', '"Acaba bu adam hiç normal bir şey konuşacak mı?"'],
+                ['Her şeye "28 yaşındayım, ben bilirim" demesi.', 'Doğum günümü unutup sonra bir de anket doldurtması.', 'Kendi doğum gününü kutlatıp, benimkini unutması.'],
+                ['"Umarım siren sesi Emre\'nin sesini bastırıyordur."', '"Siren sesi, Emre\'nin hikayelerinden daha az yorucu."', '"Haydi bakalım, vaka bizi Emre\'nin dırdırından kurtaracak!"'],
+                ['Hemen "Ben 28 yaşındaki halimi özledim" diye ağlardı.', '"Gençlik çok güzelmiş, hadi Işıl vaka sırası sende" derdi.', '27 yaşın verdiği o "bilinmezlikle" şoka girerdi.'],
+                ['Emre\'ye "boş yapma" dememek.', 'Emre\'nin 28 yaşındaki sahte ciddiyetine gülmemek.', 'Emre\'nin anketini ciddiye alıp doldurmak.'],
+                ['Hayır, sadece takvim yaprağı değişti.', 'Evet, bu kadar "boş yaparak" hayatta kalması mucize.', 'Bilmiyorum ama 29\'da durumu merak ediyorum.'],
+                ['Durmadan anlamsız sorular soran bir papağan.', '28 yaşındayım diye şişinen bir tavus kuşu.', 'Ambulansın içinde kendi kendine gülen bir rakun.'],
+                ['Senin 27 yaşındaki o "saf" hallerini böyle anketle bozmak.', 'Seni bu ankete mahkum ederek intikam almak.', 'Sadece unutkanlık (ama Emre bunu asla kabul etmez).'],
+                ['Emre\'nin işsizliğinin zirvesi.', '"Bu adam cidden beni delirtmeye çalışıyor."', '"Emre, 28 yaşındasın, git bir çay iç."'],
+                ['Emre\'nin "28 yıllık tecrübe" yalanları.', 'Işıl\'ın "Yine saçmalıyor, boş ver" bakışı.', 'Telsizin o rahatlatıcı sesi.'],
+                ['"Gerçekten mi? Hiç belli etmiyorsun."', '"Tamam şampiyon, sensin."', '"Beni biri buradan kurtarsın."'],
+                ['Sayısını unuttum, 28\'den fazla kesin.', 'Sadece içimden, bir 27 yaş paramediği olarak kibarım.', 'Sövmek yerine gülüyorum, çünkü Emre\'ye kızamıyorum.'],
+                ['Emre\'nin 28 yaşındaki o saçmalıklarını ona bir bir hatırlatacağım.', '"Emre, yaşlandın artık emekli ol" diyeceğim.', 'Hala 27 yaşındaki gibi inatçı olacağım.'],
+                ['Evet, 28 yaşındaki birinden gelecek en "absürt" hediye bu.', 'Hayır, bu bir cezalandırma yöntemi.', 'Henüz karar veremedim, yaşım gereği biraz daha düşünmem lazım.'],
+                ['Yine saçma bir anket.', 'Hiçbir şey, kutlamasın daha iyi.', 'Davul-zurna eşliğinde "Işıl sen çok yaşa" pankartı.'],
+                ['Bir tür sabır sınavı.', 'Bir tür 28 yaş güzellemesi.', 'Hayatın bana verdiği en garip (ve komik) ceza.'],
+                ['"Doğum günümü kutlamadın ama bu saçmalıkla beni benden aldın, iyi ki varsın."', '"Emre, 28 yaşındasın ama hala çocuk gibisin."', '"Sıradaki nöbette çayı sen dolduruyorsun, 28 yaşın şerefine!"']
+            ];
 
-        <!-- Soru 3 -->
-        <div class="question-card">
-            <p>3. İstasyon mutfağında bardaklar kirli duruyorsa suçlu kimdir?</p>
-            <input type="radio" name="q3" value="A" required> A) Emre'nin 28 yaşındaki "ağırbaşlılığı" yüzünden yıkmadığı bardaklar.<br>
-            <input type="radio" name="q3" value="B" required> B) Işıl'ın 27 yaşındaki o "temizlik takıntısı".<br>
-            <input type="radio" name="q3" value="C" required> C) Bardakların kendiliğinden kirlenmesi.
-        </div>
-
-        <!-- Soru 4 -->
-        <div class="question-card">
-            <p>4. Nöbetin 12. saatinde Emre ile göz göze geldiğinde içinden ne geçiyor?</p>
-            <input type="radio" name="q4" value="A" required> A) "Keşke şu an evde uyuyor olsaydım."<br>
-            <input type="radio" name="q4" value="B" required> B) "Emre'nin beyni nöbetten dolayı artık sadece saçma anketler üretiyor."<br>
-            <input type="radio" name="q4" value="C" required> C) "Acaba bu adam hiç normal bir şey konuşacak mı?"
-        </div>
-
-        <!-- Soru 5 -->
-        <div class="question-card">
-            <p>5. Emre’nin en çok hangi özelliği seni sinir ediyor?</p>
-            <input type="radio" name="q5" value="A" required> A) Her şeye "28 yaşındayım, ben bilirim" demesi.<br>
-            <input type="radio" name="q5" value="B" required> B) Doğum günümü unutup sonra bir de anket doldurtması.<br>
-            <input type="radio" name="q5" value="C" required> C) Kendi doğum gününü kutlatıp, benimkini unutması.
-        </div>
-
-        <!-- Soru 6 -->
-        <div class="question-card">
-            <p>6. Ambulansta siren çaldığında içinden ne diyorsun?</p>
-            <input type="radio" name="q6" value="A" required> A) "Umarım siren sesi Emre'nin sesini bastırıyordur."<br>
-            <input type="radio" name="q6" value="B" required> B) "Siren sesi, Emre'nin hikayelerinden daha az yorucu."<br>
-            <input type="radio" name="q6" value="C" required> C) "Haydi bakalım, vaka bizi Emre'nin dırdırından kurtaracak!"
-        </div>
-
-        <!-- Soru 7 -->
-        <div class="question-card">
-            <p>7. Emre bir günlüğüne 27 yaşına düşse ilk ne yapardı?</p>
-            <input type="radio" name="q7" value="A" required> A) Hemen "Ben 28 yaşındaki halimi özledim" diye ağlardı.<br>
-            <input type="radio" name="q7" value="B" required> B) "Gençlik çok güzelmiş, hadi Işıl vaka sırası sende" derdi.<br>
-            <input type="radio" name="q7" value="C" required> C) 27 yaşın verdiği o "bilinmezlikle" şoka girerdi.
-        </div>
-
-        <!-- Soru 8 -->
-        <div class="question-card">
-            <p>8. Sence Işıl’ın 27 yaşındaki en büyük "suçu" nedir?</p>
-            <input type="radio" name="q8" value="A" required> A) Emre'ye "boş yapma" dememek.<br>
-            <input type="radio" name="q8" value="B" required> B) Emre'nin 28 yaşındaki sahte ciddiyetine gülmemek.<br>
-            <input type="radio" name="q8" value="C" required> C) Emre'nin anketini ciddiye alıp doldurmak.
-        </div>
-
-        <!-- Soru 9 -->
-        <div class="question-card">
-            <p>9. Emre’nin 28 yaşına girmesi bir "başarı" mı?</p>
-            <input type="radio" name="q9" value="A" required> A) Hayır, sadece takvim yaprağı değişti.<br>
-            <input type="radio" name="q9" value="B" required> B) Evet, bu kadar "boş yaparak" hayatta kalması mucize.<br>
-            <input type="radio" name="q9" value="C" required> C) Bilmiyorum ama 29'da durumu merak ediyorum.
-        </div>
-
-        <!-- Soru 10 -->
-        <div class="question-card">
-            <p>10. Emre'yi bir hayvana benzetsen ne olurdu?</p>
-            <input type="radio" name="q10" value="A" required> A) Durmadan anlamsız sorular soran bir papağan.<br>
-            <input type="radio" name="q10" value="B" required> B) 28 yaşındayım diye şişinen bir tavus kuşu.<br>
-            <input type="radio" name="q10" value="C" required> C) Ambulansın içinde kendi kendine gülen bir rakun.
-        </div>
-
-        <!-- Soru 11-20'yi de aynı şekilde aşağıya ekleyebilirsin... -->
-        <!-- (Not: Çok uzun olmaması için geri kalanları aynı formatta kopyalaman yeterli!) -->
-
+            sorular.forEach((soru, i) => {
+                document.write(`<div class="question-card"><p>${i+1}. ${soru}</p>`);
+                secenekler[i].forEach((sec, j) => {
+                    document.write(`<label><input type="radio" name="q${i}" value="${j}" required> ${sec}</label><br>`);
+                });
+                document.write(`</div>`);
+            });
+        </script>
+        
         <button type="submit">ANALİZİ TAMAMLA VE GÖNDER</button>
     </form>
+
+    <div id="surpriz">
+        <h2>🎉 SÜRPRİZ!</h2>
+        <p>Tebrikler Işıl! 27 yaşındaki paramedik sınavını başarıyla geçtin! Doğum gününü unuttuğumu sanıyordun ama aslında seni bu anketle terletip, üzerine sürpriz yapmayı bekliyordum. 27. yaşın kutlu olsun! Anket bittiğine göre, 28 yaşın bilgeliğiyle söylüyorum: Nöbetteki ilk çay senden değil, benden! Hadi gel de kutlayalım.</p>
+    </div>
+
+    <script>
+        function gosterSurpriz() {
+            document.getElementById('anketForm').style.display = 'none';
+            document.getElementById('surpriz').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
