@@ -2,113 +2,82 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Paramedik Analiz Aracı</title>
+    <title>Ambulans Analiz Sistemi</title>
     <style>
+        /* Ambulans Temalı Arka Plan */
         body { 
             font-family: 'Segoe UI', sans-serif; 
-            background: #e0e0e0; 
-            display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; 
+            background: linear-gradient(180deg, #f0f0f0 0%, #dcdcdc 100%);
+            display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;
+            background-image: radial-gradient(#ccc 1px, transparent 1px);
+            background-size: 20px 20px;
         }
-        /* Ambulans Kasası */
+        /* Ambulans Kasa Tasarımı */
         .container { 
-            background: #ffffff; 
-            width: 90%; max-width: 500px; 
-            padding: 30px; 
-            border-radius: 20px; 
-            border: 8px solid #d32f2f; /* Kırmızı Şerit */
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
-            text-align: center;
-            position: relative;
+            background: #ffffff; width: 90%; max-width: 500px; padding: 40px; border-radius: 30px; 
+            border: 15px solid #d32f2f; /* Kırmızı Şerit */
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            text-align: center; position: relative;
         }
-        /* Tepe Lambası Efekti */
-        .container::before {
-            content: "🚑"; font-size: 50px; display: block; margin-bottom: 10px;
+        /* Sarı Reflektör Detayı */
+        .container::after {
+            content: " "; position: absolute; top: 20px; left: 0; width: 100%; height: 10px;
+            background: #ffcc00;
         }
-        h1 { color: #003366; font-size: 20px; text-transform: uppercase; margin-bottom: 20px; border-bottom: 3px solid #ffcc00; }
-        
-        input[type="text"] { width: 80%; padding: 12px; border: 2px solid #003366; border-radius: 8px; margin-bottom: 20px; }
-        
-        .question { font-size: 18px; font-weight: bold; color: #333; margin: 20px 0; }
-        
-        label { 
-            display: block; background: #fdfdfd; padding: 15px; margin: 10px 0; 
-            border: 2px solid #ccc; border-radius: 10px; text-align: left; transition: 0.3s;
-        }
-        label:hover { background: #fff5f5; border-color: #d32f2f; }
-        
-        button { 
-            background: #d32f2f; color: white; padding: 12px 30px; border: none; 
-            border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 10px;
-        }
-        
-        .step { display: none; }
-        .active { display: block; }
-        
-        #cevapOzeti { text-align: left; font-size: 14px; background: #eee; padding: 15px; border-radius: 10px; margin-top: 20px; }
+        h1 { color: #003366; font-size: 22px; margin-bottom: 25px; }
+        input[type="text"] { width: 85%; padding: 15px; border: 3px solid #003366; border-radius: 10px; margin-bottom: 20px; font-size: 16px; }
+        .question { font-size: 18px; font-weight: 800; color: #333; margin: 20px 0; padding: 10px; border-bottom: 2px solid #d32f2f; }
+        label { display: block; background: #f9f9f9; padding: 15px; margin: 10px 0; border: 2px solid #ddd; border-radius: 10px; text-align: left; cursor: pointer; transition: 0.3s; font-weight: 500; }
+        label:hover { background: #fff5f5; border-color: #d32f2f; transform: scale(1.01); }
+        button { background: #003366; color: white; padding: 15px 40px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 20px; font-size: 16px; box-shadow: 0 5px 10px rgba(0,0,0,0.2); }
+        .step { display: none; } .active { display: block; }
+        #cevapOzeti { text-align: left; font-size: 14px; background: #fff; padding: 20px; border-radius: 15px; margin-top: 20px; border: 2px dashed #003366; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- 1. Adım: Giriş -->
+        <!-- 1. Giriş -->
         <div id="loginStep" class="step active">
-            <h1>Paramedik Veri Girişi</h1>
-            <input type="text" id="userName" placeholder="İsim Soyisim...">
-            <br><button onclick="login()">Sisteme Giriş Yap</button>
+            <h1 style="color:#d32f2f">🚑 ACİL SERVİS VERİ GİRİŞİ</h1>
+            <p>Sisteme giriş yapmak için adını soyadını gir:</p>
+            <input type="text" id="userName" placeholder="Ad Soyad...">
+            <br><button onclick="login()">KABUL ET</button>
         </div>
 
-        <!-- 2. Adım: Anket -->
+        <!-- 2. Anket -->
         <div id="surveyStep" class="step">
             <div id="soruBaslik" class="question"></div>
             <div id="siklar"></div>
         </div>
 
-        <!-- 3. Adım: Sonuç -->
+        <!-- 3. Sonuç -->
         <div id="resultStep" class="step">
-            <h2 id="mesaj"></h2>
+            <h2 style="color:#003366">📊 ANALİZ TAMAMLANDI</h2>
             <div id="cevapOzeti"></div>
-            <br><button onclick="location.reload()">Yeni Kayıt</button>
+            <button onclick="location.reload()">YENİ VAKA</button>
         </div>
     </div>
 
     <script>
-        const sorular = [
-            "1. Emre nöbeti devralınca ilk ne yapmalı?",
-            "2. Ambulansta en çok neyi özlüyorsun?",
-            "3. Emre'yi tek kelimeyle tanımla:"
-        ]; // Emre, buraya 20 soruyu kendi listenden tamamlarsın.
-        
-        const secenekler = [
-            ["Çay demlemeli", "Sirenleri kontrol etmeli", "Sessizce oturmalı"],
-            ["Kahve molası", "Boş yollar", "Hiçbir şey"],
-            ["Komik", "Boşboğaz", "Çalışkan"]
-        ];
+        const sorular = ["1. Sabah nöbeti devraldığında Emre'yi karşında görmek sende nasıl bir etki yaratıyor?", "2. Emre bir vaka anında hata yaparsa ilk tepkin ne olur?", "3. İstasyon mutfağında bardaklar kirli duruyorsa suçlu kimdir?", "4. Nöbetin 12. saatinde Emre ile göz göze geldiğinde içinden ne geçiyor?", "5. Emre’nin en çok hangi özelliği seni sinir ediyor?", "6. Ambulansta siren çaldığında içinden ne diyorsun?", "7. Emre bir günlüğüne 27 yaşına düşse ilk ne yapardı?", "8. Sence Işıl’ın 27 yaşındaki en büyük 'suçu' nedir?", "9. Emre’nin 28 yaşına girmesi bir 'başarı' mı?", "10. Emre'yi bir hayvana benzetsen ne olurdu?", "11. Doğum gününü kutlamamamın altında yatan gizli amaç ne?", "12. Bu anketin Emre tarafından hazırlanmış olması sana ne hissettiriyor?", "13. Ambulansın içinde en çok kimin sesi çıkar?", "14. Emre '28 yaşındayım, tecrübeliyim' dediğinde yüzündeki ifadeyi tarif et:", "15. Bu anketi doldururken Emre'ye ne kadar sövüyorsun?", "16. Işıl, sen 28 yaşına gelince ne değişecek?", "17. Emre'nin bu anketini bir 'doğum günü hediyesi' sayar mısın?", "18. Gelecek doğum gününde Emre'den ne bekliyorsun?", "19. Emre ile aynı ambulansta olmak...", "20. Işıl, tüm bu anket bittiğine göre; Emre’ye şimdi ne söylemek istersin?"];
+        const secenekler = [['"Yine mi bu adam, nöbet geçmeyecek."', '"Acaba bugün yine hangi saçmalığı planladı?"', '"Huzur geldi, 28 yaşın bilgeliği bana yol gösterecek."'], ['"Emre, 28 yaşındasın ama sanki yeni başlamışsın" demek.', '"Bunu 27 yaşındaki ben bile yapmam" diyerek dalga geçmek.', '"Herkes hata yapar, Emre\'nin yaşlanmasına veriyorum."'], ['Emre\'nin 28 yaşındaki "ağırbaşlılığı" yüzünden yıkmadığı bardaklar.', 'Işıl\'ın 27 yaşındaki o "temizlik takıntısı".', 'Bardakların kendiliğinden kirlenmesi.'], ['"Keşke şu an evde uyuyor olsaydım."', '"Emre\'nin beyni nöbetten dolayı artık sadece saçma anketler üretiyor."', '"Acaba bu adam hiç normal bir şey konuşacak mı?"'], ['Her şeye "28 yaşındayım, ben bilirim" demesi.', 'Doğum günümü unutup sonra bir de anket doldurtması.', 'Kendi doğum gününü kutlatıp, benimkini unutması.'], ['"Umarım siren sesi Emre\'nin sesini bastırıyordur."', '"Siren sesi, Emre\'nin hikayelerinden daha az yorucu."', '"Haydi bakalım, vaka bizi Emre\'nin dırdırından kurtaracak!"'], ['Hemen "Ben 28 yaşındaki halimi özledim" diye ağlardı.', '"Gençlik çok güzelmiş, hadi Işıl vaka sırası sende" derdi.', '27 yaşın verdiği o "bilinmezlikle" şoka girerdi.'], ['Emre\'ye "boş yapma" dememek.', 'Emre\'nin 28 yaşındaki sahte ciddiyetine gülmemek.', 'Emre\'nin anketini ciddiye alıp doldurmak.'], ['Hayır, sadece takvim yaprağı değişti.', 'Evet, bu kadar "boş yaparak" hayatta kalması mucize.', 'Bilmiyorum ama 29\'da durumu merak ediyorum.'], ['Durmadan anlamsız sorular soran bir papağan.', '28 yaşındayım diye şişinen bir tavus kuşu.', 'Ambulansın içinde kendi kendine gülen bir rakun.'], ['Senin 27 yaşındaki o "saf" hallerini böyle anketle bozmak.', 'Seni bu ankete mahkum ederek intikam almak.', 'Sadece unutkanlık (ama Emre bunu asla kabul etmez).'], ['Emre\'nin işsizliğinin zirvesi.', '"Bu adam cidden beni delirtmeye çalışıyor."', '"Emre, 28 yaşındasın, git bir çay iç."'], ['Emre\'nin "28 yıllık tecrübe" yalanları.', 'Işıl\'ın "Yine saçmalıyor, boş ver" bakışı.', 'Telsizin o rahatlatıcı sesi.'], ['"Gerçekten mi? Hiç belli etmiyorsun."', '"Tamam şampiyon, sensin."', '"Beni biri buradan kurtarsın."'], ['Sayısını unuttum, 28\'den fazla kesin.', 'Sadece içimden, bir 27 yaş paramediği olarak kibarım.', 'Sövmek yerine gülüyorum, çünkü Emre\'ye kızamıyorum.'], ['Emre\'nin 28 yaşındaki o saçmalıklarını ona bir bir hatırlatacağım.', '"Emre, yaşlandın artık emekli ol" diyeceğim.', 'Hala 27 yaşındaki gibi inatçı olacağım.'], ['Evet, 28 yaşındaki birinden gelecek en "absürt" hediye bu.', 'Hayır, bu bir cezalandırma yöntemi.', 'Henüz karar veremedim, yaşım gereği biraz daha düşünmem lazım.'], ['Yine saçma bir anket.', 'Hiçbir şey, kutlamasın daha iyi.', 'Davul-zurna eşliğinde "Işıl sen çok yaşa" pankartı.'], ['Bir tür sabır sınavı.', 'Bir tür 28 yaş güzellemesi.', 'Hayatın bana verdiği en garip (ve komik) ceza.'], ['"Doğum günümü kutlamadın ama bu saçmalıkla beni benden aldın, iyi ki varsın."', '"Emre, 28 yaşındasın ama hala çocuk gibisin."', '"Sıradaki nöbette çayı sen dolduruyorsun, 28 yaşın şerefine!"']];
 
-        let currentUser = "";
-        let currentStep = 0;
-        let userAnswers = {};
+        let currentUser = "", currentStep = 0, userAnswers = {};
 
         function login() {
             currentUser = document.getElementById('userName').value;
             if(!currentUser) return alert("İsimsiz vaka kabul edilmiyor!");
-            
-            // Eğer daha önce doldurduysa direkt göster
             let saved = localStorage.getItem(currentUser);
-            if(saved) {
-                userAnswers = JSON.parse(saved);
-                showResult();
-            } else {
-                document.getElementById('loginStep').classList.remove('active');
-                document.getElementById('surveyStep').classList.add('active');
-                renderQuestion();
-            }
+            if(saved) { userAnswers = JSON.parse(saved); showResult(); } 
+            else { document.getElementById('loginStep').classList.remove('active'); document.getElementById('surveyStep').classList.add('active'); renderQuestion(); }
         }
 
         function renderQuestion() {
             document.getElementById('soruBaslik').innerText = sorular[currentStep];
             let h = "";
             secenekler[currentStep].forEach(s => h += `<label><input type="radio" name="q" value="${s}"> ${s}</label>`);
-            document.getElementById('siklar').innerHTML = h + `<button onclick="next()">İleri</button>`;
+            document.getElementById('siklar').innerHTML = h + `<button onclick="next()">İLERİ →</button>`;
         }
 
         function next() {
@@ -116,23 +85,16 @@
             if(!val) return alert("Seçim yapmadan çıkış yasak!");
             userAnswers[sorular[currentStep]] = val;
             currentStep++;
-            if(currentStep < sorular.length) renderQuestion();
-            else finish();
+            if(currentStep < sorular.length) renderQuestion(); else finish();
         }
 
-        function finish() {
-            localStorage.setItem(currentUser, JSON.stringify(userAnswers));
-            showResult();
-        }
+        function finish() { localStorage.setItem(currentUser, JSON.stringify(userAnswers)); showResult(); }
 
         function showResult() {
-            document.getElementById('loginStep').classList.remove('active');
-            document.getElementById('surveyStep').classList.remove('active');
+            document.getElementById('loginStep').style.display = 'none';
+            document.getElementById('surveyStep').style.display = 'none';
             document.getElementById('resultStep').classList.add('active');
-            document.getElementById('mesaj').innerText = currentUser + " - Kayıtlı Veriler:";
-            let html = "";
-            for(let q in userAnswers) html += `<p><strong>${q}</strong><br><em>${userAnswers[q]}</em></p>`;
-            document.getElementById('cevapOzeti').innerHTML = html;
+            document.getElementById('cevapOzeti').innerHTML = Object.entries(userAnswers).map(([q, a]) => `<p><strong>${q}</strong><br><em>${a}</em></p>`).join('');
         }
     </script>
 </body>
