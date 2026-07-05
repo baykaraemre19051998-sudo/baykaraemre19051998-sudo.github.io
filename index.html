@@ -12,7 +12,8 @@
         label { display: block; background: #fff; padding: 15px; margin: 10px 0; border: 2px solid #ddd; border-radius: 10px; cursor: pointer; transition: 0.3s; text-align: left; }
         label:hover { border-color: #d32f2f; background: #fff5f5; }
         button { background: #003366; color: white; padding: 15px 40px; border: none; border-radius: 50px; font-size: 16px; cursor: pointer; margin-top: 20px; }
-        #surpriz { display: none; padding: 20px; }
+        #surpriz { display: none; padding: 20px; text-align: left; }
+        .cevap-listesi { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-top: 20px; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -25,8 +26,13 @@
         </div>
 
         <div id="surpriz">
-            <h2 style="color: #2e7d32;">🎉 TEBRİKLER IŞIL!</h2>
-            <p style="font-size: 18px; line-height: 1.6;">Tebrikler Işıl! 27 yaşındaki paramedik sınavını başarıyla geçtin! Doğum gününü unuttuğumu sanıyordun ama aslında seni bu anketle terletip, üzerine sürpriz yapmayı bekliyordum. 27. yaşın kutlu olsun! Anket bittiğine göre, 28 yaşın bilgeliğiyle söylüyorum: Nöbetteki ilk çay senden değil, benden! Hadi gel de kutlayalım.</p>
+            <h2 style="color: #2e7d32; text-align: center;">🎉 TEBRİKLER IŞIL!</h2>
+            <p style="font-size: 18px; line-height: 1.6; text-align: center;">Tebrikler Işıl! 27 yaşındaki paramedik sınavını başarıyla geçtin! Doğum gününü unuttuğumu sanıyordun ama aslında seni bu anketle terletip, üzerine sürpriz yapmayı bekliyordum. 27. yaşın kutlu olsun! Anket bittiğine göre, 28 yaşın bilgeliğiyle söylüyorum: Nöbetteki ilk çay senden değil, benden! Hadi gel de kutlayalım.</p>
+            
+            <div class="cevap-listesi" id="cevapListesi">
+                <h3>📜 Seçtiğin Cevaplar:</h3>
+                <div id="sonuclar"></div>
+            </div>
         </div>
     </div>
 
@@ -92,13 +98,20 @@
         function sonrakiSoru() {
             const selected = document.querySelector('input[name="q"]:checked');
             if (!selected) { alert("Lütfen bir şık seç!"); return; }
-            cevaplar.push(selected.value);
-            console.log("Işıl şu cevabı verdi:", selected.value);
+            
+            cevaplar.push({soru: sorular[currentStep], cevap: selected.value});
+            
             currentStep++;
             if (currentStep < sorular.length) { render(); } 
             else { 
                 document.getElementById('anketBolumu').style.display = 'none';
                 document.getElementById('surpriz').style.display = 'block';
+                
+                let sonucHTML = "";
+                cevaplar.forEach((item, index) => {
+                    sonucHTML += `<p><strong>${index + 1}.</strong> ${item.cevap}</p>`;
+                });
+                document.getElementById('sonuclar').innerHTML = sonucHTML;
             }
         }
         render();
