@@ -2,907 +2,221 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Özlem | Kalbinin Sesine</title>
+    <title>Emre'nin 28 Yaş Sabır Testi</title>
     <style>
-        :root {
-            --passionate-red: #c44569;
-            --romantic-pink: #e66767;
-            --soft-rose: #f8a5c2;
-            --deep-rose: #d980fa;
-            --warm-red: #ff6b6b;
-            --cream: #fff5f7;
-            --text-color: #6d214f;
-            --border-soft: #f8c4d5;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Georgia', 'Times New Roman', serif;
-        }
-
-        body {
-            background-color: var(--cream);
-            color: var(--text-color);
-            line-height: 1.8;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(198, 69, 105, 0.08) 0%, transparent 30%),
-                radial-gradient(circle at 90% 80%, rgba(230, 103, 103, 0.08) 0%, transparent 30%),
-                linear-gradient(45deg, rgba(255, 245, 247, 0.9) 0%, rgba(255, 240, 245, 0.9) 100%);
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23f8a5c2' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .password-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--passionate-red) 0%, var(--romantic-pink) 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .password-container {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 50px 40px;
-            border-radius: 24px;
-            box-shadow: 0 25px 50px rgba(198, 69, 105, 0.3);
-            text-align: center;
-            max-width: 420px;
-            width: 90%;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            animation: pulse 2s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 25px 50px rgba(198, 69, 105, 0.3);
-            }
-            100% {
-                box-shadow: 0 25px 60px rgba(230, 103, 103, 0.4);
-            }
-        }
-
-        .password-container h2 {
-            color: var(--passionate-red);
-            margin-bottom: 15px;
-            font-size: 2em;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .password-container p {
-            color: var(--text-color);
-            margin-bottom: 30px;
-            font-size: 1.1em;
-            line-height: 1.6;
-            font-style: italic;
-        }
-
-        #password-input {
-            width: 100%;
-            padding: 18px;
-            border: 2px solid var(--border-soft);
-            border-radius: 15px;
-            font-size: 17px;
-            margin-bottom: 25px;
-            transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.9);
-            text-align: center;
-            font-family: 'Georgia', serif;
-            color: var(--text-color);
-            letter-spacing: 1px;
-        }
-
-        #password-input:focus {
-            outline: none;
-            border-color: var(--warm-red);
-            box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.3);
-            transform: scale(1.02);
-        }
-
-        #password-input::placeholder {
-            color: #d8a7b1;
-            font-style: italic;
-        }
-
-        #password-submit {
-            background: linear-gradient(45deg, var(--passionate-red), var(--warm-red));
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            border-radius: 15px;
-            font-size: 17px;
-            cursor: pointer;
-            transition: all 0.4s;
-            width: 100%;
-            font-family: 'Georgia', serif;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #password-submit::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-
-        #password-submit:hover::before {
-            left: 100%;
-        }
-
-        #password-submit:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(198, 69, 105, 0.4);
-        }
-
-        .error-message {
-            color: var(--passionate-red);
-            margin-top: 15px;
-            display: none;
-            font-weight: 600;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        header {
-            text-align: center;
-            padding: 60px 20px 40px;
-            opacity: 0;
-            animation: fadeIn 1.2s ease forwards;
-            position: relative;
-        }
-
-        .avatar {
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 30px;
-            background: linear-gradient(135deg, var(--passionate-red), var(--soft-rose));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            color: white;
-            box-shadow: 0 20px 40px rgba(198, 69, 105, 0.25), 
-                        inset 0 -8px 16px rgba(0,0,0,0.1),
-                        inset 0 8px 16px rgba(255,255,255,0.5);
-            border: 6px solid white;
-            position: relative;
-            overflow: hidden;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-15px) rotate(5deg);
-            }
-        }
-
-        .avatar::before {
-            content: '❤️';
-            position: absolute;
-            font-size: 24px;
-            opacity: 0.8;
-            animation: heartFloat 15s linear infinite;
-        }
-
-        @keyframes heartFloat {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translate(100px, -100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        h1 {
-            color: var(--passionate-red);
-            margin-bottom: 20px;
-            font-size: 2.8em;
-            font-weight: 600;
-            position: relative;
-            display: inline-block;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        h1::before,
-        h1::after {
-            content: '❤️';
-            position: absolute;
-            font-size: 0.8em;
-            animation: heartbeat 1.2s infinite;
-        }
-
-        h1::before {
-            left: -50px;
-        }
-
-        h1::after {
-            right: -50px;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.3);
-            }
-        }
-
-        .subtitle {
-            color: var(--text-color);
-            font-size: 1.3em;
-            max-width: 650px;
-            margin: 0 auto;
-            padding: 25px 0;
-            font-style: italic;
-            border-top: 2px solid var(--border-soft);
-            border-bottom: 2px solid var(--border-soft);
-            background: linear-gradient(to right, transparent, rgba(248, 165, 194, 0.1), transparent);
-            position: relative;
-        }
-
-        .subtitle::before,
-        .subtitle::after {
-            content: '❧';
-            position: absolute;
-            color: var(--warm-red);
-            font-size: 1.5em;
-        }
-
-        .subtitle::before {
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .subtitle::after {
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        main {
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards 0.5s;
-        }
-
-        .section {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 250, 252, 0.95));
-            border-radius: 22px;
-            padding: 40px;
-            margin-bottom: 35px;
-            box-shadow: 0 15px 35px rgba(198, 69, 105, 0.08),
-                        0 5px 15px rgba(0,0,0,0.05);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(to right, var(--passionate-red), var(--soft-rose));
-            transform: scaleX(0);
-            transition: transform 0.6s ease;
-        }
-
-        .section:hover::before {
-            transform: scaleX(1);
-        }
-
-        .section:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 25px 50px rgba(198, 69, 105, 0.15),
-                        0 10px 20px rgba(0,0,0,0.08);
-        }
-
-        .section h2 {
-            color: var(--passionate-red);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.8em;
-            font-weight: 600;
-            padding-bottom: 20px;
-            border-bottom: 3px solid rgba(248, 165, 194, 0.3);
-            position: relative;
-        }
-
-        .section h2 i {
-            color: var(--warm-red);
-            font-size: 1.3em;
-            background: rgba(248, 165, 194, 0.2);
-            padding: 12px;
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-
-        .section:hover h2 i {
-            transform: rotate(15deg) scale(1.1);
-            background: rgba(248, 165, 194, 0.3);
-        }
-
-        .message {
-            background: linear-gradient(135deg, rgba(255, 245, 247, 0.7), rgba(255, 235, 242, 0.9));
-            padding: 30px;
-            border-radius: 18px;
-            margin: 30px 0;
-            border-left: 6px solid var(--warm-red);
-            font-size: 1.15em;
-            position: relative;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .message::after {
-            content: '❞';
-            position: absolute;
-            bottom: 10px;
-            right: 20px;
-            color: var(--soft-rose);
-            font-size: 2em;
-            opacity: 0.5;
-        }
-
-        .highlight {
-            background: linear-gradient(135deg, rgba(255, 245, 247, 0.8), rgba(255, 240, 245, 0.9));
-            padding: 30px;
-            border-radius: 18px;
-            margin: 30px 0;
-            border: 2px solid rgba(255, 107, 107, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .highlight::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
-        .highlight p {
-            margin: 15px 0;
-            padding-left: 20px;
-            line-height: 1.7;
-            position: relative;
-            font-size: 1.1em;
-        }
-
-        .highlight p::before {
-            content: '♥';
-            position: absolute;
-            left: -5px;
-            color: var(--warm-red);
-        }
-
-        .memory {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            padding: 25px;
-            background: linear-gradient(135deg, rgba(255, 250, 252, 0.8), rgba(255, 245, 247, 0.9));
-            border-radius: 18px;
-            margin: 25px 0;
-            transition: all 0.4s;
-            border: 1px solid rgba(248, 165, 194, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .memory::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1%, transparent 20%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .memory:hover::before {
-            opacity: 1;
-        }
-
-        .memory:hover {
-            transform: translateX(10px);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 250, 252, 0.95));
-            box-shadow: 0 15px 30px rgba(198, 69, 105, 0.1);
-            border-color: rgba(255, 107, 107, 0.4);
-        }
-
-        .memory i {
-            font-size: 32px;
-            color: var(--passionate-red);
-            background: linear-gradient(135deg, white, rgba(255, 250, 252, 0.9));
-            padding: 16px;
-            border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(198, 69, 105, 0.15);
-            min-width: 70px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .memory:hover i {
-            transform: rotate(15deg) scale(1.1);
-            box-shadow: 0 12px 25px rgba(198, 69, 105, 0.25);
-        }
-
-        .memory strong {
-            color: var(--passionate-red);
-            display: block;
-            margin-bottom: 8px;
-            font-size: 1.2em;
-            font-weight: 600;
-        }
-
-        .memory p {
-            color: var(--text-color);
-            font-style: italic;
-            font-size: 1.05em;
-            line-height: 1.6;
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-color);
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 1s;
-            position: relative;
-        }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: linear-gradient(45deg, var(--passionate-red), var(--warm-red));
-            color: white;
-            padding: 22px 45px;
-            border-radius: 60px;
-            text-decoration: none;
-            margin-top: 30px;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-size: 1.2em;
-            font-family: 'Georgia', serif;
-            font-weight: 600;
-            letter-spacing: 1px;
-            box-shadow: 0 15px 35px rgba(198, 69, 105, 0.25);
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-        }
-
-        .contact-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: 0.5s;
-        }
-
-        .contact-btn:hover::before {
-            left: 100%;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(198, 69, 105, 0.35);
-            letter-spacing: 2px;
-        }
-
-        .contact-btn i {
-            font-size: 1.3em;
-            transition: transform 0.3s;
-        }
-
-        .contact-btn:hover i {
-            transform: scale(1.3) rotate(10deg);
-        }
-
-        .phone-note {
-            margin-top: 25px;
-            padding: 20px 30px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 250, 252, 0.95));
-            border-radius: 15px;
-            display: inline-block;
-            color: var(--passionate-red);
-            border: 2px solid rgba(248, 165, 194, 0.3);
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .phone-note:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(198, 69, 105, 0.15);
-            border-color: rgba(255, 107, 107, 0.5);
-        }
-
-        .phone-note i {
-            margin-right: 10px;
-            color: var(--warm-red);
-            animation: ring 2s infinite;
-        }
-
-        @keyframes ring {
-            0%, 100% {
-                transform: rotate(0deg);
-            }
-            25% {
-                transform: rotate(15deg);
-            }
-            75% {
-                transform: rotate(-15deg);
-            }
-        }
-
-        .final-thought {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 3px solid rgba(248, 165, 194, 0.3);
-            color: var(--passionate-red);
-            font-style: italic;
-            font-size: 1em;
-            line-height: 1.8;
-            position: relative;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            background: linear-gradient(to right, transparent, rgba(248, 165, 194, 0.1), transparent);
-            padding: 25px;
-            border-radius: 15px;
-        }
-
-        .final-thought::before,
-        .final-thought::after {
-            content: '❝';
-            position: absolute;
-            color: var(--warm-red);
-            font-size: 3em;
-            opacity: 0.3;
-        }
-
-        .final-thought::before {
-            top: 10px;
-            left: 10px;
-        }
-
-        .final-thought::after {
-            bottom: 10px;
-            right: 10px;
-            transform: rotate(180deg);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .floating-heart {
-            position: fixed;
-            font-size: 24px;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 100;
-            animation: floatHeart 6s linear forwards;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.3));
-        }
-
-        @keyframes floatHeart {
-            0% {
-                transform: translateY(100vh) rotate(0deg) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg) scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        @media (max-width: 600px) {
-            body { padding: 15px; }
-            .section { padding: 30px; }
-            h1 { font-size: 2.2em; }
-            h1::before, h1::after { display: none; }
-            .avatar { width: 130px; height: 130px; }
-            .contact-btn { padding: 18px 35px; font-size: 1.1em; }
-            .password-container { padding: 40px 25px; }
-        }
+        body { font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; background-color: #f9f9f9; }
+        .question-card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; border-left: 5px solid #d32f2f; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .options { margin-top: 10px; }
+        .options label { display: block; margin-bottom: 5px; cursor: pointer; }
+        button { width: 100%; padding: 15px; background: #d32f2f; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Şifre Ekranı -->
-    <div class="password-screen" id="passwordScreen">
-        <div class="password-container">
-            <div class="avatar">
-                <i class="fas fa-heart"></i>
+
+    <h1>🚑 28 Yaş Sabır Testi</h1>
+    <form id="anketForm" onsubmit="alert('Cevapların alındı! Emre nöbete hazır.'); return false;">
+        
+        <!-- Soru 1 -->
+        <div class="question-card">
+            <p>1. Sabah nöbeti devraldığında Emre'yi karşında görmek sende nasıl bir etki yaratıyor?</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="A" required> A) "Yine mi bu adam, nöbet geçmeyecek."</label>
+                <label><input type="radio" name="q1" value="B" required> B) "Acaba bugün yine hangi saçmalığı planladı?"</label>
+                <label><input type="radio" name="q1" value="C" required> C) "Huzur geldi, 28 yaşın bilgeliği bana yol gösterecek."</label>
             </div>
-            <h2>Özel Kalp Sayfam</h2>
-            <p>Burada, kalbimde sakladığım tüm duygular var.<br>Sadece senin için yazdığım satırlar...</p>
-            <input type="password" id="password-input" placeholder="Kalbinin anahtarını yaz...">
-            <button id="password-submit">Kalbimi Aç</button>
-            <div class="error-message" id="error-message">Anahtar doğru değil, lütfen tekrar dene.</div>
         </div>
-    </div>
 
-    <!-- Ana İçerik (DEĞİŞMEDİ) -->
-    <div id="mainContent" style="display: none;">
-        <header>
-            <div class="avatar">
-                <i class="fas fa-feather-alt"></i>
+        <!-- Soru 2 -->
+        <div class="question-card">
+            <p>2. Emre bir vaka anında hata yaparsa ilk tepkin ne olur?</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="A" required> A) "Emre, 28 yaşındasın ama sanki yeni başlamışsın" demek.</label>
+                <label><input type="radio" name="q2" value="B" required> B) "Bunu 27 yaşındaki ben bile yapmam" diyerek dalga geçmek.</label>
+                <label><input type="radio" name="q2" value="C" required> C) "Herkes hata yapar, Emre'nin yaşlanmasına veriyorum."</label>
             </div>
-            <h1>Merhaba Özlem</h1>
-            <p class="subtitle">Bu satırlar, senin için kalbimde biriken ama belki de tam ifade edemediğim duyguların sessiz bir yankısı...</p>
-        </header>
+        </div>
 
-        <main>
-            <section class="section" id="appreciation">
-                <h2><i class="fas fa-heart"></i> Senin Hakkında Düşündüklerim</h2>
-                <div class="message">
-                    <p>Seni tanıdığımda fark ettim ki, bazı insanlar dünyaya farklı bir ışıkla gelir. Sen de öylesin...</p>
-                </div>
-                <div class="highlight">
-                    <p>Gülüşünün etrafa yaydığı sıcaklık</p>
-                    <p>Konuşurken gözlerindeki o samimi parıltı</p>
-                    <p>Dünyaya bakışındaki incelik ve derinlik</p>
-                </div>
-                <p>Bunlar, senin eşsizliğinin küçük izleri. Ve bu izler, kalbimde güzel bir yer edindi.</p>
-            </section>
-
-            <section class="section" id="friendship">
-                <h2><i class="fas fa-hands-helping"></i> Aramızdaki Bağ</h2>
-                <p>Son zamanlarda aramızdaki mesafeyi düşündüm. Belki bazı şeyleri kaçırdım:</p>
-                
-                <div class="memory">
-                    <i class="fas fa-comments"></i>
-                    <div>
-                        <strong>Daha Fazla Dinlemeliydim</strong>
-                        <p>Senin paylaştıklarını daha derinden anlamak için daha çok çaba göstermeliydim.</p>
-                    </div>
-                </div>
-                
-                <div class="memory">
-                    <i class="fas fa-handshake"></i>
-                    <div>
-                        <strong>Daha Anlayışlı Olmalıydım</strong>
-                        <p>Senin hissettiklerine daha duyarlı olabilirdim.</p>
-                    </div>
-                </div>
-                
-                <p>Çünkü seninle olan her sohbet, her paylaşım, benim için özel bir anlam taşıyor.</p>
-            </section>
-
-            <section class="section" id="feelings">
-                <h2><i class="fas fa-star"></i> Kalbimdeki Yerin</h2>
-                <p>İtiraf etmeliyim ki, senin varlığın hayatımda:</p>
-                <div class="highlight">
-                    <p>Günlerime anlam katan bir ışık oldu</p>
-                    <p>Düşüncelerimi güzelleştiren bir ilham kaynağı</p>
-                    <p>Kalbimi sıcaklıkla dolduran bir hatıra</p>
-                </div>
-                <p>Belki bunları söylemek biraz cesaret istiyor, ama gerçekleri saklamak daha zor geliyor.</p>
-            </section>
-
-            <section class="section" id="hope">
-                <h2><i class="fas fa-seedling"></i> Yeniden Başlayabilir Miyiz?</h2>
-                <p>Eğer izin verirsen, yeniden:</p>
-                
-                <div class="highlight">
-                    <p>İki dost gibi samimiyetle konuşabiliriz</p>
-                    <p>Birbirimizi gerçekten dinleyebiliriz</p>
-                    <p>Yeni anılar biriktirebiliriz</p>
-                </div>
-                
-                <p>Senin duygularına saygı duyuyorum. Hazır hissettiğinde, ben buradayım.</p>
-            </section>
-        </main>
-
-        <footer>
-            <p>Bu satırlar, sana duyduğum saygının ve değer vermenin küçük bir ifadesi.</p>
-            <p>Eğer konuşmak istersen, ben her zaman buradayım:</p>
-            
-            <a href="https://wa.me/905516539379?text=Merhaba,%20yazdıklarını%20okudum...%20konuşabiliriz" 
-               target="_blank" 
-               class="contact-btn"
-               id="whatsappBtn">
-                <i class="fab fa-whatsapp"></i> Benimle Konuş
-            </a>
-            
-            <div class="phone-note">
-                <i class="fas fa-phone-alt"></i> 0551 653 93 79
+        <!-- Soru 3 -->
+        <div class="question-card">
+            <p>3. İstasyon mutfağında bardaklar kirli duruyorsa suçlu kimdir?</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="A" required> A) Emre'nin 28 yaşındaki "ağırbaşlılığı" yüzünden yıkmadığı bardaklar.</label>
+                <label><input type="radio" name="q3" value="B" required> B) Işıl'ın 27 yaşındaki o "temizlik takıntısı".</label>
+                <label><input type="radio" name="q3" value="C" required> C) Bardakların kendiliğinden kirlenmesi.</label>
             </div>
-            
-            <div class="final-thought">
-                "Bazen söylenmemiş sözler, en çok hissedilenlerdir.<br>
-                Ve senin için hissettiklerim, kelimelere sığmayacak kadar derin..."
-            </div>
-        </footer>
-    </div>
+        </div>
 
-    <script>
-        const CORRECT_PASSWORD = "özlemyılmaz";
-        
-        // Uçan kalpler
-        function createHearts(count = 15) {
-            const hearts = ['❤️', '💖', '💗', '💓', '💕', '💞', '💘', '💝', '🧡', '💛'];
-            
-            for (let i = 0; i < count; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.className = 'floating-heart';
-                    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-                    heart.style.left = Math.random() * 100 + 'vw';
-                    heart.style.color = ['#c44569', '#e66767', '#ff6b6b', '#f8a5c2'][Math.floor(Math.random() * 4)];
-                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                    heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                    heart.style.zIndex = Math.floor(Math.random() * 50);
-                    
-                    document.body.appendChild(heart);
-                    
-                    setTimeout(() => {
-                        heart.remove();
-                    }, 7000);
-                }, i * 200);
-            }
-        }
-        
-        document.getElementById('password-submit').addEventListener('click', function() {
-            const input = document.getElementById('password-input').value;
-            const error = document.getElementById('error-message');
-            
-            if (input.toLowerCase() === CORRECT_PASSWORD.toLowerCase()) {
-                const passwordScreen = document.getElementById('passwordScreen');
-                passwordScreen.style.opacity = '0';
-                passwordScreen.style.transition = 'opacity 1s ease';
-                
-                createHearts(30);
-                
-                setTimeout(() => {
-                    passwordScreen.style.display = 'none';
-                    document.getElementById('mainContent').style.display = 'block';
-                    
-                    // Sürekli kalpler
-                    setInterval(() => createHearts(3), 4000);
-                }, 1000);
-                
-                window.history.replaceState({}, document.title, window.location.pathname);
-            } else {
-                error.style.display = 'block';
-                document.getElementById('password-input').style.borderColor = '#c44569';
-                document.getElementById('password-input').style.animation = 'shake 0.5s';
-                
-                setTimeout(() => {
-                    document.getElementById('password-input').style.animation = '';
-                }, 500);
-            }
-        });
-        
-        document.getElementById('password-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('password-submit').click();
-            }
-        });
-        
-        window.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('password-input').focus();
-            
-            // Shake animasyonu
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes shake {
-                    0%, 100% { transform: translateX(0); }
-                    25% { transform: translateX(-8px); }
-                    75% { transform: translateX(8px); }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            // Başlangıç kalpleri
-            createHearts(8);
-            setInterval(() => createHearts(2), 5000);
-        });
-        
-        // WhatsApp butonu
-        const whatsappBtn = document.getElementById('whatsappBtn');
-        whatsappBtn.addEventListener('mouseenter', function() {
-            createHearts(12);
-        });
-        
-        whatsappBtn.addEventListener('click', function() {
-            setTimeout(() => {
-                alert('Özlem, mesajın beni çok mutlu eder. Seni dinlemeye hazırım...');
-            }, 300);
-        });
-    </script>
+        <!-- Soru 4 -->
+        <div class="question-card">
+            <p>4. Nöbetin 12. saatinde Emre ile göz göze geldiğinde içinden ne geçiyor?</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="A" required> A) "Keşke şu an evde uyuyor olsaydım."</label>
+                <label><input type="radio" name="q4" value="B" required> B) "Emre'nin beyni nöbetten dolayı artık sadece saçma anketler üretiyor."</label>
+                <label><input type="radio" name="q4" value="C" required> C) "Acaba bu adam hiç normal bir şey konuşacak mı?"</label>
+            </div>
+        </div>
+
+        <!-- Soru 5 -->
+        <div class="question-card">
+            <p>5. Emre’nin en çok hangi özelliği seni sinir ediyor?</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="A" required> A) Her şeye "28 yaşındayım, ben bilirim" demesi.</label>
+                <label><input type="radio" name="q5" value="B" required> B) Doğum günümü unutup sonra bir de anket doldurtması.</label>
+                <label><input type="radio" name="q5" value="C" required> C) Kendi doğum gününü kutlatıp, benimkini unutması.</label>
+            </div>
+        </div>
+
+        <!-- Soru 6 -->
+        <div class="question-card">
+            <p>6. Ambulansta siren çaldığında içinden ne diyorsun?</p>
+            <div class="options">
+                <label><input type="radio" name="q6" value="A" required> A) "Umarım siren sesi Emre'nin sesini bastırıyordur."</label>
+                <label><input type="radio" name="q6" value="B" required> B) "Siren sesi, Emre'nin hikayelerinden daha az yorucu."</label>
+                <label><input type="radio" name="q6" value="C" required> C) "Haydi bakalım, vaka bizi Emre'nin dırdırından kurtaracak!"</label>
+            </div>
+        </div>
+
+        <!-- Soru 7 -->
+        <div class="question-card">
+            <p>7. Emre bir günlüğüne 27 yaşına düşse ilk ne yapardı?</p>
+            <div class="options">
+                <label><input type="radio" name="q7" value="A" required> A) Hemen "Ben 28 yaşındaki halimi özledim" diye ağlardı.</label>
+                <label><input type="radio" name="q7" value="B" required> B) "Gençlik çok güzelmiş, hadi Işıl vaka sırası sende" derdi.</label>
+                <label><input type="radio" name="q7" value="C" required> C) 27 yaşın verdiği o "bilinmezlikle" şoka girerdi.</label>
+            </div>
+        </div>
+
+        <!-- Soru 8 -->
+        <div class="question-card">
+            <p>8. Sence Işıl’ın 27 yaşındaki en büyük "suçu" nedir?</p>
+            <div class="options">
+                <label><input type="radio" name="q8" value="A" required> A) Emre'ye "boş yapma" dememek.</label>
+                <label><input type="radio" name="q8" value="B" required> B) Emre'nin 28 yaşındaki sahte ciddiyetine gülmemek.</label>
+                <label><input type="radio" name="q8" value="C" required> C) Emre'nin anketini ciddiye alıp doldurmak.</label>
+            </div>
+        </div>
+
+        <!-- Soru 9 -->
+        <div class="question-card">
+            <p>9. Emre’nin 28 yaşına girmesi bir "başarı" mı?</p>
+            <div class="options">
+                <label><input type="radio" name="q9" value="A" required> A) Hayır, sadece takvim yaprağı değişti.</label>
+                <label><input type="radio" name="q9" value="B" required> B) Evet, bu kadar "boş yaparak" hayatta kalması mucize.</label>
+                <label><input type="radio" name="q9" value="C" required> C) Bilmiyorum ama 29'da durumu merak ediyorum.</label>
+            </div>
+        </div>
+
+        <!-- Soru 10 -->
+        <div class="question-card">
+            <p>10. Emre'yi bir hayvana benzetsen ne olurdu?</p>
+            <div class="options">
+                <label><input type="radio" name="q10" value="A" required> A) Durmadan anlamsız sorular soran bir papağan.</label>
+                <label><input type="radio" name="q10" value="B" required> B) 28 yaşındayım diye şişinen bir tavus kuşu.</label>
+                <label><input type="radio" name="q10" value="C" required> C) Ambulansın içinde kendi kendine gülen bir rakun.</label>
+            </div>
+        </div>
+
+        <!-- Soru 11 -->
+        <div class="question-card">
+            <p>11. Doğum gününü kutlamamamın altında yatan gizli amaç ne?</p>
+            <div class="options">
+                <label><input type="radio" name="q11" value="A" required> A) Senin 27 yaşındaki o "saf" hallerini böyle anketle bozmak.</label>
+                <label><input type="radio" name="q11" value="B" required> B) Seni bu ankete mahkum ederek intikam almak.</label>
+                <label><input type="radio" name="q11" value="C" required> C) Sadece unutkanlık (ama Emre bunu asla kabul etmez).</label>
+            </div>
+        </div>
+
+        <!-- Soru 12 -->
+        <div class="question-card">
+            <p>12. Bu anketin Emre tarafından hazırlanmış olması sana ne hissettiriyor?</p>
+            <div class="options">
+                <label><input type="radio" name="q12" value="A" required> A) Emre'nin işsizliğinin zirvesi.</label>
+                <label><input type="radio" name="q12" value="B" required> B) "Bu adam cidden beni delirtmeye çalışıyor."</label>
+                <label><input type="radio" name="q12" value="C" required> C) "Emre, 28 yaşındasın, git bir çay iç."</label>
+            </div>
+        </div>
+
+        <!-- Soru 13 -->
+        <div class="question-card">
+            <p>13. Ambulansın içinde en çok kimin sesi çıkar?</p>
+            <div class="options">
+                <label><input type="radio" name="q13" value="A" required> A) Emre'nin "28 yıllık tecrübe" yalanları.</label>
+                <label><input type="radio" name="q13" value="B" required> B) Işıl'ın "Yine saçmalıyor, boş ver" bakışı.</label>
+                <label><input type="radio" name="q13" value="C" required> C) Telsizin o rahatlatıcı sesi.</label>
+            </div>
+        </div>
+
+        <!-- Soru 14 -->
+        <div class="question-card">
+            <p>14. Emre "28 yaşındayım, tecrübeliyim" dediğinde yüzündeki ifadeyi tarif et:</p>
+            <div class="options">
+                <label><input type="radio" name="q14" value="A" required> A) "Gerçekten mi? Hiç belli etmiyorsun."</label>
+                <label><input type="radio" name="q14" value="B" required> B) "Tamam şampiyon, sensin."</label>
+                <label><input type="radio" name="q14" value="C" required> C) "Beni biri buradan kurtarsın."</label>
+            </div>
+        </div>
+
+        <!-- Soru 15 -->
+        <div class="question-card">
+            <p>15. Bu anketi doldururken Emre'ye ne kadar sövüyorsun?</p>
+            <div class="options">
+                <label><input type="radio" name="q15" value="A" required> A) Sayısını unuttum, 28'den fazla kesin.</label>
+                <label><input type="radio" name="q15" value="B" required> B) Sadece içimden, bir 27 yaş paramediği olarak kibarım.</label>
+                <label><input type="radio" name="q15" value="C" required> C) Sövmek yerine gülüyorum, çünkü Emre'ye kızamıyorum.</label>
+            </div>
+        </div>
+
+        <!-- Soru 16 -->
+        <div class="question-card">
+            <p>16. Işıl, sen 28 yaşına gelince ne değişecek?</p>
+            <div class="options">
+                <label><input type="radio" name="q16" value="A" required> A) Emre'nin 28 yaşındaki o saçmalıklarını ona bir bir hatırlatacağım.</label>
+                <label><input type="radio" name="q16" value="B" required> B) "Emre, yaşlandın artık emekli ol" diyeceğim.</label>
+                <label><input type="radio" name="q16" value="C" required> C) Hala 27 yaşındaki gibi inatçı olacağım.</label>
+            </div>
+        </div>
+
+        <!-- Soru 17 -->
+        <div class="question-card">
+            <p>17. Emre'nin bu anketini bir "doğum günü hediyesi" sayar mısın?</p>
+            <div class="options">
+                <label><input type="radio" name="q17" value="A" required> A) Evet, 28 yaşındaki birinden gelecek en "absürt" hediye bu.</label>
+                <label><input type="radio" name="q17" value="B" required> B) Hayır, bu bir cezalandırma yöntemi.</label>
+                <label><input type="radio" name="q17" value="C" required> C) Henüz karar veremedim, yaşım gereği biraz daha düşünmem lazım.</label>
+            </div>
+        </div>
+
+        <!-- Soru 18 -->
+        <div class="question-card">
+            <p>18. Gelecek doğum gününde Emre'den ne bekliyorsun?</p>
+            <div class="options">
+                <label><input type="radio" name="q18" value="A" required> A) Yine saçma bir anket.</label>
+                <label><input type="radio" name="q18" value="B" required> B) Hiçbir şey, kutlamasın daha iyi.</label>
+                <label><input type="radio" name="q18" value="C" required> C) Davul-zurna eşliğinde "Işıl sen çok yaşa" pankartı.</label>
+            </div>
+        </div>
+
+        <!-- Soru 19 -->
+        <div class="question-card">
+            <p>19. Emre ile aynı ambulansta olmak...</p>
+            <div class="options">
+                <label><input type="radio" name="q19" value="A" required> A) Bir tür sabır sınavı.</label>
+                <label><input type="radio" name="q19" value="B" required> B) Bir tür 28 yaş güzellemesi.</label>
+                <label><input type="radio" name="q19" value="C" required> C) Hayatın bana verdiği en garip (ve komik) ceza.</label>
+            </div>
+        </div>
+
+        <!-- Soru 20 -->
+        <div class="question-card">
+            <p>20. Işıl, tüm bu anket bittiğine göre; Emre’ye şimdi ne söylemek istersin?</p>
+            <div class="options">
+                <label><input type="radio" name="q20" value="A" required> A) "Doğum günümü kutlamadın ama bu saçmalıkla beni benden aldın, iyi ki varsın."</label>
+                <label><input type="radio" name="q20" value="B" required> B) "Emre, 28 yaşındasın ama hala çocuk gibisin."</label>
+                <label><input type="radio" name="q20" value="C" required> C) "Sıradaki nöbette çayı sen dolduruyorsun, 28 yaşın şerefine!"</label>
+            </div>
+        </div>
+
+        <button type="submit">Anketi Tamamla ve Gönder</button>
+    </form>
 </body>
 </html>
