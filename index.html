@@ -18,7 +18,13 @@
 </head>
 <body>
 
+    <!-- Vaka Sesi -->
+    <audio id="vakaSesi" src="vaka.mp3"></audio>
+
     <div class="container">
+        <!-- Geri Sayım Ekranı -->
+        <div id="geriSayim" style="display:none; font-size: 60px; font-weight: bold; color: #d32f2f; padding: 20px;"></div>
+
         <!-- 1. Ekran: Vaka Girişi -->
         <div id="loginStep">
             <h1>112 Vaka Girişi</h1>
@@ -51,8 +57,37 @@
         const sorular = ["1. Sabah nöbeti devraldığında Emre'yi karşında görmek sende nasıl bir etki yaratıyor?", "2. Emre bir vaka anında hata yaparsa ilk tepkin ne olur?", "3. İstasyon mutfağında bardaklar kirli duruyorsa suçlu kimdir?", "4. Nöbetin 12. saatinde Emre ile göz göze geldiğinde içinden ne geçiyor?", "5. Emre’nin en çok hangi özelliği seni sinir ediyor?", "6. Ambulansta siren çaldığında içinden ne diyorsun?", "7. Emre bir günlüğüne 27 yaşına düşse ilk ne yapardı?", "8. Sence Işıl’ın 27 yaşındaki en büyük suçu nedir?", "9. Emre’nin 28 yaşına girmesi bir başarı mı?", "10. Emre'yi bir hayvana benzetsen ne olurdu?", "11. Doğum gününü kutlamamamın altında yatan gizli amaç ne?", "12. Bu anketin Emre tarafından hazırlanmış olması sana ne hissettiriyor?", "13. Ambulansın içinde en çok kimin sesi çıkar?", "14. Emre '28 yaşındayım, tecrübeliyim' dediğinde yüzündeki ifadeyi tarif et:", "15. Bu anketi doldururken Emre'ye ne kadar sövüyorsun?", "16. Işıl, sen 28 yaşına gelince ne değişecek?", "17. Emre'nin bu anketini bir doğum günü hediyesi sayar mısın?", "18. Gelecek doğum gününde Emre'den ne bekliyorsun?", "19. Emre ile aynı ambulansta olmak...", "20. Işıl, tüm bu anket bittiğine göre; Emre’ye şimdi ne söylemek istersin?"];
         const secenekler = [["Yine mi bu adam, nöbet geçmeyecek.", "Acaba bugün yine hangi saçmalığı planladı?", "Huzur geldi, 28 yaşın bilgeliği bana yol gösterecek."], ["Emre, 28 yaşındasın ama sanki yeni başlamışsın demek.", "Bunu 27 yaşındaki ben bile yapmam diyerek dalga geçmek.", "Herkes hata yapar, Emre'nin yaşlanmasına veriyorum."], ["Emre'nin 28 yaşındaki ağırbaşlılığı yüzünden yıkmadığı bardaklar.", "Işıl'ın 27 yaşındaki o temizlik takıntısı.", "Bardakların kendiliğinden kirlenmesi."], ["Keşke şu an evde uyuyor olsaydım.", "Emre'nin beyni nöbetten dolayı artık sadece saçma anketler üretiyor.", "Acaba bu adam hiç normal bir şey konuşacak mı?"], ["Her şeye 28 yaşındayım, ben bilirim demesi.", "Doğum günümü unutup sonra bir de anket doldurtması.", "Kendi doğum gününü kutlatıp, benimkini unutması."], ["Umarım siren sesi Emre'nin sesini bastırıyordur.", "Siren sesi, Emre'nin hikayelerinden daha az yorucu.", "Haydi bakalım, vaka bizi Emre'nin dırdırından kurtaracak!"], ["Hemen Ben 28 yaşındaki halimi özledim diye ağlardı.", "Gençlik çok güzelmiş, hadi Işıl vaka sırası sende derdi.", "27 yaşın verdiği o bilinmezlikle şoka girerdi."], ["Emre'ye boş yapma dememek.", "Emre'nin 28 yaşındaki sahte ciddiyetine gülmemek.", "Emre'nin anketini ciddiye alıp doldurmak."], ["Hayır, sadece takvim yaprağı değişti.", "Evet, bu kadar boş yaparak hayatta kalması mucize.", "Bilmiyorum ama 29'da durumu merak ediyorum."], ["Durmadan anlamsız sorular soran bir papağan.", "28 yaşındayım diye şişinen bir tavus kuşu.", "Ambulansın içinde kendi kendine gülen bir rakun."], ["Senin 27 yaşındaki o saf hallerini böyle anketle bozmak.", "Seni bu ankete mahkum ederek intikam almak.", "Sadece unutkanlık (ama Emre bunu asla kabul etmez)."], ["Emre'nin işsizliğinin zirvesi.", "Bu adam cidden beni delirtmeye çalışıyor.", "Emre, 28 yaşındasın, git bir çay iç."], ["Emre'nin 28 yıllık tecrübe yalanları.", "Işıl'ın Yine saçmalıyor, boş ver bakışı.", "Telsizin o rahatlatıcı sesi."], ["Gerçekten mi? Hiç belli etmiyorsun.", "Tamam şampiyon, sensin.", "Beni biri buradan kurtarsın."], ["Sayısını unuttum, 28'den fazla kesin.", "Sadece içimden, bir 27 yaş paramediği olarak kibarım.", "Sövmek yerine gülüyorum, çünkü Emre'ye kızamıyorum."], ["Emre'nin 28 yaşındaki o saçmalıklarını ona bir bir hatırlatacağım.", "Emre, yaşlandın artık emekli ol diyeceğim.", "Hala 27 yaşındaki gibi inatçı olacağım."], ["Evet, 28 yaşındaki birinden gelecek en absürt hediye bu.", "Hayır, bu bir cezalandırma yöntemi.", "Henüz karar veremedim, yaşım gereği biraz daha düşünmem lazım."], ["Yine saçma bir anket.", "Hiçbir şey, kutlamasın daha iyi.", "Davul-zurna eşliğinde Işıl sen çok yaşa pankartı."], ["Bir tür sabır sınavı.", "Bir tür 28 yaş güzellemesi.", "Hayatın bana verdiği en garip (ve komik) ceza."], ["Doğum günümü kutlamadın ama bu saçmalıkla beni benden aldın, iyi ki varsın.", "Emre, 28 yaşındasın ama hala çocuk gibisin.", "Sıradaki nöbette çayı sen dolduruyorsun, 28 yaşın şerefine!"]];
 
-        let currentUser = "", currentStep = 0, userAnswers = {};
-        function login() { currentUser = document.getElementById('userName').value; if(!currentUser) return alert("İsimsiz vaka olmaz!"); document.getElementById('loginStep').style.display='none'; document.getElementById('surveyStep').style.display='block'; renderQuestion(); }
+        let currentUser = "", currentStep = 0, userAnswers = {}, countdownInterval;
+
+        function login() {
+            currentUser = document.getElementById('userName').value;
+            if(!currentUser) return alert("İsimsiz vaka olmaz!");
+            
+            const ses = document.getElementById('vakaSesi');
+            ses.play();
+
+            document.getElementById('loginStep').style.display = 'none';
+            let gs = document.getElementById('geriSayim');
+            gs.style.display = 'block';
+
+            let sayac = 5;
+            gs.innerText = sayac;
+
+            countdownInterval = setInterval(() => {
+                sayac--;
+                if(sayac > 0) {
+                    gs.innerText = sayac;
+                } else {
+                    clearInterval(countdownInterval);
+                    ses.pause();
+                    ses.currentTime = 0;
+                    gs.style.display = 'none';
+                    document.getElementById('surveyStep').style.display = 'block';
+                    renderQuestion();
+                }
+            }, 1000);
+        }
+
         function renderQuestion() { document.getElementById('soruBaslik').innerText = sorular[currentStep]; let h = ""; secenekler[currentStep].forEach(s => h += `<label><input type="radio" name="q" value="${s}"> ${s}</label>`); document.getElementById('siklar').innerHTML = h + `<button onclick="next()">İLERİ</button>`; }
         function next() { let val = document.querySelector('input[name="q"]:checked')?.value; if(!val) return alert("Seçim yap!"); userAnswers[sorular[currentStep]] = val; currentStep++; if(currentStep < sorular.length) renderQuestion(); else finish(); }
         function finish() { document.getElementById('surveyStep').style.display='none'; document.getElementById('resultStep').style.display='block'; let h = `<strong>Vaka Sahibi: ${currentUser}</strong><br><br>`; for(let q in userAnswers) h += `<li>${q} <br> <b>>> ${userAnswers[q]}</b></li><br>`; document.getElementById('cevapOzeti').innerHTML = h; }
