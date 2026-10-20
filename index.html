@@ -93,27 +93,44 @@
             </form>
         </div>
 
-        <!-- 2. TEST SEÇİM/OLUŞTURMA PANELİ -->
+        <!-- 2. TEST SEÇİM / MOD PANELİ -->
         <div id="dashboardSection" class="glass-card rounded-3xl p-8 md:p-10 text-center hidden transition-all duration-500">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-sm font-semibold mb-6">
                 <span class="w-2 h-2 rounded-full bg-pink-500 animate-ping"></span> Portal Aktif
             </div>
             <h2 class="heading-font text-3xl font-extrabold mb-3">Hoş Geldiniz! ✨</h2>
-            <p class="text-slate-300 text-sm md:text-base mb-8">Mevcut arkadaşlık testini çözmek veya yeni katılım sağlamak için aşağıdaki panele tıklayınız.</p>
+            <p class="text-slate-300 text-sm md:text-base mb-8">Testi oluşturmak veya Işıl'ın oluşturduğu testi çözmek için seçiminizi yapın.</p>
 
             <div class="grid grid-cols-1 gap-4 max-w-lg mx-auto mb-8">
-                <div onclick="startQuizFlow()" class="glass-card hover:bg-white/10 p-6 rounded-2xl cursor-pointer transition-all border border-pink-500/30 hover:border-pink-500 flex items-center justify-between group">
+                
+                <!-- IŞIL İÇİN: TESTİ OLUŞTUR -->
+                <div onclick="startQuizMode('creator')" class="glass-card hover:bg-white/10 p-6 rounded-2xl cursor-pointer transition-all border border-purple-500/30 hover:border-purple-500 flex items-center justify-between group">
+                    <div class="flex items-center gap-4 text-left">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-[#000] fa-wand-magic-sparkles text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Işıl Olarak Testi Oluştur</h3>
+                            <p class="text-xs text-slate-400">Kendi doğru cevaplarını seç ve testi başlat!</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-purple-400 transition-all"></i>
+                </div>
+
+                <!-- BAŞKALARI İÇİN: IŞIL'IN TESTİNİ ÇÖZ -->
+                <div onclick="startQuizMode('participant')" class="glass-card hover:bg-white/10 p-6 rounded-2xl cursor-pointer transition-all border border-pink-500/30 hover:border-pink-500 flex items-center justify-between group">
                     <div class="flex items-center gap-4 text-left">
                         <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:bg-pink-500 group-hover:text-white transition-all">
                             <i class="fa-solid fa-heart text-xl"></i>
                         </div>
                         <div>
-                            <h3 class="font-bold text-lg text-white">Işıl Küçükyüce Arkadaşlık Testi</h3>
-                            <p class="text-xs text-slate-400">20 Soru • 5 Seçenekli Değerlendirme</p>
+                            <h3 class="font-bold text-lg text-white">Işıl'ın Arkadaşlık Testini Çöz</h3>
+                            <p class="text-xs text-slate-400">Işıl'ın cevaplarına göre kaç doğru yapacaksın?</p>
                         </div>
                     </div>
                     <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-pink-400 transition-all"></i>
                 </div>
+
             </div>
 
             <button onclick="showLeaderboardView()" class="px-6 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition-all border border-slate-700">
@@ -123,8 +140,8 @@
 
         <!-- 3. KATILIMCI ADI GİRİŞ EKRANI -->
         <div id="nameSection" class="glass-card rounded-3xl p-8 md:p-10 text-center hidden transition-all duration-500">
-            <h2 class="heading-font text-2xl md:text-3xl font-extrabold mb-2">Test Başlatılıyor 🚀</h2>
-            <p class="text-slate-300 text-sm mb-6">Lütfen test sonucunuzun kaydedilebilmesi için adınızı giriniz.</p>
+            <h2 id="nameSectionTitle" class="heading-font text-2xl md:text-3xl font-extrabold mb-2">Test Başlatılıyor 🚀</h2>
+            <p id="nameSectionSubtitle" class="text-slate-300 text-sm mb-6">Lütfen test sonucunuzun kaydedilebilmesi için adınızı giriniz.</p>
             <div class="max-w-md mx-auto space-y-4">
                 <input type="text" id="participantName" placeholder="Adınız Soyadınız..." required class="w-full px-5 py-4 rounded-xl glass-input text-lg">
                 <button onclick="confirmNameAndStart()" class="w-full py-4 rounded-xl btn-gradient text-white font-bold text-lg">
@@ -148,12 +165,12 @@
 
             <!-- Soru Metni -->
             <h3 id="questionTitle" class="heading-font text-xl md:text-2xl font-bold mb-6 text-slate-100 leading-snug">
-                <!-- Soru buraya dinamik gelecek -->
+                <!-- Soru buraya gelecek -->
             </h3>
 
             <!-- Seçenekler -->
             <div id="optionsContainer" class="space-y-3 mb-8">
-                <!-- Seçenekler dinamik yüklenecek -->
+                <!-- Seçenekler yüklenecek -->
             </div>
 
             <!-- Butonlar -->
@@ -191,24 +208,22 @@
                             </tr>
                         </thead>
                         <tbody id="leaderboardBody" class="divide-y divide-slate-800/60">
-                            <!-- Sıralama dinamik olarak buraya eklenecek -->
+                            <!-- Sıralama buraya gelecek -->
                         </tbody>
                     </table>
                 </div>
             </div>
 
             <button onclick="location.reload()" class="px-8 py-4 rounded-xl btn-gradient text-white font-bold text-sm shadow-lg">
-                <i class="fa-solid fa-[#000] fa-rotate-right mr-2"></i> Ana Sayfaya Dön
+                <i class="fa-solid fa-rotate-right mr-2"></i> Ana Sayfaya Dön
             </button>
         </div>
 
     </div>
 
     <script>
-        // GOOGLE APPS SCRIPT WEB APP LINKIN
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz9EhJ4LyNYhkmmriaSmByq5SggZgW0daWU4YaVV5c08jRTNkPw91ELQMuMEz2LLAc1/exec";
 
-        // Sorular ve Şıklar
         const questions = [
             { id: 1, title: "1. Işıl için kusursuz bir hafta sonu sabahı nasıl başlar?", options: [ { k: "A", t: "Erken kalkıp kahve eşliğinde uzun uzun kahvaltı yaparak." }, { k: "B", t: "Güneş tepeye gelene kadar uyuyup, tembel bir sabah geçirerek." }, { k: "C", t: "Alarm kurmadan uyanıp, yatakta telefonla vakit geçirip yavaşça güne başlayarak." }, { k: "D", t: "Sabah erkenden spora veya yürüyüşe giderek." }, { k: "E", t: "Kahvaltıyı atlayıp direkt dışarıda kahveyle güne atılarak." } ] },
             { id: 2, title: "2. Bir kafeye gittiğinde Işıl’ın sipariş vermeden önceki ilk refleksi ne olur?", options: [ { k: "A", t: "Menüyü hiç açmadan her zamanki favori içeceğini söyler." }, { k: "B", t: "Uzun uzun menüyü inceleyip o anki ruh haline göre yeni bir şey dener." }, { k: "C", t: "Yanındakilere ne içeceklerini sorup ortak bir karar verir." }, { k: "D", t: "Vitründeki tatlılara bakıp içecek kararını tatlıya göre belirler." }, { k: "E", t: "Kasaya gidene kadar karar veremeyip aceleyle sipariş verir." } ] },
@@ -232,14 +247,11 @@
             { id: 20, title: "20. Bu testin sonucunda senin Işıl'ı ne kadar tanıdığına dair resmi karar ne olurdu?", options: [ { k: "A", t: "\"Beni benden daha iyi tanıyorsun, tam bir Ruh İkizisin!\"" }, { k: "B", t: "\"Çoğu şeyi bildin ama ufak kaçırdığın yerler var.\"" }, { k: "C", t: "\"Beni pek tanıyamamışsın meğer.\"" }, { k: "D", t: "\"Çoğunu sallayarak tutturmuşsun gibime geliyor.\"" }, { k: "E", t: "\"Ortalama bir arkadaşlık puanı!\"" } ] }
         ];
 
-        // Referans Cevaplar
-        const correctAnswers = { 1: "C", 2: "A", 3: "B", 4: "C", 5: "B", 6: "E", 7: "A", 8: "B", 9: "B", 10: "B", 11: "A", 12: "A", 13: "B", 14: "B", 15: "A", 16: "B", 17: "B", 18: "B", 19: "B", 20: "A" };
-
         let currentQuestionIndex = 0;
         let userAnswers = {};
         let userName = "";
+        let isCreatorMode = false;
 
-        // Şifre Kontrolü
         function handleLogin(e) {
             e.preventDefault();
             const pass = document.getElementById("passwordInput").value.trim().toLowerCase();
@@ -251,15 +263,26 @@
             }
         }
 
-        function startQuizFlow() {
+        function startQuizMode(mode) {
+            isCreatorMode = (mode === 'creator');
             document.getElementById("dashboardSection").classList.add("hidden");
             document.getElementById("nameSection").classList.remove("hidden");
+
+            if (isCreatorMode) {
+                document.getElementById("nameSectionTitle").innerText = "Test Oluşturuluyor ✨";
+                document.getElementById("nameSectionSubtitle").innerText = "Lütfen adınızı giriniz (Işıl Küçükyüce).";
+                document.getElementById("participantName").value = "Işıl Küçükyüce";
+            } else {
+                document.getElementById("nameSectionTitle").innerText = "Test Başlatılıyor 🚀";
+                document.getElementById("nameSectionSubtitle").innerText = "Lütfen test sonucunuzun kaydedilebilmesi için adınızı giriniz.";
+                document.getElementById("participantName").value = "";
+            }
         }
 
         function confirmNameAndStart() {
             const nameInput = document.getElementById("participantName").value.trim();
             if (!nameInput) {
-                alert("Lütfen adınızı ve soyadınızı giriniz!");
+                alert("Lütfen adınızı giriniz!");
                 return;
             }
             userName = nameInput;
@@ -301,7 +324,7 @@
             
             const nextBtn = document.getElementById("nextBtn");
             if (currentQuestionIndex === questions.length - 1) {
-                nextBtn.innerHTML = `Testi Tamamla <i class="fa-solid fa-check ml-2"></i>`;
+                nextBtn.innerHTML = isCreatorMode ? `Testi Kaydet ve Başlat 🚀` : `Testi Tamamla <i class="fa-solid fa-check ml-2"></i>`;
             } else {
                 nextBtn.innerHTML = `Sonraki Soru <i class="fa-solid fa-arrow-right ml-2"></i>`;
             }
@@ -334,29 +357,46 @@
         }
 
         function submitQuiz() {
-            let score = 0;
             const payload = { Katilimci_Adi: userName };
 
             for (let i = 1; i <= 20; i++) {
                 const key = i < 10 ? `Soru_0${i}` : `Soru_${i}`;
                 payload[key] = userAnswers[i] || "";
-                if (userAnswers[i] === correctAnswers[i]) {
-                    score++;
-                }
             }
 
-            // Google Sheets'e Gizli Gönderim
+            // Google Sheets'e Sessizce Gönder
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
-            }).catch(e => console.log("Silent logging completed"));
+            }).catch(e => console.log("Silent submit completed"));
 
-            // Sonucu Yerel Depolamaya / Liderlik Tablosuna Ekle
-            saveScoreToLeaderboard(userName, score);
+            // EĞER IŞIL KENDİ TESTİNİ OLUŞTURUYORSA:
+            if (isCreatorMode) {
+                // Işıl'ın cevaplarını Doğru Cevap Anahtarı Olarak Hafızaya Al
+                localStorage.setItem("isil_official_answers", JSON.stringify(userAnswers));
+                saveScoreToLeaderboard(userName, 20); // Işıl'ın kendisi 20/20 kabul edilir
+                showResults(20, true);
+            } else {
+                // BAŞKALARI İÇİN: Işıl'ın Kaydedilmiş Cevaplarına Göre Puan Hesapla
+                let officialAnswers = JSON.parse(localStorage.getItem("isil_official_answers"));
+                
+                // Eğer Işıl henüz testi çözmediyse varsayılan cevapları kullan
+                if (!officialAnswers) {
+                    officialAnswers = { 1: "C", 2: "A", 3: "B", 4: "C", 5: "B", 6: "E", 7: "A", 8: "B", 9: "B", 10: "B", 11: "A", 12: "A", 13: "B", 14: "B", 15: "A", 16: "B", 17: "B", 18: "B", 19: "B", 20: "A" };
+                }
 
-            showResults(score);
+                let score = 0;
+                for (let i = 1; i <= 20; i++) {
+                    if (userAnswers[i] === officialAnswers[i]) {
+                        score++;
+                    }
+                }
+
+                saveScoreToLeaderboard(userName, score);
+                showResults(score, false);
+            }
         }
 
         function saveScoreToLeaderboard(name, score) {
@@ -373,29 +413,36 @@
             localStorage.setItem("isil_quiz_leaderboard", JSON.stringify(leaderboard));
         }
 
-        function showResults(score) {
+        function showResults(score, isCreated) {
             document.getElementById("quizSection").classList.add("hidden");
             document.getElementById("resultSection").classList.remove("hidden");
 
             let title = "", text = "", icon = "👑";
 
-            if (score >= 18) {
-                icon = "👑";
-                title = "IŞIL'IN RUH İKİZİ!";
-                text = "İnanılmaz! Işıl'ı kendisinden bile daha iyi tanıyorsun. Muhtemelen aynı anda aynı şeyleri düşünüyorsunuz!";
+            if (isCreated) {
+                icon = "✨";
+                title = "TEST BAŞARIYLA OLUŞTURULDU!";
+                text = "Tebrikler Işıl! Kendi cevapların hafızaya kaydedildi. Artık arkadaşların bu testi çözerek senin cevaplarınla yarışabilir!";
                 confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
-            } else if (score >= 14) {
-                icon = "💫";
-                title = "ÖZ HAKİKİ DOST!";
-                text = "Işıl'ın hayatındaki en önemli detaylara ve sırlara hakimsin. Birlikte yeterince kahve içilmiş!";
-            } else if (score >= 9) {
-                icon = "☕";
-                title = "KAHVE VE DEDİKODU ARKADAŞI";
-                text = "Işıl'ı oldukça iyi tanıyorsun ama bazı derin detaylar gözden kaçmış. Acil bir kahve seansı lazım!";
             } else {
-                icon = "👋";
-                title = "UZAKTAN SELAMLAŞAN";
-                text = "Işıl ile aynı ortamlara girmişsiniz ama henüz derin detaylara inilmemiş!";
+                if (score >= 18) {
+                    icon = "👑";
+                    title = "IŞIL'IN RUH İKİZİ!";
+                    text = "İnanılmaz! Işıl'ın verdiği yanıtlarla %100 uyumlusun. Onu kendisinden bile daha iyi tanıyorsun!";
+                    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+                } else if (score >= 14) {
+                    icon = "💫";
+                    title = "ÖZ HAKİKİ DOST!";
+                    text = "Işıl'ın tercihlerine çok hakimsin. Birlikte yeterince zaman geçirilmiş!";
+                } else if (score >= 9) {
+                    icon = "☕";
+                    title = "KAHVE VE DEDİKODU ARKADAŞI";
+                    text = "Işıl'ı oldukça iyi tanıyorsun ama bazı tercihleri gözden kaçmış. Acil bir kahve seansı lazım!";
+                } else {
+                    icon = "👋";
+                    title = "UZAKTAN SELAMLAŞAN";
+                    text = "Işıl ile aynı ortamlara girmişsiniz ama henüz derin detaylara inilmemiş!";
+                }
             }
 
             document.getElementById("badgeIcon").innerText = icon;
