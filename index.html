@@ -16,8 +16,8 @@
         <form id="friendshipForm">
             
             <div class="user-info">
-                <label for="name"><b>Katılımcı Adı:</b></label>
-                <input type="text" id="name" name="Katilimci_Adi" required placeholder="Adını gir...">
+                <label for="name"><b>Katılımcı Adı Soyadı:</b></label>
+                <input type="text" id="name" name="Katilimci_Adi" required placeholder="Adını soyadını gir...">
             </div>
 
             <!-- Soru 1 -->
@@ -220,71 +220,107 @@
                 <label><input type="radio" name="Soru_20" value="E"> E) "Ortalama bir arkadaşlık puanı!"</label>
             </div>
 
-            <button type="submit" class="submit-btn">Testi Tamamla ve Gönder 🚀</button>
+            <button type="submit" id="submitBtn" class="submit-btn">Testi Tamamla ve Gönder 🚀</button>
         </form>
 
-        <!-- Başarı Ekranı -->
+        <!-- Esprili Sonuç Ekranı -->
         <div id="successMessage" class="hidden">
-            <h2>🎉 Teşekkürler!</h2>
-            <p>Cevapların başarıyla kaydedildi.</p>
-        </div>
-
-        <!-- Gizli Yönetici Paneli -->
-        <div id="secretAdminPanel" class="hidden">
-            <h3>🔒 Gizli Cevap Paneli (Sadece Senin İçin)</h3>
-            <div id="answerList"></div>
+            <h2 id="resultTitle"></h2>
+            <p id="resultText"></p>
         </div>
     </div>
 
-    <!-- JavaScript Gizli Kısayol Kodları -->
     <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz9EhJ4LyNYhkmmriaSmByq5SggZgW0daWU4YaVV5c08jRTNkPw91ELQMuMEz2LLAc1/exec";
+
+        // Referans Doğru Cevaplar Anahtarı
+        const correctAnswers = {
+            "Soru_01": "C",
+            "Soru_02": "A",
+            "Soru_03": "B",
+            "Soru_04": "C",
+            "Soru_05": "B",
+            "Soru_06": "E",
+            "Soru_07": "A",
+            "Soru_08": "B",
+            "Soru_09": "B",
+            "Soru_10": "B",
+            "Soru_11": "A",
+            "Soru_12": "A",
+            "Soru_13": "B",
+            "Soru_14": "B",
+            "Soru_15": "A",
+            "Soru_16": "B",
+            "Soru_17": "B",
+            "Soru_18": "B",
+            "Soru_19": "B",
+            "Soru_20": "A"
+        };
+
         const form = document.getElementById('friendshipForm');
         const successMessage = document.getElementById('successMessage');
-        const secretPanel = document.getElementById('secretAdminPanel');
-        const answerList = document.getElementById('answerList');
+        const submitBtn = document.getElementById('submitBtn');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultText = document.getElementById('resultText');
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Hesaplanıyor...";
+
             const formData = new FormData(form);
             const answers = {};
+            let score = 0;
 
             formData.forEach((value, key) => {
                 answers[key] = value;
+                if (correctAnswers[key] && correctAnswers[key] === value) {
+                    score++;
+                }
             });
 
-            localStorage.setItem('isil_gizli_cevaplar', JSON.stringify(answers));
+            // Esprili Değerlendirme Metnini Belirle
+            let title = "";
+            let text = "";
 
-            form.classList.add('hidden');
-            successMessage.classList.remove('hidden');
-        });
-
-        // Klavyeden C, T, R tuşlarına basınca gizli panel açılır
-        let typedString = '';
-        window.addEventListener('keydown', function(e) {
-            typedString += e.key.toUpperCase();
-            
-            if (typedString.endsWith('CTR')) {
-                const savedData = localStorage.getItem('isil_gizli_cevaplar');
-                
-                if (!savedData) {
-                    answerList.innerHTML = "<p style='color:red;'>Henüz kaydedilmiş veri yok!</p>";
-                } else {
-                    const parsed = JSON.parse(savedData);
-                    let html = "<ul>";
-                    for (let key in parsed) {
-                        html += `<li><b>${key}:</b> ${parsed[key]}</li>`;
-                    }
-                    html += "</ul>";
-                    answerList.innerHTML = html;
-                }
-                
-                secretPanel.classList.toggle('hidden');
-                typedString = '';
+            if (score >= 18) {
+                title = "👑 IŞIL'IN RUH İKİZİ!";
+                text = "İnanılmaz! Işıl'ı kendisinden bile daha iyi tanıyorsun. Muhtemelen aynı anda aynı şeyleri düşünüyorsunuz, Işıl tek bir kelime etmeden bile ne demek istediğini anlıyorsun!";
+            } else if (score >= 14) {
+                title = "💫 ÖZ HAKİKİ DOST!";
+                text = "Işıl'ın hayatındaki en önemli detaylara ve sırlara hakimsin. Birlikte yeterince kahve içilmiş, bağınız sapasağlam!";
+            } else if (score >= 9) {
+                title = "☕ KAHVE VE DEDİKODU ARKADAŞI";
+                text = "Işıl'ı oldukça iyi tanıyorsun ama bazı derin detaylar gözden kaçmış. En kısa sürede bir kahve seansı yapıp dedikodu güncellemesi almanız şart!";
+            } else if (score >= 4) {
+                title = "👋 UZAKTAN SELAMLAŞAN";
+                text = "Işıl ile aynı ortamlara girmişsiniz ama henüz derin detaylara inilmemiş. 'Naber, nasılsın?' seviyesinde kalmışsınız!";
+            } else {
+                title = "❓ YOLDAN GEÇEN YABANCI";
+                text = "Işıl'ı sosyal medyada görüp 'ya ben bu kızı tanıyorum sanırım' diyenlerdensin herhalde. Yakınından bile geçememişsin!";
             }
 
-            if (typedString.length > 10) {
-                typedString = typedString.slice(-5);
-            }
+            // Verileri Google Sheets'e gönder
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(answers)
+            })
+            .then(() => {
+                resultTitle.innerText = title;
+                resultText.innerText = text;
+                form.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+            })
+            .catch(error => {
+                alert("Gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Testi Tamamla ve Gönder 🚀";
+            });
         });
     </script>
 </body>
