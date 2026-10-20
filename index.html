@@ -61,7 +61,6 @@
 </head>
 <body class="flex flex-col items-center justify-between p-4 md:p-8">
 
-    <!-- Arka Plan Görsel Işıkları -->
     <div class="fixed top-0 left-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl pointer-events-none"></div>
     <div class="fixed bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -103,11 +102,10 @@
 
             <div class="grid grid-cols-1 gap-4 max-w-lg mx-auto mb-8">
                 
-                <!-- IŞIL İÇİN: TESTİ OLUŞTUR -->
                 <div onclick="startQuizMode('creator')" class="glass-card hover:bg-white/10 p-6 rounded-2xl cursor-pointer transition-all border border-purple-500/30 hover:border-purple-500 flex items-center justify-between group">
                     <div class="flex items-center gap-4 text-left">
                         <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-[#000] fa-wand-magic-sparkles text-xl"></i>
+                            <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
                         </div>
                         <div>
                             <h3 class="font-bold text-lg text-white">Işıl Olarak Testi Oluştur</h3>
@@ -117,7 +115,6 @@
                     <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-purple-400 transition-all"></i>
                 </div>
 
-                <!-- BAŞKALARI İÇİN: IŞIL'IN TESTİNİ ÇÖZ -->
                 <div onclick="startQuizMode('participant')" class="glass-card hover:bg-white/10 p-6 rounded-2xl cursor-pointer transition-all border border-pink-500/30 hover:border-pink-500 flex items-center justify-between group">
                     <div class="flex items-center gap-4 text-left">
                         <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:bg-pink-500 group-hover:text-white transition-all">
@@ -134,7 +131,7 @@
             </div>
 
             <button onclick="showLeaderboardView()" class="px-6 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition-all border border-slate-700">
-                <i class="fa-solid fa-trophy text-amber-400 mr-2"></i> Liderlik Tablosunu Gör
+                <i class="fa-solid fa-trophy text-amber-400 mr-2"></i> Canlı Liderlik Tablosunu Gör
             </button>
         </div>
 
@@ -152,7 +149,6 @@
 
         <!-- 4. SORU EKRANI -->
         <div id="quizSection" class="glass-card rounded-3xl p-6 md:p-10 hidden transition-all duration-500">
-            <!-- İlerleme Çubuğu -->
             <div class="mb-8">
                 <div class="flex justify-between items-center text-xs font-semibold text-slate-400 mb-2">
                     <span id="questionCounter">Soru 1 / 20</span>
@@ -163,17 +159,10 @@
                 </div>
             </div>
 
-            <!-- Soru Metni -->
-            <h3 id="questionTitle" class="heading-font text-xl md:text-2xl font-bold mb-6 text-slate-100 leading-snug">
-                <!-- Soru buraya gelecek -->
-            </h3>
+            <h3 id="questionTitle" class="heading-font text-xl md:text-2xl font-bold mb-6 text-slate-100 leading-snug"></h3>
 
-            <!-- Seçenekler -->
-            <div id="optionsContainer" class="space-y-3 mb-8">
-                <!-- Seçenekler yüklenecek -->
-            </div>
+            <div id="optionsContainer" class="space-y-3 mb-8"></div>
 
-            <!-- Butonlar -->
             <div class="flex justify-between items-center pt-4 border-t border-slate-800">
                 <button id="prevBtn" onclick="prevQuestion()" class="px-5 py-3 rounded-xl bg-slate-800 text-slate-400 font-semibold text-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed" disabled>
                     <i class="fa-solid fa-arrow-left mr-2"></i> Önceki
@@ -184,7 +173,7 @@
             </div>
         </div>
 
-        <!-- 5. SONUÇ & LİDERLİK TABLOSU EKRANI -->
+        <!-- 5. SONUÇ & CANLI LİDERLİK TABLOSU EKRANI -->
         <div id="resultSection" class="glass-card rounded-3xl p-8 md:p-10 text-center hidden transition-all duration-500">
             <div id="badgeIcon" class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-400 to-pink-500 flex items-center justify-center mx-auto mb-6 shadow-xl shadow-pink-500/20 text-3xl text-white">
                 👑
@@ -192,10 +181,10 @@
             <h2 id="resultTitle" class="heading-font text-2xl md:text-3xl font-extrabold mb-3"></h2>
             <p id="resultText" class="text-slate-300 text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed"></p>
 
-            <!-- Canlı Liderlik Tablosu -->
             <div class="bg-slate-900/60 rounded-2xl p-6 border border-slate-800 text-left mb-8">
-                <h4 class="heading-font font-bold text-lg text-slate-200 mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-trophy text-amber-400"></i> Canlı Liderlik Tablosu
+                <h4 class="heading-font font-bold text-lg text-slate-200 mb-4 flex items-center justify-between">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-trophy text-amber-400"></i> Ortak Canlı Liderlik Tablosu</span>
+                    <button onclick="fetchLiveLeaderboard()" class="text-xs text-pink-400 hover:underline"><i class="fa-solid fa-rotate-right mr-1"></i> Yenile</button>
                 </h4>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm">
@@ -208,14 +197,14 @@
                             </tr>
                         </thead>
                         <tbody id="leaderboardBody" class="divide-y divide-slate-800/60">
-                            <!-- Sıralama buraya gelecek -->
+                            <tr><td colspan="4" class="py-4 text-center text-slate-500">Sıralama yükleniyor...</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
             <button onclick="location.reload()" class="px-8 py-4 rounded-xl btn-gradient text-white font-bold text-sm shadow-lg">
-                <i class="fa-solid fa-rotate-right mr-2"></i> Ana Sayfaya Dön
+                <i class="fa-solid fa-house mr-2"></i> Ana Sayfaya Dön
             </button>
         </div>
 
@@ -357,60 +346,41 @@
         }
 
         function submitQuiz() {
-            const payload = { Katilimci_Adi: userName };
+            let calculatedScore = 0;
+            
+            if (isCreatorMode) {
+                localStorage.setItem("isil_official_answers", JSON.stringify(userAnswers));
+                calculatedScore = 20;
+            } else {
+                let officialAnswers = JSON.parse(localStorage.getItem("isil_official_answers"));
+                if (!officialAnswers) {
+                    officialAnswers = { 1: "C", 2: "A", 3: "B", 4: "C", 5: "B", 6: "E", 7: "A", 8: "B", 9: "B", 10: "B", 11: "A", 12: "A", 13: "B", 14: "B", 15: "A", 16: "B", 17: "B", 18: "B", 19: "B", 20: "A" };
+                }
 
+                for (let i = 1; i <= 20; i++) {
+                    if (userAnswers[i] === officialAnswers[i]) {
+                        calculatedScore++;
+                    }
+                }
+            }
+
+            const payload = { Katilimci_Adi: userName, Score: calculatedScore };
             for (let i = 1; i <= 20; i++) {
                 const key = i < 10 ? `Soru_0${i}` : `Soru_${i}`;
                 payload[key] = userAnswers[i] || "";
             }
 
-            // Google Sheets'e Sessizce Gönder
+            // Google Sheets'e Veriyi Gönder
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
-            }).catch(e => console.log("Silent submit completed"));
-
-            // EĞER IŞIL KENDİ TESTİNİ OLUŞTURUYORSA:
-            if (isCreatorMode) {
-                // Işıl'ın cevaplarını Doğru Cevap Anahtarı Olarak Hafızaya Al
-                localStorage.setItem("isil_official_answers", JSON.stringify(userAnswers));
-                saveScoreToLeaderboard(userName, 20); // Işıl'ın kendisi 20/20 kabul edilir
-                showResults(20, true);
-            } else {
-                // BAŞKALARI İÇİN: Işıl'ın Kaydedilmiş Cevaplarına Göre Puan Hesapla
-                let officialAnswers = JSON.parse(localStorage.getItem("isil_official_answers"));
-                
-                // Eğer Işıl henüz testi çözmediyse varsayılan cevapları kullan
-                if (!officialAnswers) {
-                    officialAnswers = { 1: "C", 2: "A", 3: "B", 4: "C", 5: "B", 6: "E", 7: "A", 8: "B", 9: "B", 10: "B", 11: "A", 12: "A", 13: "B", 14: "B", 15: "A", 16: "B", 17: "B", 18: "B", 19: "B", 20: "A" };
-                }
-
-                let score = 0;
-                for (let i = 1; i <= 20; i++) {
-                    if (userAnswers[i] === officialAnswers[i]) {
-                        score++;
-                    }
-                }
-
-                saveScoreToLeaderboard(userName, score);
-                showResults(score, false);
-            }
-        }
-
-        function saveScoreToLeaderboard(name, score) {
-            let leaderboard = JSON.parse(localStorage.getItem("isil_quiz_leaderboard") || "[]");
-            
-            let badge = "👋 Uzaktan Selamlaşan";
-            if (score >= 18) badge = "👑 Ruh İkizi";
-            else if (score >= 14) badge = "💫 Öz Hakiki Dost";
-            else if (score >= 9) badge = "☕ Kahve Arkadaşı";
-
-            leaderboard.push({ name, score, badge });
-            leaderboard.sort((a, b) => b.score - a.score);
-
-            localStorage.setItem("isil_quiz_leaderboard", JSON.stringify(leaderboard));
+            }).then(() => {
+                showResults(calculatedScore, isCreatorMode);
+            }).catch(() => {
+                showResults(calculatedScore, isCreatorMode);
+            });
         }
 
         function showResults(score, isCreated) {
@@ -449,38 +419,53 @@
             document.getElementById("resultTitle").innerText = title;
             document.getElementById("resultText").innerText = text;
 
-            renderLeaderboardTable();
+            fetchLiveLeaderboard();
         }
 
-        function renderLeaderboardTable() {
-            let leaderboard = JSON.parse(localStorage.getItem("isil_quiz_leaderboard") || "[]");
+        function fetchLiveLeaderboard() {
             const tbody = document.getElementById("leaderboardBody");
-            tbody.innerHTML = "";
+            tbody.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-slate-500">Güncel sıralama çekiliyor...</td></tr>`;
 
-            if (leaderboard.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-slate-500">Henüz kimse testi tamamlamadı.</td></tr>`;
-                return;
-            }
+            fetch(GOOGLE_SCRIPT_URL)
+                .then(res => res.json())
+                .then(data => {
+                    // Yüksek puandan düşüğe sırala
+                    data.sort((a, b) => b.score - a.score);
+                    
+                    tbody.innerHTML = "";
+                    if (data.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-slate-500">Henüz kimse testi tamamlamadı.</td></tr>`;
+                        return;
+                    }
 
-            leaderboard.forEach((item, index) => {
-                const row = `
-                    <tr class="hover:bg-slate-800/30">
-                        <td class="py-3 text-center font-bold text-pink-400">#${index + 1}</td>
-                        <td class="py-3 font-semibold text-slate-200">${item.name}</td>
-                        <td class="py-3 text-center font-bold text-slate-300">${item.score} / 20</td>
-                        <td class="py-3 text-xs font-semibold text-purple-300">${item.badge}</td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
+                    data.forEach((item, index) => {
+                        let badge = "👋 Uzaktan Selamlaşan";
+                        if (item.score >= 18) badge = "👑 Ruh İkizi";
+                        else if (item.score >= 14) badge = "💫 Öz Hakiki Dost";
+                        else if (item.score >= 9) badge = "☕ Kahve Arkadaşı";
+
+                        const row = `
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="py-3 text-center font-bold text-pink-400">#${index + 1}</td>
+                                <td class="py-3 font-semibold text-slate-200">${item.name}</td>
+                                <td class="py-3 text-center font-bold text-slate-300">${item.score} / 20</td>
+                                <td class="py-3 text-xs font-semibold text-purple-300">${badge}</td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
+                    });
+                })
+                .catch(() => {
+                    tbody.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-slate-500">Sıralama yüklenirken bir sorun oluştu.</td></tr>`;
+                });
         }
 
         function showLeaderboardView() {
             document.getElementById("dashboardSection").classList.add("hidden");
             document.getElementById("resultSection").classList.remove("hidden");
             document.getElementById("resultTitle").innerText = "Liderlik Tablosu";
-            document.getElementById("resultText").innerText = "Testi tamamlayan kişilerin güncel sıralaması:";
-            renderLeaderboardTable();
+            document.getElementById("resultText").innerText = "Testi tamamlayan kişilerin canlı sıralaması:";
+            fetchLiveLeaderboard();
         }
     </script>
 </body>
