@@ -3,325 +3,438 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Işıl Küçükyüce - Arkadaşlık Testi</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Işıl Küçükyüce - Arkadaşlık Testi Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icon Set -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+        .heading-font {
+            font-family: 'Outfit', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+        .glass-input {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .glass-input:focus {
+            border-color: #ec4899;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.3);
+            outline: none;
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+        }
+        .custom-radio input[type="radio"]:checked + .radio-tile {
+            border-color: #ec4899;
+            background: rgba(236, 72, 153, 0.15);
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);
+        }
+        .custom-radio input[type="radio"]:checked + .radio-tile .radio-indicator {
+            border-color: #ec4899;
+            background-color: #ec4899;
+        }
+    </style>
 </head>
-<body>
+<body class="flex flex-col items-center justify-between p-4 md:p-8">
 
-    <div class="container">
-        <h1>✨ Işıl Küçükyüce Arkadaşlık Testi ✨</h1>
-        <p class="subtitle">Işıl'ı ne kadar iyi tanıyorsun? Soruları cevapla ve gönder!</p>
+    <!-- Arka Plan Görsel Işıkları -->
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
-        <!-- Test Formu -->
-        <form id="friendshipForm">
-            
-            <div class="user-info">
-                <label for="name"><b>Katılımcı Adı Soyadı:</b></label>
-                <input type="text" id="name" name="Katilimci_Adi" required placeholder="Adını soyadını gir...">
+    <div class="w-full max-w-3xl z-10 my-auto">
+
+        <!-- 1. ŞİFRE GİRİŞ EKRANI -->
+        <div id="loginSection" class="glass-card rounded-3xl p-8 md:p-12 text-center transition-all duration-500">
+            <div class="w-20 h-20 bg-gradient-to-tr from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-pink-500/30">
+                <i class="fa-solid fa-lock text-3xl text-white"></i>
             </div>
+            <h1 class="heading-font text-3xl md:text-4xl font-extrabold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-300 to-indigo-300">
+                Giriş Şifresi
+            </h1>
+            <p class="text-slate-300 text-sm md:text-base mb-8">
+                Işıl Küçükyüce Arkadaşlık Portalı'na erişmek için özel şifreyi giriniz.
+            </p>
 
-            <!-- Soru 1 -->
-            <div class="question-card">
-                <h3>1. Işıl için kusursuz bir hafta sonu sabahı nasıl başlar?</h3>
-                <label><input type="radio" name="Soru_01" value="A" required> A) Erken kalkıp kahve eşliğinde uzun uzun kahvaltı yaparak.</label>
-                <label><input type="radio" name="Soru_01" value="B"> B) Güneş tepeye gelene kadar uyuyup, tembel bir sabah geçirerek.</label>
-                <label><input type="radio" name="Soru_01" value="C"> C) Alarm kurmadan uyanıp, yatakta telefonla vakit geçirip yavaşça güne başlayarak.</label>
-                <label><input type="radio" name="Soru_01" value="D"> D) Sabah erkenden spora veya yürüyüşe giderek.</label>
-                <label><input type="radio" name="Soru_01" value="E"> E) Kahvaltıyı atlayıp direkt dışarıda kahveyle güne atılarak.</label>
-            </div>
-
-            <!-- Soru 2 -->
-            <div class="question-card">
-                <h3>2. Bir kafeye gittiğinde Işıl’ın sipariş vermeden önceki ilk refleksi ne olur?</h3>
-                <label><input type="radio" name="Soru_02" value="A" required> A) Menüyü hiç açmadan her zamanki favori içeceğini söyler.</label>
-                <label><input type="radio" name="Soru_02" value="B"> B) Uzun uzun menüyü inceleyip o anki ruh haline göre yeni bir şey dener.</label>
-                <label><input type="radio" name="Soru_02" value="C"> C) Yanındakilere ne içeceklerini sorup ortak bir karar verir.</label>
-                <label><input type="radio" name="Soru_02" value="D"> D) Vitründeki tatlılara bakıp içecek kararını tatlıya göre belirler.</label>
-                <label><input type="radio" name="Soru_02" value="E"> E) Kasaya gidene kadar karar veremeyip aceleyle sipariş verir.</label>
-            </div>
-
-            <!-- Soru 3 -->
-            <div class="question-card">
-                <h3>3. Işıl’ı en çok ne sinirlendirir veya sabrını en çabuk ne tüketir?</h3>
-                <label><input type="radio" name="Soru_03" value="A" required> A) Yoğun trafikte kalmak.</label>
-                <label><input type="radio" name="Soru_03" value="B"> B) Verilen sözlerin tutulmaması ve net olunmaması.</label>
-                <label><input type="radio" name="Soru_03" value="C"> C) Planların son anda değişmesi.</label>
-                <label><input type="radio" name="Soru_03" value="D"> D) Teknolojik bir eşyanın bozulması veya internetin yavaş olması.</label>
-                <label><input type="radio" name="Soru_03" value="E"> E) Anlaşılmadığını hissettiği anlar.</label>
-            </div>
-
-            <!-- Soru 4 -->
-            <div class="question-card">
-                <h3>4. Alışveriş yaparken Işıl’ın genel yaklaşımı nasıldır?</h3>
-                <label><input type="radio" name="Soru_04" value="A" required> A) Gördüğü ilk güzel şeyi, fazla düşünmeden hemen alır.</label>
-                <label><input type="radio" name="Soru_04" value="B"> B) İhtiyacı olan listeyi yapar, direkt onu alıp çıkar.</label>
-                <label><input type="radio" name="Soru_04" value="C"> C) Uzun süre arar, inceler, fiyat/performans kıyaslaması yapar.</label>
-                <label><input type="radio" name="Soru_04" value="D"> D) Genelde internetten alışverişi tercih eder.</label>
-                <label><input type="radio" name="Soru_04" value="E"> E) Beğendiği şeyleri favorilere ekleyip indirim bekler.</label>
-            </div>
-
-            <!-- Soru 5 -->
-            <div class="question-card">
-                <h3>5. Stresli veya yorucu bir günün ardından Işıl zihnini nasıl dinlendirir?</h3>
-                <label><input type="radio" name="Soru_05" value="A" required> A) Arkadaşlarıyla buluşup dışarıda vakit geçirerek.</label>
-                <label><input type="radio" name="Soru_05" value="B"> B) Sevdiği bir diziyi/filmi açıp evde kendi başına kalarak.</label>
-                <label><input type="radio" name="Soru_05" value="C"> C) Müzik açıp uzun bir yürüyüşe çıkarak.</label>
-                <label><input type="radio" name="Soru_05" value="D"> D) Kitap okuyarak veya bir şeyler çizerek.</label>
-                <label><input type="radio" name="Soru_05" value="E"> E) Sosyal medyada vakit geçirerek.</label>
-            </div>
-
-            <!-- Soru 6 -->
-            <div class="question-card">
-                <h3>6. Işıl mesajlaşırken genelde nasıl bir iletişim tarzını tercih eder?</h3>
-                <label><input type="radio" name="Soru_06" value="A" required> A) Uzun, detaylı ve açıklayıcı ses kayıtları atmayı.</label>
-                <label><input type="radio" name="Soru_06" value="B"> B) Kısa, net ve nokta atışı mesajlar yazmayı.</label>
-                <label><input type="radio" name="Soru_06" value="C"> C) Bolca emoji ve görsel öğeler kullanarak neşeli yazmayı.</label>
-                <label><input type="radio" name="Soru_06" value="D"> D) Karşı tarafın mesajlarına kısa ama öz yanıtlar vermeyi.</label>
-                <label><input type="radio" name="Soru_06" value="E"> E) Duruma göre değişir ama genelde net ve dengeli yazar.</label>
-            </div>
-
-            <!-- Soru 7 -->
-            <div class="question-card">
-                <h3>7. Işıl yeni bir ortama girdiğinde ilk olarak neye dikkat eder?</h3>
-                <label><input type="radio" name="Soru_07" value="A" required> A) Ortamın genel enerjisine ve atmosferine.</label>
-                <label><input type="radio" name="Soru_07" value="B"> B) Kimlerin olduğuna ve tanıdık biri var mı diye bakar.</label>
-                <label><input type="radio" name="Soru_07" value="C"> C) Mekanın tasarımına ve şıklığına.</label>
-                <label><input type="radio" name="Soru_07" value="D"> D) Oturacak en rahat yeri seçmeye odaklanır.</label>
-                <label><input type="radio" name="Soru_07" value="E"> E) Sessiz sakin bir köşe bulmaya çalışır.</label>
-            </div>
-
-            <!-- Soru 8 -->
-            <div class="question-card">
-                <h3>8. Işıl seyahat/tatil planı yaparken önceliği neye verir?</h3>
-                <label><input type="radio" name="Soru_08" value="A" required> A) Tarihi ve kültürel yerleri gezmeye.</label>
-                <label><input type="radio" name="Soru_08" value="B"> B) Sakin, kafasını dinleyebileceği doğa kaçamaklarına.</label>
-                <label><input type="radio" name="Soru_08" value="C"> C) Popüler mekanları keşfetmeye ve yeme-içmeye.</label>
-                <label><input type="radio" name="Soru_08" value="D"> D) Tamamen akışına bırakılmış, plansız gezilere.</label>
-                <label><input type="radio" name="Soru_08" value="E"> E) Alışveriş yapılabilecek büyük şehirlere.</label>
-            </div>
-
-            <!-- Soru 9 -->
-            <div class="question-card">
-                <h3>9. Işıl’ın yemek seçimlerindeki genel duruşu nasıldır?</h3>
-                <label><input type="radio" name="Soru_09" value="A" required> A) Yeni ve farklı dünya mutfaklarını denemeye bayılır.</label>
-                <label><input type="radio" name="Soru_09" value="B"> B) Ev yapımı, geleneksel ve bildiği lezzetleri tercih eder.</label>
-                <label><input type="radio" name="Soru_09" value="C"> C) Genelde hafif ve pratik şeylerle geçiştirir.</label>
-                <label><input type="radio" name="Soru_09" value="D"> D) Et ağırlıklı beslenmeyi sever.</label>
-                <label><input type="radio" name="Soru_09" value="E"> E) Tatlıya daha çok düşkündür.</label>
-            </div>
-
-            <!-- Soru 10 -->
-            <div class="question-card">
-                <h3>10. Beklenmeyen bir plan iptal olduğunda Işıl’ın içten içe ilk tepkisi ne olur?</h3>
-                <label><input type="radio" name="Soru_10" value="A" required> A) Üzülür ama hemen alternatif bir ev planı yapar.</label>
-                <label><input type="radio" name="Soru_10" value="B"> B) Evde dinlenme fırsatı bulduğu için gizli bir rahatlama yaşar.</label>
-                <label><input type="radio" name="Soru_10" value="C"> C) Planın bozulmasına sinirlenir.</label>
-                <label><input type="radio" name="Soru_10" value="D"> D) Hiç tepki vermez, hayatına devam eder.</label>
-                <label><input type="radio" name="Soru_10" value="E"> E) Hemen başka bir gün için yeni plan önerir.</label>
-            </div>
-
-            <!-- Soru 11 -->
-            <div class="question-card">
-                <h3>11. Işıl önemli bir karar vermesi gerektiğinde nasıl hareket eder?</h3>
-                <label><input type="radio" name="Soru_11" value="A" required> A) Mantığıyla ve artı-eksi değerlendirmesi yaparak.</label>
-                <label><input type="radio" name="Soru_11" value="B"> B) Tamamen o anki iç sesine ve hislerine güvenerek.</label>
-                <label><input type="radio" name="Soru_11" value="C"> C) Yakın çevresine danışıp fikir alarak.</label>
-                <label><input type="radio" name="Soru_11" value="D"> D) Karar vermeyi erteleyip akışına bırakarak.</label>
-                <label><input type="radio" name="Soru_11" value="E"> E) En az riskli seçeneğe yönelerek.</label>
-            </div>
-
-            <!-- Soru 12 -->
-            <div class="question-card">
-                <h3>12. Işıl’ın müzik dinleme alışkanlığı nasıldır?</h3>
-                <label><input type="radio" name="Soru_12" value="A" required> A) Ruh haline göre her tür müziği dinler.</label>
-                <label><input type="radio" name="Soru_12" value="B"> B) Sadece kendi favori playlist'lerini döngüye alır.</label>
-                <label><input type="radio" name="Soru_12" value="C"> C) Popüler ve gündemdeki hit şarkıları takip eder.</label>
-                <label><input type="radio" name="Soru_12" value="D"> D) Yabancı ve alternatif tarzlara odaklanır.</label>
-                <label><input type="radio" name="Soru_12" value="E"> E) Sakin ve enstrümantal müzikler tercih eder.</label>
-            </div>
-
-            <!-- Soru 13 -->
-            <div class="question-card">
-                <h3>13. Işıl yeni bir hevese/hobiye başladığında süreç nasıl işler?</h3>
-                <label><input type="radio" name="Soru_13" value="A" required> A) Büyük bir hevesle başlar ama çabuk sıkılabilir.</label>
-                <label><input type="radio" name="Soru_13" value="B"> B) Araştırır, mantığına yatarsa istikrarlı şekilde devam ettirir.</label>
-                <label><input type="radio" name="Soru_13" value="C"> C) Birinin yönlendirmesiyle başlar, tek başına sürdürmez.</label>
-                <label><input type="radio" name="Soru_13" value="D"> D) Anlık bir hevesle araç-gereç alır ama kenarda kalır.</label>
-                <label><input type="radio" name="Soru_13" value="E"> E) Başladığı şeyi en ince detayına kadar öğrenir.</label>
-            </div>
-
-            <!-- Soru 14 -->
-            <div class="question-card">
-                <h3>14. Işıl’ın sosyal ilişkilerindeki en belirgin tavrı nedir?</h3>
-                <label><input type="radio" name="Soru_14" value="A" required> A) Her girdiği ortamda hemen odak noktası olmak.</label>
-                <label><input type="radio" name="Soru_14" value="B"> B) Güvenmediği kişilere karşı mesafeli ve seçici davranmak.</label>
-                <label><input type="radio" name="Soru_14" value="C"> C) Herkesle çok hızlı samimiyet kurabilmek.</label>
-                <label><input type="radio" name="Soru_14" value="D"> D) Sessiz kalıp sadece insanları gözlemlemek.</label>
-                <label><input type="radio" name="Soru_14" value="E"> E) Sürekli ortamdaki sorunları çözen taraf olmak.</label>
-            </div>
-
-            <!-- Soru 15 -->
-            <div class="question-card">
-                <h3>15. Işıl’a yapılacak bir sürprizde onu en çok ne rahatsız eder?</h3>
-                <label><input type="radio" name="Soru_15" value="A" required> A) Kalabalık bir ortamda merkezde olduğu gürültülü sürprizler.</label>
-                <label><input type="radio" name="Soru_15" value="B"> B) Habersiz yapılan ev ziyaretleri.</label>
-                <label><input type="radio" name="Soru_15" value="C"> C) Tarzına hiç uymayan bir hediye seçilmesi.</label>
-                <label><input type="radio" name="Soru_15" value="D"> D) Planlanmamış son dakika seyahatleri.</label>
-                <label><input type="radio" name="Soru_15" value="E"> E) Rahatsız etmez, Işıl her türlü sürprizi sever.</label>
-            </div>
-
-            <!-- Soru 16 -->
-            <div class="question-card">
-                <h3>16. Boş bir gününde Işıl zamanını en çok nasıl geçirmek ister?</h3>
-                <label><input type="radio" name="Soru_16" value="A" required> A) Dışarı çıkıp yeni mekanlar keşfederek.</label>
-                <label><input type="radio" name="Soru_16" value="B"> B) Evde konfor alanında vakit geçirip içerik izleyerek.</label>
-                <label><input type="radio" name="Soru_16" value="C"> C) Arkadaş grubuyla uzun sohbetli planlar yaparak.</label>
-                <label><input type="radio" name="Soru_16" value="D"> D) Yürüyüş veya fiziksel aktiviteler yaparak.</label>
-                <label><input type="radio" name="Soru_16" value="E"> E) Ertelediği kişisel işlerini ve temizliği hallederek.</label>
-            </div>
-
-            <!-- Soru 17 -->
-            <div class="question-card">
-                <h3>17. Işıl bir sorumluluk veya görev aldığında nasıl bir çalışma stili izler?</h3>
-                <label><input type="radio" name="Soru_17" value="A" required> A) İşleri son ana bırakır ama son dakikada halleder.</label>
-                <label><input type="radio" name="Soru_17" value="B"> B) Planlı, adımları belli ve zamanında bitirecek şekilde.</label>
-                <label><input type="radio" name="Soru_17" value="C"> C) Sürekli başkalarının fikrini alarak ilerler.</label>
-                <label><input type="radio" name="Soru_17" value="D"> D) Akışına bırakır, stres yapmadan yürütür.</label>
-                <label><input type="radio" name="Soru_17" value="E"> E) Aşırı detaycı davrandığı için süreç uzayabilir.</label>
-            </div>
-
-            <!-- Soru 18 -->
-            <div class="question-card">
-                <h3>18. Işıl'ın bir şeye canının sıkıldığını en kolay nasıl anlarsın?</h3>
-                <label><input type="radio" name="Soru_18" value="A" required> A) Konuştukça anlatır ve içini döker.</label>
-                <label><input type="radio" name="Soru_18" value="B"> B) Sessizleşir, içine kapanır ve biraz geri çekilir.</label>
-                <label><input type="radio" name="Soru_18" value="C"> C) Tepkileri aniden sertleşir ve gerginleşir.</label>
-                <label><input type="radio" name="Soru_18" value="D"> D) Sosyal medyaya daha çok vakit ayırır.</label>
-                <label><input type="radio" name="Soru_18" value="E"> E) Sürekli kahve/çay içip bir şeylerle uğraşır.</label>
-            </div>
-
-            <!-- Soru 19 -->
-            <div class="question-card">
-                <h3>19. Işıl bir arkadaşına hediye seçecek olsa önceliği ne olur?</h3>
-                <label><input type="radio" name="Soru_19" value="A" required> A) Gösterişli ve dikkat çekici bir hediye olması.</label>
-                <label><input type="radio" name="Soru_19" value="B"> B) O kişinin gerçekten ihtiyacı olan ve anlam taşıyan bir şey olması.</label>
-                <label><input type="radio" name="Soru_19" value="C"> C) Kendi beğendiği bir ürünü almak.</label>
-                <label><input type="radio" name="Soru_19" value="D"> D) Esprili ve eğlenceli küçük bir anı hediyesi.</label>
-                <label><input type="radio" name="Soru_19" value="E"> E) Popüler ve trend olan markalardan seçmek.</label>
-            </div>
-
-            <!-- Soru 20 -->
-            <div class="question-card">
-                <h3>20. Bu testin sonucunda senin Işıl'ı ne kadar tanıdığına dair resmi karar ne olurdu?</h3>
-                <label><input type="radio" name="Soru_20" value="A" required> A) "Beni benden daha iyi tanıyorsun, tam bir Ruh İkizisin!"</label>
-                <label><input type="radio" name="Soru_20" value="B"> B) "Çoğu şeyi bildin ama ufak kaçırdığın yerler var."</label>
-                <label><input type="radio" name="Soru_20" value="C"> C) "Beni pek tanıyamamışsın meğer."</label>
-                <label><input type="radio" name="Soru_20" value="D"> D) "Çoğunu sallayarak tutturmuşsun gibime geliyor."</label>
-                <label><input type="radio" name="Soru_20" value="E"> E) "Ortalama bir arkadaşlık puanı!"</label>
-            </div>
-
-            <button type="submit" id="submitBtn" class="submit-btn">Testi Tamamla ve Gönder 🚀</button>
-        </form>
-
-        <!-- Esprili Sonuç Ekranı -->
-        <div id="successMessage" class="hidden">
-            <h2 id="resultTitle"></h2>
-            <p id="resultText"></p>
+            <form id="loginForm" onsubmit="handleLogin(event)" class="max-w-md mx-auto space-y-4">
+                <div class="relative">
+                    <input type="password" id="passwordInput" placeholder="Şifreyi giriniz..." required 
+                        class="w-full px-5 py-4 rounded-xl glass-input text-center text-lg tracking-widest font-semibold placeholder:text-slate-500 placeholder:tracking-normal placeholder:font-normal">
+                </div>
+                <p id="loginError" class="text-pink-500 text-sm font-semibold hidden">
+                    <i class="fa-solid fa-circle-exclamation mr-1"></i> Hatalı şifre! Lütfen tekrar deneyiniz.
+                </p>
+                <button type="submit" class="w-full py-4 rounded-xl btn-gradient text-white font-bold text-lg shadow-lg tracking-wide">
+                    Portala Giriş Yap <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </form>
         </div>
+
+        <!-- 2. TEST SEÇİM/OLUŞTURMA PANELİ -->
+        <div id="dashboardSection" class="glass-card rounded-3xl p-8 md:p-10 text-center hidden transition-all duration-500">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-sm font-semibold mb-6">
+                <span class="w-2 h-2 rounded-full bg-pink-500 animate-ping"></span> Portal Aktif
+            </div>
+            <h2 class="heading-font text-3xl font-extrabold mb-3">Hoş Geldiniz! ✨</h2>
+            <p class="text-slate-300 text-sm md:text-base mb-8">Mevcut arkadaşlık testini çözmek veya yeni katılım sağlamak için aşağıdaki panele tıklayınız.</p>
+
+            <div class="grid grid-cols-1 gap-4 max-w-lg mx-auto mb-8">
+                <div onclick="startQuizFlow()" class="glass-card hover:bg-white/10 p-6 rounded-2xl cursor-pointer transition-all border border-pink-500/30 hover:border-pink-500 flex items-center justify-between group">
+                    <div class="flex items-center gap-4 text-left">
+                        <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:bg-pink-500 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-heart text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Işıl Küçükyüce Arkadaşlık Testi</h3>
+                            <p class="text-xs text-slate-400">20 Soru • 5 Seçenekli Değerlendirme</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-pink-400 transition-all"></i>
+                </div>
+            </div>
+
+            <button onclick="showLeaderboardView()" class="px-6 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition-all border border-slate-700">
+                <i class="fa-solid fa-trophy text-amber-400 mr-2"></i> Liderlik Tablosunu Gör
+            </button>
+        </div>
+
+        <!-- 3. KATILIMCI ADI GİRİŞ EKRANI -->
+        <div id="nameSection" class="glass-card rounded-3xl p-8 md:p-10 text-center hidden transition-all duration-500">
+            <h2 class="heading-font text-2xl md:text-3xl font-extrabold mb-2">Test Başlatılıyor 🚀</h2>
+            <p class="text-slate-300 text-sm mb-6">Lütfen test sonucunuzun kaydedilebilmesi için adınızı giriniz.</p>
+            <div class="max-w-md mx-auto space-y-4">
+                <input type="text" id="participantName" placeholder="Adınız Soyadınız..." required class="w-full px-5 py-4 rounded-xl glass-input text-lg">
+                <button onclick="confirmNameAndStart()" class="w-full py-4 rounded-xl btn-gradient text-white font-bold text-lg">
+                    Sorulara Geç <i class="fa-solid fa-play ml-2 text-sm"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 4. SORU EKRANI -->
+        <div id="quizSection" class="glass-card rounded-3xl p-6 md:p-10 hidden transition-all duration-500">
+            <!-- İlerleme Çubuğu -->
+            <div class="mb-8">
+                <div class="flex justify-between items-center text-xs font-semibold text-slate-400 mb-2">
+                    <span id="questionCounter">Soru 1 / 20</span>
+                    <span id="progressPercent">%5</span>
+                </div>
+                <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-700">
+                    <div id="progressBar" class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full transition-all duration-300" style="width: 5%"></div>
+                </div>
+            </div>
+
+            <!-- Soru Metni -->
+            <h3 id="questionTitle" class="heading-font text-xl md:text-2xl font-bold mb-6 text-slate-100 leading-snug">
+                <!-- Soru buraya dinamik gelecek -->
+            </h3>
+
+            <!-- Seçenekler -->
+            <div id="optionsContainer" class="space-y-3 mb-8">
+                <!-- Seçenekler dinamik yüklenecek -->
+            </div>
+
+            <!-- Butonlar -->
+            <div class="flex justify-between items-center pt-4 border-t border-slate-800">
+                <button id="prevBtn" onclick="prevQuestion()" class="px-5 py-3 rounded-xl bg-slate-800 text-slate-400 font-semibold text-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed" disabled>
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Önceki
+                </button>
+                <button id="nextBtn" onclick="nextQuestion()" class="px-6 py-3 rounded-xl btn-gradient text-white font-bold text-sm shadow-md">
+                    Sonraki Soru <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 5. SONUÇ & LİDERLİK TABLOSU EKRANI -->
+        <div id="resultSection" class="glass-card rounded-3xl p-8 md:p-10 text-center hidden transition-all duration-500">
+            <div id="badgeIcon" class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-400 to-pink-500 flex items-center justify-center mx-auto mb-6 shadow-xl shadow-pink-500/20 text-3xl text-white">
+                👑
+            </div>
+            <h2 id="resultTitle" class="heading-font text-2xl md:text-3xl font-extrabold mb-3"></h2>
+            <p id="resultText" class="text-slate-300 text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed"></p>
+
+            <!-- Canlı Liderlik Tablosu -->
+            <div class="bg-slate-900/60 rounded-2xl p-6 border border-slate-800 text-left mb-8">
+                <h4 class="heading-font font-bold text-lg text-slate-200 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-trophy text-amber-400"></i> Canlı Liderlik Tablosu
+                </h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-slate-400 border-b border-slate-800 text-xs font-semibold">
+                                <th class="pb-3 text-center">Sıra</th>
+                                <th class="pb-3">Katılımcı</th>
+                                <th class="pb-3 text-center">Doğru</th>
+                                <th class="pb-3">Unvan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardBody" class="divide-y divide-slate-800/60">
+                            <!-- Sıralama dinamik olarak buraya eklenecek -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <button onclick="location.reload()" class="px-8 py-4 rounded-xl btn-gradient text-white font-bold text-sm shadow-lg">
+                <i class="fa-solid fa-[#000] fa-rotate-right mr-2"></i> Ana Sayfaya Dön
+            </button>
+        </div>
+
     </div>
 
     <script>
+        // GOOGLE APPS SCRIPT WEB APP LINKIN
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz9EhJ4LyNYhkmmriaSmByq5SggZgW0daWU4YaVV5c08jRTNkPw91ELQMuMEz2LLAc1/exec";
 
-        // Referans Doğru Cevaplar Anahtarı
-        const correctAnswers = {
-            "Soru_01": "C",
-            "Soru_02": "A",
-            "Soru_03": "B",
-            "Soru_04": "C",
-            "Soru_05": "B",
-            "Soru_06": "E",
-            "Soru_07": "A",
-            "Soru_08": "B",
-            "Soru_09": "B",
-            "Soru_10": "B",
-            "Soru_11": "A",
-            "Soru_12": "A",
-            "Soru_13": "B",
-            "Soru_14": "B",
-            "Soru_15": "A",
-            "Soru_16": "B",
-            "Soru_17": "B",
-            "Soru_18": "B",
-            "Soru_19": "B",
-            "Soru_20": "A"
-        };
+        // Sorular ve Şıklar
+        const questions = [
+            { id: 1, title: "1. Işıl için kusursuz bir hafta sonu sabahı nasıl başlar?", options: [ { k: "A", t: "Erken kalkıp kahve eşliğinde uzun uzun kahvaltı yaparak." }, { k: "B", t: "Güneş tepeye gelene kadar uyuyup, tembel bir sabah geçirerek." }, { k: "C", t: "Alarm kurmadan uyanıp, yatakta telefonla vakit geçirip yavaşça güne başlayarak." }, { k: "D", t: "Sabah erkenden spora veya yürüyüşe giderek." }, { k: "E", t: "Kahvaltıyı atlayıp direkt dışarıda kahveyle güne atılarak." } ] },
+            { id: 2, title: "2. Bir kafeye gittiğinde Işıl’ın sipariş vermeden önceki ilk refleksi ne olur?", options: [ { k: "A", t: "Menüyü hiç açmadan her zamanki favori içeceğini söyler." }, { k: "B", t: "Uzun uzun menüyü inceleyip o anki ruh haline göre yeni bir şey dener." }, { k: "C", t: "Yanındakilere ne içeceklerini sorup ortak bir karar verir." }, { k: "D", t: "Vitründeki tatlılara bakıp içecek kararını tatlıya göre belirler." }, { k: "E", t: "Kasaya gidene kadar karar veremeyip aceleyle sipariş verir." } ] },
+            { id: 3, title: "3. Işıl’ı en çok ne sinirlendirir veya sabrını en çabuk ne tüketir?", options: [ { k: "A", t: "Yoğun trafikte kalmak." }, { k: "B", t: "Verilen sözlerin tutulmaması ve net olunmaması." }, { k: "C", t: "Planların son anda değişmesi." }, { k: "D", t: "Teknolojik bir eşyanın bozulması veya internetin yavaş olması." }, { k: "E", t: "Anlaşılmadığını hissettiği anlar." } ] },
+            { id: 4, title: "4. Alışveriş yaparken Işıl’ın genel yaklaşımı nasıldır?", options: [ { k: "A", t: "Gördüğü ilk güzel şeyi, fazla düşünmeden hemen alır." }, { k: "B", t: "İhtiyacı olan listeyi yapar, direkt onu alıp çıkar." }, { k: "C", t: "Uzun süre arar, inceler, fiyat/performans kıyaslaması yapar." }, { k: "D", t: "Genelde internetten alışverişi tercih eder." }, { k: "E", t: "Beğendiği şeyleri favorilere ekleyip indirim bekler." } ] },
+            { id: 5, title: "5. Stresli veya yorucu bir günün ardından Işıl zihnini nasıl dinlendirir?", options: [ { k: "A", t: "Arkadaşlarıyla buluşup dışarıda vakit geçirerek." }, { k: "B", t: "Sevdiği bir diziyi/filmi açıp evde kendi başına kalarak." }, { k: "C", t: "Müzik açıp uzun bir yürüyüşe çıkarak." }, { k: "D", t: "Kitap okuyarak veya bir şeyler çizerek." }, { k: "E", t: "Sosyal medyada vakit geçirerek." } ] },
+            { id: 6, title: "6. Işıl mesajlaşırken genelde nasıl bir iletişim tarzını tercih eder?", options: [ { k: "A", t: "Uzun, detaylı ve açıklayıcı ses kayıtları atmayı." }, { k: "B", t: "Kısa, net ve nokta atışı mesajlar yazmayı." }, { k: "C", t: "Bolca emoji ve görsel öğeler kullanarak neşeli yazmayı." }, { k: "D", t: "Karşı tarafın mesajlarına kısa ama öz yanıtlar vermeyi." }, { k: "E", t: "Duruma göre değişir ama genelde net ve dengeli yazar." } ] },
+            { id: 7, title: "7. Işıl yeni bir ortama girdiğinde ilk olarak neye dikkat eder?", options: [ { k: "A", t: "Ortamın genel enerjisine ve atmosferine." }, { k: "B", t: "Kimlerin olduğuna ve tanıdık biri var mı diye bakar." }, { k: "C", t: "Mekanın tasarımına ve şıklığına." }, { k: "D", t: "Oturacak en rahat yeri seçmeye odaklanır." }, { k: "E", t: "Sessiz sakin bir köşe bulmaya çalışır." } ] },
+            { id: 8, title: "8. Işıl seyahat/tatil planı yaparken önceliği neye verir?", options: [ { k: "A", t: "Tarihi ve kültürel yerleri gezmeye." }, { k: "B", t: "Sakin, kafasını dinleyebileceği doğa kaçamaklarına." }, { k: "C", t: "Popüler mekanları keşfetmeye ve yeme-içmeye." }, { k: "D", t: "Tamamen akışına bırakılmış, plansız gezilere." }, { k: "E", t: "Alışveriş yapılabilecek büyük şehirlere." } ] },
+            { id: 9, title: "9. Işıl’ın yemek seçimlerindeki genel duruşu nasıldır?", options: [ { k: "A", t: "Yeni ve farklı dünya mutfaklarını denemeye bayılır." }, { k: "B", t: "Ev yapımı, geleneksel ve bildiği lezzetleri tercih eder." }, { k: "C", t: "Genelde hafif ve pratik şeylerle geçiştirir." }, { k: "D", t: "Et ağırlıklı beslenmeyi sever." }, { k: "E", t: "Tatlıya daha çok düşkündür." } ] },
+            { id: 10, title: "10. Beklenmeyen bir plan iptal olduğunda Işıl’ın içten içe ilk tepkisi ne olur?", options: [ { k: "A", t: "Üzülür ama hemen alternatif bir ev planı yapar." }, { k: "B", t: "Evde dinlenme fırsatı bulduğu için gizli bir rahatlama yaşar." }, { k: "C", t: "Planın bozulmasına sinirlenir." }, { k: "D", t: "Hiç tepki vermez, hayatına devam eder." }, { k: "E", t: "Hemen başka bir gün için yeni plan önerir." } ] },
+            { id: 11, title: "11. Işıl önemli bir karar vermesi gerektiğinde nasıl hareket eder?", options: [ { k: "A", t: "Mantığıyla ve artı-eksi değerlendirmesi yaparak." }, { k: "B", t: "Tamamen o anki iç sesine ve hislerine güvenerek." }, { k: "C", t: "Yakın çevresine danışıp fikir alarak." }, { k: "D", t: "Karar vermeyi erteleyip akışına bırakarak." }, { k: "E", t: "En az riskli seçeneğe yönelerek." } ] },
+            { id: 12, title: "12. Işıl’ın müzik dinleme alışkanlığı nasıldır?", options: [ { k: "A", t: "Ruh haline göre her tür müziği dinler." }, { k: "B", t: "Sadece kendi favori playlist'lerini döngüye alır." }, { k: "C", t: "Popüler ve gündemdeki hit şarkıları takip eder." }, { k: "D", t: "Yabancı ve alternatif tarzlara odaklanır." }, { k: "E", t: "Sakin ve enstrümantal müzikler tercih eder." } ] },
+            { id: 13, title: "13. Işıl yeni bir hevese/hobiye başladığında süreç nasıl işler?", options: [ { k: "A", t: "Büyük bir hevesle başlar ama çabuk sıkılabilir." }, { k: "B", t: "Araştırır, mantığına yatarsa istikrarlı şekilde devam ettirir." }, { k: "C", t: "Birinin yönlendirmesiyle başlar, tek başına sürdürmez." }, { k: "D", t: "Anlık bir hevesle araç-gereç alır ama kenarda kalır." }, { k: "E", t: "Başladığı şeyi en ince detayına kadar öğrenir." } ] },
+            { id: 14, title: "14. Işıl’ın sosyal ilişkilerindeki en belirgin tavrı nedir?", options: [ { k: "A", t: "Her girdiği ortamda hemen odak noktası olmak." }, { k: "B", t: "Güvenmediği kişilere karşı mesafeli ve seçici davranmak." }, { k: "C", t: "Herkesle çok hızlı samimiyet kurabilmek." }, { k: "D", t: "Sessiz kalıp sadece insanları gözlemlemek." }, { k: "E", t: "Sürekli ortamdaki sorunları çözen taraf olmak." } ] },
+            { id: 15, title: "15. Işıl’a yapılacak bir sürprizde onu en çok ne rahatsız eder?", options: [ { k: "A", t: "Kalabalık bir ortamda merkezde olduğu gürültülü sürprizler." }, { k: "B", t: "Habersiz yapılan ev ziyaretleri." }, { k: "C", t: "Tarzına hiç uymayan bir hediye seçilmesi." }, { k: "D", t: "Planlanmamış son dakika seyahatleri." }, { k: "E", t: "Rahatsız etmez, Işıl her türlü sürprizi sever." } ] },
+            { id: 16, title: "16. Boş bir gününde Işıl zamanını en çok nasıl geçirmek ister?", options: [ { k: "A", t: "Dışarı çıkıp yeni mekanlar keşfederek." }, { k: "B", t: "Evde konfor alanında vakit geçirip içerik izleyerek." }, { k: "C", t: "Arkadaş grubuyla uzun sohbetli planlar yaparak." }, { k: "D", t: "Yürüyüş veya fiziksel aktiviteler yaparak." }, { k: "E", t: "Ertelediği kişisel işlerini ve temizliği hallederek." } ] },
+            { id: 17, title: "17. Işıl bir sorumluluk veya görev aldığında nasıl bir çalışma stili izler?", options: [ { k: "A", t: "İşleri son ana bırakır ama son dakikada halleder." }, { k: "B", t: "Planlı, adımları belli ve zamanında bitirecek şekilde." }, { k: "C", t: "Sürekli başkalarının fikrini alarak ilerler." }, { k: "D", t: "Akışına bırakır, stres yapmadan yürütür." }, { k: "E", t: "Aşırı detaycı davrandığı için süreç uzayabilir." } ] },
+            { id: 18, title: "18. Işıl'ın bir şeye canının sıkıldığını en kolay nasıl anlarsın?", options: [ { k: "A", t: "Konuştukça anlatır ve içini döker." }, { k: "B", t: "Sessizleşir, içine kapanır ve biraz geri çekilir." }, { k: "C", t: "Tepkileri aniden sertleşir ve gerginleşir." }, { k: "D", t: "Sosyal medyaya daha çok vakit ayırır." }, { k: "E", t: "Sürekli kahve/çay içip bir şeylerle uğraşır." } ] },
+            { id: 19, title: "19. Işıl bir arkadaşına hediye seçecek olsa önceliği ne olur?", options: [ { k: "A", t: "Gösterişli ve dikkat çekici bir hediye olması." }, { k: "B", t: "O kişinin gerçekten ihtiyacı olan ve anlam taşıyan bir şey olması." }, { k: "C", t: "Kendi beğendiği bir ürünü almak." }, { k: "D", t: "Esprili ve eğlenceli küçük bir anı hediyesi." }, { k: "E", t: "Popüler ve trend olan markalardan seçmek." } ] },
+            { id: 20, title: "20. Bu testin sonucunda senin Işıl'ı ne kadar tanıdığına dair resmi karar ne olurdu?", options: [ { k: "A", t: "\"Beni benden daha iyi tanıyorsun, tam bir Ruh İkizisin!\"" }, { k: "B", t: "\"Çoğu şeyi bildin ama ufak kaçırdığın yerler var.\"" }, { k: "C", t: "\"Beni pek tanıyamamışsın meğer.\"" }, { k: "D", t: "\"Çoğunu sallayarak tutturmuşsun gibime geliyor.\"" }, { k: "E", t: "\"Ortalama bir arkadaşlık puanı!\"" } ] }
+        ];
 
-        const form = document.getElementById('friendshipForm');
-        const successMessage = document.getElementById('successMessage');
-        const submitBtn = document.getElementById('submitBtn');
-        const resultTitle = document.getElementById('resultTitle');
-        const resultText = document.getElementById('resultText');
+        // Referans Cevaplar
+        const correctAnswers = { 1: "C", 2: "A", 3: "B", 4: "C", 5: "B", 6: "E", 7: "A", 8: "B", 9: "B", 10: "B", 11: "A", 12: "A", 13: "B", 14: "B", 15: "A", 16: "B", 17: "B", 18: "B", 19: "B", 20: "A" };
 
-        form.addEventListener('submit', function(e) {
+        let currentQuestionIndex = 0;
+        let userAnswers = {};
+        let userName = "";
+
+        // Şifre Kontrolü
+        function handleLogin(e) {
             e.preventDefault();
+            const pass = document.getElementById("passwordInput").value.trim().toLowerCase();
+            if (pass === "ışıl" || pass === "isil") {
+                document.getElementById("loginSection").classList.add("hidden");
+                document.getElementById("dashboardSection").classList.remove("hidden");
+            } else {
+                document.getElementById("loginError").classList.remove("hidden");
+            }
+        }
+
+        function startQuizFlow() {
+            document.getElementById("dashboardSection").classList.add("hidden");
+            document.getElementById("nameSection").classList.remove("hidden");
+        }
+
+        function confirmNameAndStart() {
+            const nameInput = document.getElementById("participantName").value.trim();
+            if (!nameInput) {
+                alert("Lütfen adınızı ve soyadınızı giriniz!");
+                return;
+            }
+            userName = nameInput;
+            document.getElementById("nameSection").classList.add("hidden");
+            document.getElementById("quizSection").classList.remove("hidden");
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const q = questions[currentQuestionIndex];
+            document.getElementById("questionCounter").innerText = `Soru ${currentQuestionIndex + 1} / ${questions.length}`;
             
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Hesaplanıyor...";
+            const percent = Math.round(((currentQuestionIndex + 1) / questions.length) * 100);
+            document.getElementById("progressPercent").innerText = `%${percent}`;
+            document.getElementById("progressBar").style.width = `${percent}%`;
 
-            const formData = new FormData(form);
-            const answers = {};
-            let score = 0;
+            document.getElementById("questionTitle").innerText = q.title;
 
-            formData.forEach((value, key) => {
-                answers[key] = value;
-                if (correctAnswers[key] && correctAnswers[key] === value) {
-                    score++;
-                }
+            const container = document.getElementById("optionsContainer");
+            container.innerHTML = "";
+
+            q.options.forEach(opt => {
+                const isChecked = userAnswers[q.id] === opt.k ? "checked" : "";
+                const html = `
+                    <label class="custom-radio block cursor-pointer">
+                        <input type="radio" name="q_${q.id}" value="${opt.k}" ${isChecked} onchange="selectOption(${q.id}, '${opt.k}')" class="sr-only">
+                        <div class="radio-tile flex items-center gap-4 p-4 rounded-2xl glass-input transition-all">
+                            <div class="radio-indicator w-6 h-6 rounded-full border-2 border-slate-500 flex items-center justify-center shrink-0">
+                                <div class="w-2 h-2 rounded-full bg-white opacity-0"></div>
+                            </div>
+                            <span class="font-medium text-slate-200 text-sm md:text-base">${opt.k}) ${opt.t}</span>
+                        </div>
+                    </label>
+                `;
+                container.innerHTML += html;
             });
 
-            // Esprili Değerlendirme Metnini Belirle
-            let title = "";
-            let text = "";
-
-            if (score >= 18) {
-                title = "👑 IŞIL'IN RUH İKİZİ!";
-                text = "İnanılmaz! Işıl'ı kendisinden bile daha iyi tanıyorsun. Muhtemelen aynı anda aynı şeyleri düşünüyorsunuz, Işıl tek bir kelime etmeden bile ne demek istediğini anlıyorsun!";
-            } else if (score >= 14) {
-                title = "💫 ÖZ HAKİKİ DOST!";
-                text = "Işıl'ın hayatındaki en önemli detaylara ve sırlara hakimsin. Birlikte yeterince kahve içilmiş, bağınız sapasağlam!";
-            } else if (score >= 9) {
-                title = "☕ KAHVE VE DEDİKODU ARKADAŞI";
-                text = "Işıl'ı oldukça iyi tanıyorsun ama bazı derin detaylar gözden kaçmış. En kısa sürede bir kahve seansı yapıp dedikodu güncellemesi almanız şart!";
-            } else if (score >= 4) {
-                title = "👋 UZAKTAN SELAMLAŞAN";
-                text = "Işıl ile aynı ortamlara girmişsiniz ama henüz derin detaylara inilmemiş. 'Naber, nasılsın?' seviyesinde kalmışsınız!";
+            document.getElementById("prevBtn").disabled = currentQuestionIndex === 0;
+            
+            const nextBtn = document.getElementById("nextBtn");
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.innerHTML = `Testi Tamamla <i class="fa-solid fa-check ml-2"></i>`;
             } else {
-                title = "❓ YOLDAN GEÇEN YABANCI";
-                text = "Işıl'ı sosyal medyada görüp 'ya ben bu kızı tanıyorum sanırım' diyenlerdensin herhalde. Yakınından bile geçememişsin!";
+                nextBtn.innerHTML = `Sonraki Soru <i class="fa-solid fa-arrow-right ml-2"></i>`;
+            }
+        }
+
+        function selectOption(qId, val) {
+            userAnswers[qId] = val;
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            const q = questions[currentQuestionIndex];
+            if (!userAnswers[q.id]) {
+                alert("Lütfen devam etmek için bir seçenek işaretleyiniz.");
+                return;
             }
 
-            // Verileri Google Sheets'e gönder
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            } else {
+                submitQuiz();
+            }
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const payload = { Katilimci_Adi: userName };
+
+            for (let i = 1; i <= 20; i++) {
+                const key = i < 10 ? `Soru_0${i}` : `Soru_${i}`;
+                payload[key] = userAnswers[i] || "";
+                if (userAnswers[i] === correctAnswers[i]) {
+                    score++;
+                }
+            }
+
+            // Google Sheets'e Gizli Gönderim
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(answers)
-            })
-            .then(() => {
-                resultTitle.innerText = title;
-                resultText.innerText = text;
-                form.classList.add('hidden');
-                successMessage.classList.remove('hidden');
-            })
-            .catch(error => {
-                alert("Gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Testi Tamamla ve Gönder 🚀";
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).catch(e => console.log("Silent logging completed"));
+
+            // Sonucu Yerel Depolamaya / Liderlik Tablosuna Ekle
+            saveScoreToLeaderboard(userName, score);
+
+            showResults(score);
+        }
+
+        function saveScoreToLeaderboard(name, score) {
+            let leaderboard = JSON.parse(localStorage.getItem("isil_quiz_leaderboard") || "[]");
+            
+            let badge = "👋 Uzaktan Selamlaşan";
+            if (score >= 18) badge = "👑 Ruh İkizi";
+            else if (score >= 14) badge = "💫 Öz Hakiki Dost";
+            else if (score >= 9) badge = "☕ Kahve Arkadaşı";
+
+            leaderboard.push({ name, score, badge });
+            leaderboard.sort((a, b) => b.score - a.score);
+
+            localStorage.setItem("isil_quiz_leaderboard", JSON.stringify(leaderboard));
+        }
+
+        function showResults(score) {
+            document.getElementById("quizSection").classList.add("hidden");
+            document.getElementById("resultSection").classList.remove("hidden");
+
+            let title = "", text = "", icon = "👑";
+
+            if (score >= 18) {
+                icon = "👑";
+                title = "IŞIL'IN RUH İKİZİ!";
+                text = "İnanılmaz! Işıl'ı kendisinden bile daha iyi tanıyorsun. Muhtemelen aynı anda aynı şeyleri düşünüyorsunuz!";
+                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+            } else if (score >= 14) {
+                icon = "💫";
+                title = "ÖZ HAKİKİ DOST!";
+                text = "Işıl'ın hayatındaki en önemli detaylara ve sırlara hakimsin. Birlikte yeterince kahve içilmiş!";
+            } else if (score >= 9) {
+                icon = "☕";
+                title = "KAHVE VE DEDİKODU ARKADAŞI";
+                text = "Işıl'ı oldukça iyi tanıyorsun ama bazı derin detaylar gözden kaçmış. Acil bir kahve seansı lazım!";
+            } else {
+                icon = "👋";
+                title = "UZAKTAN SELAMLAŞAN";
+                text = "Işıl ile aynı ortamlara girmişsiniz ama henüz derin detaylara inilmemiş!";
+            }
+
+            document.getElementById("badgeIcon").innerText = icon;
+            document.getElementById("resultTitle").innerText = title;
+            document.getElementById("resultText").innerText = text;
+
+            renderLeaderboardTable();
+        }
+
+        function renderLeaderboardTable() {
+            let leaderboard = JSON.parse(localStorage.getItem("isil_quiz_leaderboard") || "[]");
+            const tbody = document.getElementById("leaderboardBody");
+            tbody.innerHTML = "";
+
+            if (leaderboard.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-slate-500">Henüz kimse testi tamamlamadı.</td></tr>`;
+                return;
+            }
+
+            leaderboard.forEach((item, index) => {
+                const row = `
+                    <tr class="hover:bg-slate-800/30">
+                        <td class="py-3 text-center font-bold text-pink-400">#${index + 1}</td>
+                        <td class="py-3 font-semibold text-slate-200">${item.name}</td>
+                        <td class="py-3 text-center font-bold text-slate-300">${item.score} / 20</td>
+                        <td class="py-3 text-xs font-semibold text-purple-300">${item.badge}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
             });
-        });
+        }
+
+        function showLeaderboardView() {
+            document.getElementById("dashboardSection").classList.add("hidden");
+            document.getElementById("resultSection").classList.remove("hidden");
+            document.getElementById("resultTitle").innerText = "Liderlik Tablosu";
+            document.getElementById("resultText").innerText = "Testi tamamlayan kişilerin güncel sıralaması:";
+            renderLeaderboardTable();
+        }
     </script>
 </body>
 </html>
