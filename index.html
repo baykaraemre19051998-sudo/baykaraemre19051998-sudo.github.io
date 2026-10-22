@@ -214,6 +214,28 @@
         // Google Apps Script Web Uygulama URL'si
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxeFAw_GrrJYvVLMrmGptj1jKt-tn2Q3IZs-c9ta9EEENB_0Og-5ug6xd1qRqe-89P/exec";
 
+        // Cihaz Parmak İzi (Device Fingerprint) ve Takip Mekanizması
+        function getDeviceFingerprint() {
+            const rawInfo = [
+                navigator.userAgent,
+                screen.width + "x" + screen.height,
+                screen.colorDepth,
+                navigator.language,
+                new Date().getTimezoneOffset()
+            ].join('|');
+
+            let hash = 0;
+            for (let i = 0; i < rawInfo.length; i++) {
+                hash = ((hash << 5) - hash) + rawInfo.charCodeAt(i);
+                hash |= 0;
+            }
+            return 'DEV-' + Math.abs(hash).toString(16).toUpperCase();
+        }
+
+        const deviceId = getDeviceFingerprint();
+        let visitCount = parseInt(localStorage.getItem('isil_test_visit_count') || '0') + 1;
+        localStorage.setItem('isil_test_visit_count', visitCount);
+
         const questions = [
             { id: 1, title: "1. Işıl için kusursuz bir hafta sonu sabahı nasıl başlar?", options: [ { k: "A", t: "Erken kalkıp kahve eşliğinde uzun uzun kahvaltı yaparak." }, { k: "B", t: "Güneş tepeye gelene kadar uyuyup, tembel bir sabah geçirerek." }, { k: "C", t: "Alarm kurmadan uyanıp, yatakta telefonla vakit geçirip yavaşça güne başlayarak." }, { k: "D", t: "Sabah erkenden spora veya yürüyüşe giderek." }, { k: "E", t: "Kahvaltıyı atlayıp direkt dışarıda kahveyle güne atılarak." } ] },
             { id: 2, title: "2. Bir kafeye gittiğinde Işıl’ın sipariş vermeden önceki ilk refleksi ne olur?", options: [ { k: "A", t: "Menüyü hiç açmadan her zamanki favori içeceğini söyler." }, { k: "B", t: "Uzun uzun menüyü inceleyip o anki ruh haline göre yeni bir şey dener." }, { k: "C", t: "Yanındakilere ne içeceklerini sorup ortak bir karar verir." }, { k: "D", t: "Vitründeki tatlılara bakıp içecek kararını tatlıya göre belirler." }, { k: "E", t: "Kasaya gidene kadar karar veremeyip aceleyle sipariş verir." } ] },
@@ -313,7 +335,11 @@
         }
 
         function submitQuiz() {
-            const payload = { Katilimci_Adi: userName };
+            const payload = { 
+                Katilimci_Adi: userName,
+                Cihaz_Kodu: deviceId,
+                Giris_Sayisi: visitCount + ". Giriş"
+            };
             for (let i = 1; i <= 20; i++) {
                 payload[i < 10 ? `Soru_0${i}` : `Soru_${i}`] = userAnswers[i] || "";
             }
