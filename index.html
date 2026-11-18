@@ -3,406 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Işıl Küçükyüce - Arkadaşlık Testi Portal</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icon Set -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter & Outfit -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Canvas Confetti Library -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <title>Prenses Işıl Moral Merkezi 👑</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Quicksand:wght@500;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #f8bbd0 100%);
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             min-height: 100vh;
-            color: #f8fafc;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
         }
-        .heading-font {
-            font-family: 'Outfit', sans-serif;
+
+        .castle-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border: 3px solid #f4c430;
+            border-radius: 28px;
+            padding: 36px 28px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(219, 39, 119, 0.18), 0 0 20px rgba(244, 196, 48, 0.25);
+            position: relative;
+            z-index: 2;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+
+        .crown {
+            font-size: 54px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 4px 6px rgba(244, 196, 48, 0.4));
         }
-        .glass-input {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
+        }
+
+        h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #be185d;
+            font-size: 22px;
+            margin: 12px 0 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #d97706;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 22px;
+        }
+
+        .message-box {
+            background: #fff5f8;
+            border: 1.5px dashed #f472b6;
+            border-radius: 18px;
+            padding: 22px 18px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 26px;
             transition: all 0.3s ease;
         }
-        .glass-input:focus {
-            border-color: #ec4899;
-            box-shadow: 0 0 15px rgba(236, 72, 153, 0.3);
-            outline: none;
+
+        #mesaj {
+            font-size: 17px;
+            line-height: 1.55;
+            color: #831843;
+            font-weight: 600;
+            transition: opacity 0.25s ease;
         }
-        .btn-gradient {
-            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        .royal-btn {
+            background: linear-gradient(45deg, #ec4899, #db2777);
+            color: #ffffff;
+            border: 2px solid #fde047;
+            padding: 15px 28px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Quicksand', sans-serif;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(219, 39, 119, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
-        .btn-gradient:hover {
+
+        .royal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+            box-shadow: 0 10px 25px rgba(219, 39, 119, 0.45);
         }
-        .custom-radio input[type="radio"]:checked + .radio-tile {
-            border-color: #ec4899;
-            background: rgba(236, 72, 153, 0.15);
-            box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);
+
+        .royal-btn:active {
+            transform: scale(0.96);
         }
-        .custom-radio input[type="radio"]:checked + .radio-tile .radio-indicator {
-            border-color: #ec4899;
-            background-color: #ec4899;
+
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 20px;
+            animation: fly 1.4s ease-out forwards;
+            z-index: 10;
+        }
+
+        @keyframes fly {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(1.3);
+            }
         }
     </style>
 </head>
-<body class="flex flex-col items-center justify-between p-4 md:p-8">
+<body>
 
-    <div class="fixed top-0 left-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="fixed bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="w-full max-w-3xl z-10 my-auto">
-
-        <!-- 1. ŞİFRE GİRİŞ EKRANI -->
-        <div id="loginSection" class="glass-card rounded-3xl p-8 md:p-12 text-center transition-all duration-500">
-            <div class="w-20 h-20 bg-gradient-to-tr from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-pink-500/30">
-                <i class="fa-solid fa-lock text-3xl text-white"></i>
-            </div>
-            <h1 class="heading-font text-3xl md:text-4xl font-extrabold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-300 to-indigo-300">
-                Giriş Şifresi
-            </h1>
-            <p class="text-slate-300 text-sm md:text-base mb-8">
-                Işıl Küçükyüce Arkadaşlık Portalı'na erişmek için özel şifreyi giriniz.
-            </p>
-
-            <form id="loginForm" onsubmit="handleLogin(event)" class="max-w-md mx-auto space-y-4">
-                <div class="relative">
-                    <input type="password" id="passwordInput" placeholder="Şifreyi giriniz..." required 
-                        class="w-full px-5 py-4 rounded-xl glass-input text-center text-lg tracking-widest font-semibold placeholder:text-slate-500 placeholder:tracking-normal placeholder:font-normal">
-                </div>
-                <p id="loginError" class="text-pink-500 text-sm font-semibold hidden">
-                    <i class="fa-solid fa-circle-exclamation mr-1"></i> Hatalı şifre! Lütfen tekrar deneyiniz.
-                </p>
-                <button type="submit" class="w-full py-4 rounded-xl btn-gradient text-white font-bold text-lg shadow-lg tracking-wide">
-                    Portala Giriş Yap <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-            </form>
+    <div class="castle-card">
+        <div class="crown">👑</div>
+        <h1>Prenses Işıl Moral Fermanı</h1>
+        <div class="subtitle">✦ Işıl Hazretleri'ne Özel Protokol ✦</div>
+        
+        <div class="message-box">
+            <p id="mesaj">Işıl Hazretleri'nin modu biraz düşmüş diye duyduk... Acil durum ışıltısı için butona dokunun! ✨</p>
         </div>
 
-        <!-- 2. TEST SEÇİM / MOD PANELİ -->
-        <div id="dashboardSection" class="glass-card rounded-3xl p-8 md:p-10 text-center hidden transition-all duration-500">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-sm font-semibold mb-6">
-                <span class="w-2 h-2 rounded-full bg-pink-500 animate-ping"></span> Portal Aktif
-            </div>
-            <h2 class="heading-font text-3xl font-extrabold mb-3">Hoş Geldiniz! ✨</h2>
-            <p class="text-slate-300 text-sm md:text-base mb-8">Testi oluşturmak veya Işıl'ın oluşturduğu testi çözmek için seçiminizi yapın.</p>
-
-            <div class="grid grid-cols-1 gap-4 max-w-lg mx-auto mb-8">
-                
-                <div onclick="startQuizMode('creator')" class="glass-card hover:bg-white/10 p-6 rounded-2xl cursor-pointer transition-all border border-purple-500/30 hover:border-purple-500 flex items-center justify-between group">
-                    <div class="flex items-center gap-4 text-left">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg text-white">Işıl Olarak Testi Oluştur</h3>
-                            <p class="text-xs text-slate-400">Kendi doğru cevaplarını seç ve testi başlat!</p>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-purple-400 transition-all"></i>
-                </div>
-
-                <div onclick="startQuizMode('participant')" class="glass-card hover:bg-white/10 p-6 rounded-2xl cursor-pointer transition-all border border-pink-500/30 hover:border-pink-500 flex items-center justify-between group">
-                    <div class="flex items-center gap-4 text-left">
-                        <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:bg-pink-500 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-heart text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg text-white">Işıl'ın Arkadaşlık Testini Çöz</h3>
-                            <p class="text-xs text-slate-400">Işıl'ın cevaplarına göre kaç doğru yapacaksın?</p>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-slate-400 group-hover:text-pink-400 transition-all"></i>
-                </div>
-
-            </div>
-
-            <button onclick="showLeaderboardView()" class="px-6 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition-all border border-slate-700">
-                <i class="fa-solid fa-trophy text-amber-400 mr-2"></i> Canlı Liderlik Tablosunu Gör
-            </button>
-        </div>
-
-        <!-- 3. KATILIMCI ADI GİRİŞ EKRANI -->
-        <div id="nameSection" class="glass-card rounded-3xl p-8 md:p-10 text-center hidden transition-all duration-500">
-            <h2 id="nameSectionTitle" class="heading-font text-2xl md:text-3xl font-extrabold mb-2">Test Başlatılıyor 🚀</h2>
-            <p id="nameSectionSubtitle" class="text-slate-300 text-sm mb-6">Lütfen test sonucunuzun kaydedilebilmesi için adınızı giriniz.</p>
-            <div class="max-w-md mx-auto space-y-4">
-                <input type="text" id="participantName" placeholder="Adınız Soyadınız..." required class="w-full px-5 py-4 rounded-xl glass-input text-lg">
-                <button onclick="confirmNameAndStart()" class="w-full py-4 rounded-xl btn-gradient text-white font-bold text-lg">
-                    Sorulara Geç <i class="fa-solid fa-play ml-2 text-sm"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- 4. SORU EKRANI -->
-        <div id="quizSection" class="glass-card rounded-3xl p-6 md:p-10 hidden transition-all duration-500">
-            <div class="mb-8">
-                <div class="flex justify-between items-center text-xs font-semibold text-slate-400 mb-2">
-                    <span id="questionCounter">Soru 1 / 20</span>
-                    <span id="progressPercent">%5</span>
-                </div>
-                <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-700">
-                    <div id="progressBar" class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full transition-all duration-300" style="width: 5%"></div>
-                </div>
-            </div>
-
-            <h3 id="questionTitle" class="heading-font text-xl md:text-2xl font-bold mb-6 text-slate-100 leading-snug"></h3>
-
-            <div id="optionsContainer" class="space-y-3 mb-8"></div>
-
-            <div class="flex justify-between items-center pt-4 border-t border-slate-800">
-                <button id="prevBtn" onclick="prevQuestion()" class="px-5 py-3 rounded-xl bg-slate-800 text-slate-400 font-semibold text-sm hover:bg-slate-700 hover:text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed" disabled>
-                    <i class="fa-solid fa-arrow-left mr-2"></i> Önceki
-                </button>
-                <button id="nextBtn" onclick="nextQuestion()" class="px-6 py-3 rounded-xl btn-gradient text-white font-bold text-sm shadow-md">
-                    Sonraki Soru <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- 5. SONUÇ & CANLI LİDERLİK TABLOSU EKRANI -->
-        <div id="resultSection" class="glass-card rounded-3xl p-8 md:p-10 text-center hidden transition-all duration-500">
-            <div id="badgeIcon" class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-400 to-pink-500 flex items-center justify-center mx-auto mb-6 shadow-xl shadow-pink-500/20 text-3xl text-white">
-                👑
-            </div>
-            <h2 id="resultTitle" class="heading-font text-2xl md:text-3xl font-extrabold mb-3">Liderlik Tablosu</h2>
-            <p id="resultText" class="text-slate-300 text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed"></p>
-
-            <div class="bg-slate-900/60 rounded-2xl p-6 border border-slate-800 text-left mb-8">
-                <h4 class="heading-font font-bold text-lg text-slate-200 mb-4 flex items-center justify-between">
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-trophy text-amber-400"></i> Ortak Canlı Liderlik Tablosu</span>
-                    <button onclick="fetchLiveLeaderboard()" class="text-xs text-pink-400 hover:underline"><i class="fa-solid fa-rotate-right mr-1"></i> Yenile</button>
-                </h4>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm">
-                        <thead>
-                            <tr class="text-slate-400 border-b border-slate-800 text-xs font-semibold">
-                                <th class="pb-3 text-center">Sıra</th>
-                                <th class="pb-3">Katılımcı</th>
-                                <th class="pb-3 text-center">Doğru</th>
-                                <th class="pb-3">Unvan</th>
-                            </tr>
-                        </thead>
-                        <tbody id="leaderboardBody" class="divide-y divide-slate-800/60">
-                            <tr><td colspan="4" class="py-4 text-center text-slate-500">Sıralama yükleniyor...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <button onclick="location.reload()" class="px-8 py-4 rounded-xl btn-gradient text-white font-bold text-sm shadow-lg">
-                <i class="fa-solid fa-house mr-2"></i> Ana Sayfaya Dön
-            </button>
-        </div>
-
+        <button class="royal-btn" onclick="prensesMorali(event)">✨ Kraliyet Dozu Al ✨</button>
     </div>
 
     <script>
-        // Google Apps Script Web Uygulama URL'si
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxwsu4iNlykZvITHV3PNjd_MKX_ef90Y-oOTruKYy_rKeSbGZGpuMNxhUiLcaPe3nVN/exec";
-
-        // Cihaz Parmak İzi (Device Fingerprint) ve Takip Mekanizması
-        function getDeviceFingerprint() {
-            const rawInfo = [
-                navigator.userAgent,
-                screen.width + "x" + screen.height,
-                screen.colorDepth,
-                navigator.language,
-                new Date().getTimezoneOffset()
-            ].join('|');
-
-            let hash = 0;
-            for (let i = 0; i < rawInfo.length; i++) {
-                hash = ((hash << 5) - hash) + rawInfo.charCodeAt(i);
-                hash |= 0;
-            }
-            return 'DEV-' + Math.abs(hash).toString(16).toUpperCase();
-        }
-
-        const deviceId = getDeviceFingerprint();
-        let visitCount = parseInt(localStorage.getItem('isil_test_visit_count') || '0') + 1;
-        localStorage.setItem('isil_test_visit_count', visitCount);
-
-        const questions = [
-            { id: 1, title: "1. Işıl için kusursuz bir hafta sonu sabahı nasıl başlar?", options: [ { k: "A", t: "Erken kalkıp kahve eşliğinde uzun uzun kahvaltı yaparak." }, { k: "B", t: "Güneş tepeye gelene kadar uyuyup, tembel bir sabah geçirerek." }, { k: "C", t: "Alarm kurmadan uyanıp, yatakta telefonla vakit geçirip yavaşça güne başlayarak." }, { k: "D", t: "Sabah erkenden spora veya yürüyüşe giderek." }, { k: "E", t: "Kahvaltıyı atlayıp direkt dışarıda kahveyle güne atılarak." } ] },
-            { id: 2, title: "2. Bir kafeye gittiğinde Işıl’ın sipariş vermeden önceki ilk refleksi ne olur?", options: [ { k: "A", t: "Menüyü hiç açmadan her zamanki favori içeceğini söyler." }, { k: "B", t: "Uzun uzun menüyü inceleyip o anki ruh haline göre yeni bir şey dener." }, { k: "C", t: "Yanındakilere ne içeceklerini sorup ortak bir karar verir." }, { k: "D", t: "Vitründeki tatlılara bakıp içecek kararını tatlıya göre belirler." }, { k: "E", t: "Kasaya gidene kadar karar veremeyip aceleyle sipariş verir." } ] },
-            { id: 3, title: "3. Işıl’ı en çok ne sinirlendirir veya sabrını en çabuk ne tüketir?", options: [ { k: "A", t: "Yoğun trafikte kalmak." }, { k: "B", t: "Verilen sözlerin tutulmaması ve net olunmaması." }, { k: "C", t: "Planların son anda değişmesi." }, { k: "D", t: "Teknolojik bir eşyanın bozulması veya internetin yavaş olması." }, { k: "E", t: "Anlaşılmadığını hissettiği anlar." } ] },
-            { id: 4, title: "4. Alışveriş yaparken Işıl’ın genel yaklaşımı nasıldır?", options: [ { k: "A", t: "Gördüğü ilk güzel şeyi, fazla düşünmeden hemen alır." }, { k: "B", t: "İhtiyacı olan listeyi yapar, direkt onu alıp çıkar." }, { k: "C", t: "Uzun süre arar, inceler, fiyat/performans kıyaslaması yapar." }, { k: "D", t: "Genelde internetten alışverişi tercih eder." }, { k: "E", t: "Beğendiği şeyleri favorilere ekleyip indirim bekler." } ] },
-            { id: 5, title: "5. Stresli veya yorucu bir günün ardından Işıl zihnini nasıl dinlendirir?", options: [ { k: "A", t: "Arkadaşlarıyla buluşup dışarıda vakit geçirerek." }, { k: "B", t: "Sevdiği bir diziyi/filmi açıp evde kendi başına kalarak." }, { k: "C", t: "Müzik açıp uzun bir yürüyüşe çıkarak." }, { k: "D", t: "Kitap okuyarak veya bir şeyler çizerek." }, { k: "E", t: "Sosyal medyada vakit geçirerek." } ] },
-            { id: 6, title: "6. Işıl mesajlaşırken genelde nasıl bir iletişim tarzını tercih eder?", options: [ { k: "A", t: "Uzun, detaylı ve açıklayıcı ses kayıtları atmayı." }, { k: "B", t: "Kısa, net ve nokta atışı mesajlar yazmayı." }, { k: "C", t: "Bolca emoji ve görsel öğeler kullanarak neşeli yazmayı." }, { k: "D", t: "Karşı tarafın mesajlarına kısa ama öz yanıtlar vermeyi." }, { k: "E", t: "Duruma göre değişir ama genelde net ve dengeli yazar." } ] },
-            { id: 7, title: "7. Işıl yeni bir ortama girdiğinde ilk olarak neye dikkat eder?", options: [ { k: "A", t: "Ortamın genel enerjisine ve atmosferine." }, { k: "B", t: "Kimlerin olduğuna ve tanıdık biri var mı diye bakar." }, { k: "C", t: "Mekanın tasarımına ve şıklığına." }, { k: "D", t: "Oturacak en rahat yeri seçmeye odaklanır." }, { k: "E", t: "Sessiz sakin bir köşe bulmaya çalışır." } ] },
-            { id: 8, title: "8. Işıl seyahat/tatil planı yaparken önceliği neye verir?", options: [ { k: "A", t: "Tarihi ve kültürel yerleri gezmeye." }, { k: "B", t: "Sakin, kafasını dinleyebileceği doğa kaçamaklarına." }, { k: "C", t: "Popüler mekanları keşfetmeye ve yeme-içmeye." }, { k: "D", t: "Tamamen akışına bırakılmış, plansız gezilere." }, { k: "E", t: "Alışveriş yapılabilecek büyük şehirlere." } ] },
-            { id: 9, title: "9. Işıl’ın yemek seçimlerindeki genel duruşu nasıldır?", options: [ { k: "A", t: "Yeni ve farklı dünya mutfaklarını denemeye bayılır." }, { k: "B", t: "Ev yapımı, geleneksel ve bildiği lezzetleri tercih eder." }, { k: "C", t: "Genelde hafif ve pratik şeylerle geçiştirir." }, { k: "D", t: "Et ağırlıklı beslenmeyi sever." }, { k: "E", t: "Tatlıya daha çok düşkündür." } ] },
-            { id: 10, title: "10. Beklenmeyen bir plan iptal olduğunda Işıl’ın içten içe ilk tepkisi ne olur?", options: [ { k: "A", t: "Üzülür ama hemen alternatif bir ev planı yapar." }, { k: "B", t: "Evde dinlenme fırsatı bulduğu için gizli bir rahatlama yaşar." }, { k: "C", t: "Planın bozulmasına sinirlenir." }, { k: "D", t: "Hiç tepki vermez, hayatına devam eder." }, { k: "E", t: "Hemen başka bir gün için yeni plan önerir." } ] },
-            { id: 11, title: "11. Işıl önemli bir karar vermesi gerektiğinde nasıl hareket eder?", options: [ { k: "A", t: "Mantığıyla ve artı-eksi değerlendirmesi yaparak." }, { k: "B", t: "Tamamen o anki iç sesine ve hislerine güvenerek." }, { k: "C", t: "Yakın çevresine danışıp fikir alarak." }, { k: "D", t: "Karar vermeyi erteleyip akışına bırakarak." }, { k: "E", t: "En az riskli seçeneğe yönelerek." } ] },
-            { id: 12, title: "12. Işıl’ın müzik dinleme alışkanlığı nasıldır?", options: [ { k: "A", t: "Ruh haline göre her tür müziği dinler." }, { k: "B", t: "Sadece kendi favori playlist'lerini döngüye alır." }, { k: "C", t: "Popüler ve gündemdeki hit şarkıları takip eder." }, { k: "D", t: "Yabancı ve alternatif tarzlara odaklanır." }, { k: "E", t: "Sakin ve enstrümantal müzikler tercih eder." } ] },
-            { id: 13, title: "13. Işıl yeni bir hevese/hobiye başladığında süreç nasıl işler?", options: [ { k: "A", t: "Büyük bir hevesle başlar ama çabuk sıkılabilir." }, { k: "B", t: "Araştırır, mantığına yatarsa istikrarlı şekilde devam ettirir." }, { k: "C", t: "Birinin yönlendirmesiyle başlar, tek başına sürdürmez." }, { k: "D", t: "Anlık bir hevesle araç-gereç alır ama kenarda kalır." }, { k: "E", t: "Başladığı şeyi en ince detayına kadar öğrenir." } ] },
-            { id: 14, title: "14. Işıl’ın sosyal ilişkilerindeki en belirgin tavrı nedir?", options: [ { k: "A", t: "Her girdiği ortamda hemen odak noktası olmak." }, { k: "B", t: "Güvenmediği kişilere karşı mesafeli ve seçici davranmak." }, { k: "C", t: "Herkesle çok hızlı samimiyet kurabilmek." }, { k: "D", t: "Sessiz kalıp sadece insanları gözlemlemek." }, { k: "E", t: "Sürekli ortamdaki sorunları çözen taraf olmak." } ] },
-            { id: 15, title: "15. Işıl’a yapılacak bir sürprizde onu en çok ne rahatsız eder?", options: [ { k: "A", t: "Kalabalık bir ortamda merkezde olduğu gürültülü sürprizler." }, { k: "B", t: "Habersiz yapılan ev ziyaretleri." }, { k: "C", t: "Tarzına hiç uymayan bir hediye seçilmesi." }, { k: "D", t: "Planlanmamış son dakika seyahatleri." }, { k: "E", t: "Rahatsız etmez, Işıl her türlü sürprizi sever." } ] },
-            { id: 16, title: "16. Boş bir gününde Işıl zamanını en çok nasıl geçirmek ister?", options: [ { k: "A", t: "Dışarı çıkıp yeni mekanlar keşfederek." }, { k: "B", t: "Evde konfor alanında vakit geçirip içerik izleyerek." }, { k: "C", t: "Arkadaş grubuyla uzun sohbetli planlar yaparak." }, { k: "D", t: "Yürüyüş veya fiziksel aktiviteler yaparak." }, { k: "E", t: "Ertelediği kişisel işlerini ve temizliği hallederek." } ] },
-            { id: 17, title: "17. Işıl bir sorumluluk veya görev aldığında nasıl bir çalışma stili izler?", options: [ { k: "A", t: "İşleri son ana bırakır ama son dakikada halleder." }, { k: "B", t: "Planlı, adımları belli ve zamanında bitirecek şekilde." }, { k: "C", t: "Sürekli başkalarının fikrini alarak ilerler." }, { k: "D", t: "Akışına bırakır, stres yapmadan yürütür." }, { k: "E", t: "Aşırı detaycı davrandığı için süreç uzayabilir." } ] },
-            { id: 18, title: "18. Işıl'ın bir şeye canının sıkıldığını en kolay nasıl anlarsın?", options: [ { k: "A", t: "Konuştukça anlatır ve içini döker." }, { k: "B", t: "Sessizleşir, içine kapanır ve biraz geri çekilir." }, { k: "C", t: "Tepkileri aniden sertleşir ve gerginleşir." }, { k: "D", t: "Sosyal medyaya daha çok vakit ayırır." }, { k: "E", t: "Sürekli kahve/çay içip bir şeylerle uğraşır." } ] },
-            { id: 19, title: "19. Işıl bir arkadaşına hediye seçecek olsa önceliği ne olur?", options: [ { k: "A", t: "Gösterişli ve dikkat çekici bir hediye olması." }, { k: "B", t: "O kişinin gerçekten ihtiyacı olan ve anlam taşıyan bir şey olması." }, { k: "C", t: "Kendi beğendiği bir ürünü almak." }, { k: "D", t: "Esprili ve eğlenceli küçük bir anı hediyesi." }, { k: "E", t: "Popüler ve trend olan markalardan seçmek." } ] },
-            { id: 20, title: "20. Bu testin sonucunda senin Işıl'ı ne kadar tanıdığına dair resmi karar ne olurdu?", options: [ { k: "A", t: "\"Beni benden daha iyi tanıyorsun, tam bir Ruh İkizisin!\"" }, { k: "B", t: "\"Çoğu şeyi bildin ama ufak kaçırdığın yerler var.\"" }, { k: "C", t: "\"Beni pek tanıyamamışsın meğer.\"" }, { k: "D", t: "\"Çoğunu sallayarak tutturmuşsun gibime geliyor.\"" }, { k: "E", t: "\"Ortalama bir arkadaşlık puanı!\"" } ] }
+        const mesajlar = [
+            "Tacın biraz eğilmiş olabilir Işıl ama unutma: Bu krallığın en parlak ışığı hâlâ sensin. 👑",
+            "Saray kuralları gereği Işıl'ın bugün üzülmesi kesinlikle yasaklanmıştır. Aksini iddia eden zindana atılır! 🏰",
+            "Adın gibi etrafındaki herkese ışık saçıyorsun Işıl, bugün sadece dinlenme molası ver. ✨",
+            "Bazen en güçlü prenseslerin bile ejderhalarla savaşmaya ara verip kahve içmeye ihtiyacı olur Işıl. ☕💖",
+            "Gülüşün krallık hazinesinden bile daha değerli Işıl, kimsenin o ışıltıyı çalmasına izin verme. 💎",
+            "Bugün dünyayı kurtarmak yok Işıl; sadece derin bir nefes al, tacını düzelt ve keyfine bak. 🌸",
+            "Bu sayfa özel olarak Işıl'ın yüzünde minicik bir tebessüm oluşsun diye kodlandı. Başardı mı? 🪄"
         ];
 
-        let currentQuestionIndex = 0;
-        let userAnswers = {};
-        let userName = "";
+        let sonIndex = -1;
 
-        function handleLogin(e) {
-            e.preventDefault();
-            const pass = document.getElementById("passwordInput").value.trim().toLowerCase();
-            if (pass === "ışıl" || pass === "isil") {
-                document.getElementById("loginSection").classList.add("hidden");
-                document.getElementById("dashboardSection").classList.remove("hidden");
-            } else {
-                document.getElementById("loginError").classList.remove("hidden");
+        function prensesMorali(e) {
+            const mesajEl = document.getElementById("mesaj");
+            let rastgele;
+            do {
+                rastgele = Math.floor(Math.random() * mesajlar.length);
+            } while (rastgele === sonIndex);
+            sonIndex = rastgele;
+
+            mesajEl.style.opacity = 0;
+            setTimeout(() => {
+                mesajEl.innerText = mesajlar[rastgele];
+                mesajEl.style.opacity = 1;
+            }, 150);
+
+            pariltiSac(e);
+        }
+
+        function pariltiSac(e) {
+            const ikonlar = ["✨", "💖", "👑", "🌸", "💫", "🦋"];
+            const rect = e.target.getBoundingClientRect();
+            const merkezX = rect.left + rect.width / 2;
+            const merkezY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 12; i++) {
+                const span = document.createElement("span");
+                span.className = "sparkle";
+                span.innerText = ikonlar[Math.floor(Math.random() * ikonlar.length)];
+                
+                const tx = (Math.random() - 0.5) * 260 + "px";
+                const ty = (Math.random() - 0.8) * 240 + "px";
+                
+                span.style.left = merkezX + "px";
+                span.style.top = merkezY + "px";
+                span.style.setProperty("--tx", tx);
+                span.style.setProperty("--ty", ty);
+
+                document.body.appendChild(span);
+                setTimeout(() => span.remove(), 1400);
             }
-        }
-
-        function startQuizMode(mode) {
-            document.getElementById("dashboardSection").classList.add("hidden");
-            document.getElementById("nameSection").classList.remove("hidden");
-
-            if (mode === 'creator') {
-                document.getElementById("nameSectionTitle").innerText = "Test Oluşturuluyor ✨";
-                document.getElementById("participantName").value = "Işıl Küçükyüce";
-            } else {
-                document.getElementById("nameSectionTitle").innerText = "Test Başlatılıyor 🚀";
-                document.getElementById("participantName").value = "";
-            }
-        }
-
-        function confirmNameAndStart() {
-            const nameInput = document.getElementById("participantName").value.trim();
-            if (!nameInput) {
-                alert("Lütfen adınızı giriniz!");
-                return;
-            }
-            userName = nameInput;
-            document.getElementById("nameSection").classList.add("hidden");
-            document.getElementById("quizSection").classList.remove("hidden");
-            renderQuestion();
-        }
-
-        function renderQuestion() {
-            const q = questions[currentQuestionIndex];
-            document.getElementById("questionCounter").innerText = `Soru ${currentQuestionIndex + 1} / ${questions.length}`;
-            const percent = Math.round(((currentQuestionIndex + 1) / questions.length) * 100);
-            document.getElementById("progressPercent").innerText = `%${percent}`;
-            document.getElementById("progressBar").style.width = `${percent}%`;
-
-            document.getElementById("questionTitle").innerText = q.title;
-            const container = document.getElementById("optionsContainer");
-            container.innerHTML = "";
-
-            q.options.forEach(opt => {
-                const isChecked = userAnswers[q.id] === opt.k ? "checked" : "";
-                container.innerHTML += `
-                    <label class="custom-radio block cursor-pointer">
-                        <input type="radio" name="q_${q.id}" value="${opt.k}" ${isChecked} onchange="selectOption(${q.id}, '${opt.k}')" class="sr-only">
-                        <div class="radio-tile flex items-center gap-4 p-4 rounded-2xl glass-input transition-all">
-                            <span class="font-medium text-slate-200 text-sm md:text-base">${opt.k}) ${opt.t}</span>
-                        </div>
-                    </label>
-                `;
-            });
-
-            document.getElementById("prevBtn").disabled = currentQuestionIndex === 0;
-            document.getElementById("nextBtn").innerHTML = currentQuestionIndex === questions.length - 1 ? `Testi Gönder 🚀` : `Sonraki Soru <i class="fa-solid fa-arrow-right ml-2"></i>`;
-        }
-
-        function selectOption(qId, val) { userAnswers[qId] = val; }
-        function prevQuestion() { if (currentQuestionIndex > 0) { currentQuestionIndex--; renderQuestion(); } }
-        function nextQuestion() {
-            if (!userAnswers[questions[currentQuestionIndex].id]) { alert("Lütfen bir seçenek seçin!"); return; }
-            if (currentQuestionIndex < questions.length - 1) { currentQuestionIndex++; renderQuestion(); } 
-            else { submitQuiz(); }
-        }
-
-        function submitQuiz() {
-            const payload = { 
-                Katilimci_Adi: userName,
-                Cihaz_Kodu: deviceId,
-                Giris_Sayisi: visitCount + ". Giriş"
-            };
-            for (let i = 1; i <= 20; i++) {
-                payload[i < 10 ? `Soru_0${i}` : `Soru_${i}`] = userAnswers[i] || "";
-            }
-
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            }).then(() => {
-                showResults();
-            }).catch(() => {
-                showResults();
-            });
-        }
-
-        function showResults() {
-            document.getElementById("quizSection").classList.add("hidden");
-            document.getElementById("resultSection").classList.remove("hidden");
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-            fetchLiveLeaderboard();
-        }
-
-        function fetchLiveLeaderboard() {
-            const tbody = document.getElementById("leaderboardBody");
-            tbody.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-slate-500">Canlı veriler çekiliyor...</td></tr>`;
-
-            fetch(GOOGLE_SCRIPT_URL)
-                .then(res => res.json())
-                .then(data => {
-                    data.sort((a, b) => b.score - a.score);
-                    tbody.innerHTML = "";
-                    if (data.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-slate-500">Henüz kayıt yok.</td></tr>`;
-                        return;
-                    }
-
-                    data.forEach((item, index) => {
-                        let badge = "👋 Uzaktan Selamlaşan";
-                        if (item.score >= 18) badge = "👑 Ruh İkizi";
-                        else if (item.score >= 14) badge = "💫 Öz Hakiki Dost";
-                        else if (item.score >= 9) badge = "☕ Kahve Arkadaşı";
-
-                        tbody.innerHTML += `
-                            <tr class="hover:bg-slate-800/30">
-                                <td class="py-3 text-center font-bold text-pink-400">#${index + 1}</td>
-                                <td class="py-3 font-semibold text-slate-200">${item.name}</td>
-                                <td class="py-3 text-center font-bold text-slate-300">${item.score} / 20</td>
-                                <td class="py-3 text-xs font-semibold text-purple-300">${badge}</td>
-                            </tr>
-                        `;
-                    });
-                })
-                .catch(() => {
-                    tbody.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-slate-500">Bağlantı hatası oluştu.</td></tr>`;
-                });
-        }
-
-        function showLeaderboardView() {
-            document.getElementById("dashboardSection").classList.add("hidden");
-            document.getElementById("resultSection").classList.remove("hidden");
-            fetchLiveLeaderboard();
         }
     </script>
+
 </body>
 </html>
